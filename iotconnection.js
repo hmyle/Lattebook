@@ -1,47 +1,43 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongodb = require('mongodb');
+const mongoose = require('mongoose');
+const Checkin = require('./models/checkin');
+const User = require('./models/user');
 
 const app = express();
 const port = 3000;
 
 // MongoDB connection URI
-const mongoUri = 'mongodb+srv://hmyle:C6lrHMWYYDO2K5Bz@cluster0.sujlcna.mongodb.net/isys2101?retryWrites=true&w=majority';
-
-// Collection name
-const collectionName = 'uid_data';
+const mongoURI = 'mongodb+srv://hmyle:C6lrHMWYYDO2K5Bz@cluster0.sujlcna.mongodb.net/isys2101?retryWrites=true&w=majority';
 
 app.use(bodyParser.json());
 
-app.post('/api/uid', (req, res) => {
+mongoose.connect(mongoURI)
+.then(() => console.log('Connected to MongoDB Atlas'))
+.catch((error) => console.log(error.message));
+
+
+app.post('/api/uid', async (req, res) => {
   const uidData = req.body;
+  const checkInUid = new Checkin(uidData);
+  let userUid = checkInUid.uid.replace(/\s+/, '');
 
-  mongodb.MongoClient.connect(mongoUri, (err, client) => {
-    if (err) {
-      console.error('Error connecting to MongoDB:', err);
-      res.status(500).json({ error: 'Internal server error' });
-      return;
+  checkInUid.save().then(console.log('Data saved to database')).catch((error) => console.log(error.message));
+
+
+  try {
+    const user = await User.findOne({ uid: userUid });
+    if (user) {
+      console.log("User found:", user);
+      res.json(user);
+    } else {
+      console.log("User not found");
+      res.status(404).json({ error: 'User not found' });
     }
-
-    const db = client.db();
-    const collection = db.collection(collectionName);
-
-    collection.insertOne(uidData, (err, result) => {
-      if (err) {
-        console.error('Error inserting UID data:', err);
-        res.status(500).json({ error: 'Internal server error' });
-      } else {
-        console.log('UID data inserted successfully');
-        res.status(200).json({ message: 'UID data received and stored' });
-      }
-
-      client.close();
-    });
-  });
-});
-
-app.get('/test', (req, res) => {
-    res.send('Server is reachable');
+  } catch (error) {
+    console.error('Error retrieving user information:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.listen(port, () => {
