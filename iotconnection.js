@@ -24,7 +24,6 @@ app.post('/api/uid', async (req, res) => {
 
   checkInUid.save().then(console.log('Data saved to database')).catch((error) => console.log(error.message));
 
-
   try {
     const user = await User.findOne({ uid: userUid });
     if (user) {
