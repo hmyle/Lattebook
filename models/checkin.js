@@ -10,5 +10,5 @@ const checkinSchema = new mongoose.Schema({
         timestamps: true
 });
 
-const Checkin = mongoose.model('Uid', uidSchema);
+const Checkin = mongoose.model('checkin', checkinSchema);
 module.exports = Checkin;
