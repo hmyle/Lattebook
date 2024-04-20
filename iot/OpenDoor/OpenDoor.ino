@@ -12,6 +12,8 @@ bool rotationPerformed = false;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  myStepper.setSpeed(10);
+  myStepper.step(2048);
 }
 
 void loop() {
@@ -23,22 +25,17 @@ void loop() {
 
     if (Serial.available() > 0) {
       char c = Serial.read();
-      if (c == 2) return;
       readString += c;
     }
   }
 
   Q = readString;
 
-  Serial.println(Q);
-  delay(100);
-
-  if (Q = "1") {
-    myStepper.setSpeed(10);
+  if (Q.length() > 0 && Q.charAt(Q.length() - 1) == '1') {
     myStepper.step(1024);
     delay(5000);
     myStepper.step(-1024);
-  } else if (Q = "2") {
-    Q = "";
   }
+
+  delay(3000);
 }
