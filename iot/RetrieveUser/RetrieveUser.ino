@@ -13,11 +13,10 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
 const char* ssid = "P2201";
 const char* password = "29191948";
-const char* serverUrl = "http://192.168.1.14:3000/api/uid";
+const char* serverUrl = "http://192.168.1.5:3000/api/uid";
 
 void setup() {
   Serial.begin(9600);  // Initialize serial communications with the PC
-  Serial1.begin(9600);
   
   while (!Serial){
     yield();  // Yield to handle background tasks while waiting for serial connection
@@ -91,12 +90,8 @@ void loop() {
       String fullName = doc["fullName"].as<String>();
 
       if (isAdmin) {
-        Serial.println("Access granted for admin: " + fullName);
-
-        // Logic for Admin
-        Serial1.write('1');  // Send the command to rotate the stepper motor
+        Serial.write("1");  // Send the command to rotate the stepper motor
         delay(5000);  // Delay to allow the rotation to complete before sending the next command
-        Serial1.write('2');  // Send a command to indicate the end of the request
       } else {
         Serial.println("Access denied for user: " + fullName);
       }
