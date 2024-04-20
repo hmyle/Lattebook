@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body style="background-color: #D1BB9E;">
+    
+    <header class="header">
+
+        <section class="header-1">
+
+            <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
+
+            <form action="" class="search-form">
+                <input type="search" name="" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-shopping-cart"></a>
+                <a href="login.html" class="fas fa-user"></a>
+            </div>
+
+        </section>
+
+    </header>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 vh-100 border-right d-flex flex-column" style="background-color: #EAD8C0;">
+                <div class="list-group flex-grow-1">
+                    <a href="#" class="list-group-item list-group-item-action active" >Dashboard</a>
+                    <a href="#" class="list-group-item list-group-item-action">Members</a>
+                    <a href="#" class="list-group-item list-group-item-action">Add Books</a>
+                    <a href="#" class="list-group-item list-group-item-action">Check-out Books</a>
+                    <a href="#" class="list-group-item list-group-item-action">Settings</a>
+                    <a href="#" class="list-group-item list-group-item-action">Help</a>
+                </div>
+                <div class="mt-auto">
+                    <a href="#" class="btn btn-link text-decoration-none">Log out</a>
+                </div>
+            </div>
+    
+            <div class="col-lg-10">
+                <div class="row mb-4">
+                    <div class="col-lg-3 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                            <div class="card-body">
+                                <h2>Borrowed Books</h2>
+                                <h3>100</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                            <div class="card-body">
+                                <h2>Returned Books</h2>
+                                <h3>50</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                        <div class="col-lg-3 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                                <div class="card-body">
+                                    <h2>Overdue Books</h2>
+                                    <h3>100</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                                <div class="card-body">
+                                    <h2>Missing Books</h2>
+                                    <h3>50</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                            <div class="card-body">
+                                <h2>Total Books</h2>
+                                <h3>100</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 mb-4">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card-body">
+                                <h2>Visitors</h2>
+                                <h3>50</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                        <div class="col-lg-3 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                                <div class="card-body">
+                                    <h2>New Members</h2>
+                                    <h3>100</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 5%">
+                                <div class="card-body">
+                                    <h2>Pending Fees</h2>
+                                    <h3>50</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-6 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Check-out Statistics</h2>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style="background-color: #FFF2E1;">
+                            <div class="card-header">
+                                <h2>Overdue's History</h2>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 37%;">Title</th>
+                                            <th style="width: 21%;">Member ID</th>
+                                            <th style="width: 21%;">Due Date</th>
+                                            <th style="width: 21%;">Fine</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data rows will go here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+         
+         
+                <div class="row mb-4">
+                    <div class="col-lg-8 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style="background-color: #FFF2E1;">
+                            <div class="card-header">
+                                <h2>Recent Check-out's</h2>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%;">Transaction ID</th>
+                                            <th style="width: 35%;">Title</th>
+                                            <th style="width: 18%;">Author</th>
+                                            <th style="width: 10%;">Member ID</th>
+                                            <th style="width: 13.5%;">Issued Date</th>
+                                            <th style="width: 13.5%;">Return Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data rows will go here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+         
+         
+                    <div class="col-lg-4 mb-4">
+                        <div class="card" style="background-color: #FFF2E1;">
+                            <div class="card-header">
+                                <div class="btn-group" role="group" aria-label="Top Books/New Arrivals">
+                                    <button type="button" class="btn btn-secondary active">Top Books</button>
+                                    <button type="button" class="btn btn-secondary">New Arrivals</button>
+                                </div>
+                            </div>
+                            <div class="row border-bottom pb-2">
+                                <div class="col-12 ml-3">
+                                    <h2>Book Title</h2>
+                                    <h5>Author Name</h5>
+                                    <button type="button" class="btn btn-info" disabled>Status</button>
+                                </div>
+                            </div>
+                            <div class="row border-bottom pb-2">
+                                <div class="col-12 ml-3">
+                                    <h2>Book Title</h2>
+                                    <h5>Author Name</h5>
+                                    <button type="button" class="btn btn-info" disabled>Status</button>
+                                </div>
+                            </div>
+                            <div class="row border-bottom pb-2">
+                                <div class="col-12 ml-3">
+                                    <h2>Book Title</h2>
+                                    <h5>Author Name</h5>
+                                    <button type="button" class="btn btn-info" disabled>Status</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+
+
+</body>
+  
+  <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              datasets: [{
+                  label: '# of Books Borrowed',
+                  data: [1200, 1900, 3000, 5000, 2000, 3000, 2400],
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              },
+              {
+                  label: '# of Books Returned',
+                  data: [1000, 1500, 3500, 4500, 2500, 2800, 2200],
+                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      ticks: {
+                          callback: function(value, index, values) {
+                              return value / 1000 + 'k';
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  </script>
+
+<script>
+    $(document).ready(function(){
+        $(".btn-group .btn").click(function(){
+            $(".btn-group .btn").removeClass("active"); // Remove active class from all buttons
+            $(this).addClass("active"); // Add active class to the clicked button
+        });
+    });
+    </script>
+
+
+</html>
