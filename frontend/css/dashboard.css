@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
+.list-group-item:hover {
+    background-color: #EAD8C0;
+    border-radius: 10px;
+}
+
 img {
     width: 17rem;
     height: auto;
@@ -127,11 +132,15 @@ section{
     background:rgb(155, 0, 0);
 }
 
+.header {
+    background:#D1BB9E;
+}
+
 .header .header-1{
-    background:#fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .header .header-1 .logo{
