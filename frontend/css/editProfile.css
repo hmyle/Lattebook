@@ -6,7 +6,18 @@ body {
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Poppins', sans-serif;
-    background-color: rgba(255, 255, 255, 0.8)
+    background-color: #f7f5f2;
+    font-size: 14px;
+}
+
+header {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #242323;
 }
 
 .container {
@@ -19,9 +30,14 @@ body {
     transition: box-shadow 0.3s ease;
 }
 
+.sidebar-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .sidebar {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 30px;
+    background: rgb(255, 255, 255);
+    padding: px 30px 30px 30px;
     border-radius: 5px;
     color: #333;
 }
@@ -32,16 +48,12 @@ body {
 }
 
 .nav-link:hover {
-    color: #007bff;
+    color: #A79277;
     text-decoration: underline;
 }
 
-.form-group input {
-    transition: border 0.3s ease;
-}
-
-.form-group input:focus {
-    border-color: #007bff;
+.main-container {
+    padding: 20px 30px 30px 30px;
 }
 
 .button-container {
@@ -51,51 +63,52 @@ body {
 }
 
 .btn-primary {
-    background: #007bff;
-    border-color: #007bff;
+    background: #D1BB9E;
+    border-color: #D1BB9E;
     transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
     margin: 0 auto;
 }
 
 .btn-primary:hover {
-    background: #0069d9;
-    border-color: #0062cc;
+    background: #A79277;
+    border-color: #A79277;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
 }
 
+.btn-primary:active, .btn-primary:focus {
+    background-color: #A79277; /* Change to the color you want */
+    border-color: #A79277; /* Change to the color you want */
+    outline: none; /* Removes the browser's default outline */
+}
+
+.active {
+    background-color: #A79277;
+    border-radius: 10px;
+    margin: 0 110px 0 0;
+    color: white;
+}
+
 .form-group input {
-    font-size: 16px;
+    font-size: 13px;
     color: #333;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-}
-
-.btn-primary {
-    background: #007bff;
-    border-color: #007bff;
-    color: #fff;
-    font-size: 18px;
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary:hover {
-    background: #0069d9;
-    border-color: #0062cc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+    border-color: #A79277;
+    box-shadow: 0 0 10px #A79277;
 }
 
 .avatar-upload {
     position: relative;
     max-width: 205px;
-    margin: 50px auto;
+    margin: 25px auto;
+    display: flex; /* Add this */
+    justify-content: center; /* Add this */
+    align-items: center; /* Add this */
 }
+
 .avatar-upload .avatar-edit {
     position: absolute;
     right: 12px;
@@ -150,4 +163,21 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
-  
+
+@media (max-width:768px) { 
+    .profile-info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar-upload {
+        margin: 0px;
+        height: 250px;
+        width: 170px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+}

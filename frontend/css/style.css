@@ -127,6 +127,10 @@ section{
     background:rgb(155, 0, 0);
 }
 
+.header {
+    background:#fff;
+}
+
 .header .header-1{
     background:#fff;
     display: flex;

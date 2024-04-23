@@ -6,25 +6,64 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/editProfile.css">
-    <title>Profile Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Settings</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="image\favicon.png">
 </head>
+
 <body>
+
+        <!-- header section starts  -->
+    
+        <header class="header">
+
+            <section class="header-1">
+    
+                <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
+    
+                <form action="" class="search-form">
+                    <input type="search" name="" placeholder="search here..." id="search-box">
+                    <label for="search-box" class="fas fa-search"></label>
+                </form>
+    
+                <div class="icons">
+                    <div id="search-btn" class="fas fa-search"></div>
+                    <a href="/" class="fas fa-heart"></a>
+                    <a href="/" class="fas fa-shopping-cart"></a>
+                    <a href="/login" class="fas fa-user"></a>
+                </div>
+    
+            </section>
+
+            <!-- bottom navbar for responsive purpose  -->
+
+            <nav class="bottom-navbar">
+                <a href="#general" class="fas fa-cog"></a>
+                <a href="#profile" class="fas fa-user"></a>
+                <a href="#security" class="fas fa-lock"></a>
+            </nav>
+    
+        </header>
+    
+        <!-- header section ends -->
+
     <div class="container">
-        <div class="row">
+        <div class="row main-container">
             <div class="col-md-3 sidebar">
                 <div class="sidebar-header">
                     <h2>Settings</h2>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a href="#" class="nav-link">General</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link active">My Profile</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Profile</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Security</a></li>
-                    <!-- Add more sidebar items as needed -->
                 </ul>
             </div>
+
             <div class="col-md-9 main-content">
                 <div class="profile-header">
-                    <h2>My Profile</h2>
+                    <h2>Profile</h2>
                     <p>Manage your profile settings</p>
                 </div>
                 <div class="profile-info row">
@@ -72,6 +111,10 @@
         </div>
     </div>
 
+    <section class="footer">
+        <div class="credit">&copy; 2024 <span>Latte Book</span> | all rights reserved </div>
+    </section>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function readURL(input) {
@@ -91,5 +134,6 @@
         // ... (previous JavaScript code remains the same)
     </script>
 </body>
+    
 </html>
   
