@@ -44,10 +44,17 @@ body {
     border-color: #007bff;
 }
 
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
 .btn-primary {
     background: #007bff;
     border-color: #007bff;
     transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    margin: 0 auto;
 }
 
 .btn-primary:hover {
@@ -99,7 +106,9 @@ body {
     display: none;
 }
 .avatar-upload .avatar-edit input + label {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 34px;
     height: 34px;
     margin-bottom: 0;
@@ -116,15 +125,14 @@ body {
     border-color: #d6d6d6;
 }
 .avatar-upload .avatar-edit input + label:after {
-    content: "\f040";
-    font-family: 'FontAwesome';
-    color: #757575;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin: auto;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-image: url('https://pic.onlinewebfonts.com/thumbnails/icons_415898.svg');    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 1;
 }
 .avatar-upload .avatar-preview {
     width: 192px;
@@ -142,6 +150,4 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
-
-
   
