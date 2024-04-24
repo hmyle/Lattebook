@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
+
+.gauge-section {
+    margin-top: 1.5rem;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
 .list-group-item:hover {
     background-color: #EAD8C0;
     border-radius: 10px;
