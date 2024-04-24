@@ -41,7 +41,7 @@ app.use(
 app.use(authRoutes);
 
 // Database Connection
-const mongoURI = 'mongodb+srv://hmyle:C6lrHMWYYDO2K5Bz@cluster0.sujlcna.mongodb.net/isys2101?retryWrites=true&w=majority';
+const mongoURI = 'mongodb+srv://hmyle:mjWS3$-2FvgUwNU@iotlibrary.tdjdpmt.mongodb.net/librarysystem';
 
 mongoose.connect(mongoURI)
 .then(() => console.log('Connected to MongoDB Atlas'))

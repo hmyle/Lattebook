@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
-
 body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -8,6 +7,10 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f7f5f2;
     font-size: 14px;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 header {
@@ -37,7 +40,6 @@ h2 {
 
 .sidebar {
     background: rgb(255, 255, 255);
-    padding: px 30px 30px 30px;
     border-radius: 5px;
     color: #333;
 }
@@ -49,7 +51,6 @@ h2 {
 
 .nav-link:hover {
     color: #A79277;
-    text-decoration: underline;
 }
 
 .main-container {
@@ -62,30 +63,30 @@ h2 {
     align-items: end;
 }
 
-.btn-primary {
+.btn {
     background: #D1BB9E;
     border-color: #D1BB9E;
     transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    margin: 0 auto;
 }
 
-.btn-primary:hover {
+.btn:hover {
     background: #A79277;
     border-color: #A79277;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
+    color: white;
 }
 
-.btn-primary:active, .btn-primary:focus {
-    background-color: #A79277; /* Change to the color you want */
-    border-color: #A79277; /* Change to the color you want */
-    outline: none; /* Removes the browser's default outline */
+.btn:active, .btn:focus {
+    background-color: #A79277;
+    border-color: #A79277;
+    outline: none;
 }
 
 .active {
     background-color: #A79277;
     border-radius: 10px;
-    margin: 0 110px 0 0;
+    margin: 0 100px 0 0;
     color: white;
 }
 
@@ -104,9 +105,9 @@ h2 {
     position: relative;
     max-width: 205px;
     margin: 25px auto;
-    display: flex; /* Add this */
-    justify-content: center; /* Add this */
-    align-items: center; /* Add this */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 .avatar-upload .avatar-edit {
