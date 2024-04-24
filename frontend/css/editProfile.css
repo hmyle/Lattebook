@@ -23,6 +23,14 @@ h2 {
     color: #242323;
 }
 
+.form-control {
+    font-size: 14px;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
 .container {
     max-width: 960px;
     margin: 30px auto;
@@ -39,7 +47,6 @@ h2 {
 }
 
 .sidebar {
-    background: rgb(255, 255, 255);
     border-radius: 5px;
     color: #333;
 }
@@ -163,6 +170,39 @@ h2 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.security-header {
+    margin-bottom: 20px;
+}
+
+.security-header h2 {
+    color: #343a40;
+}
+
+.security-info .form-group {
+    margin-bottom: 15px;
+}
+
+.security-info label {
+    display: block;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.security-info .form-control {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.security-info .btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 @media (max-width:768px) { 
