@@ -221,4 +221,17 @@ h2 {
     .sidebar {
         display: none;
     }
+
+    .active {
+        background-color: #A79277;
+        border-radius: 10px;
+        margin: 10px;
+        color: white;
+    }
+
+    .nav-link:hover {
+        border-radius: 10px;
+        margin: 10px;
+        color: whitesmoke;
+    }
 }

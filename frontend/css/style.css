@@ -6,6 +6,14 @@ img {
     margin: 20px;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 :root{
     --brown:#D1BB9E;
     --dark-color:#A79277;
