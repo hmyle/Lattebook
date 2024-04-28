@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/Dashboard.css">
-
+    <link rel="stylesheet" href="css/styles.min.css">
+    <script src="https://kit.fontawesome.com/2cfbd4ba51.js" crossorigin="anonymous"></script>
+    
 <title>Weather Control WebUI</title>
 
 <style>
@@ -30,11 +32,6 @@
 
             <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
 
-            <form action="" class="search-form">
-                <input type="search" name="" placeholder="search here..." id="search-box">
-                <label for="search-box" class="fas fa-search"></label>
-            </form>
-
             <div class="icons">
                 <div id="search-btn" class="fas fa-search"></div>
                 <a href="#" class="fas fa-heart"></a>
@@ -51,17 +48,102 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2 vh-100 border-right d-flex flex-column">
-                    <div class="list-group flex-grow-1" style="margin-top: 2.5rem;">
-                        <a href="#" class="list-group-item list-group-item-action mb-5"><h1> <i class="fa-solid fa-table-columns"></i> Dashboard </h1></a>
-                        <a href="#" class="list-group-item list-group-item-action mb-5"><h1> <i class="fa-solid fa-person"></i> Members</h1></a>
-                        <a href="#" class="list-group-item list-group-item-action mb-5"><h1> <i class="fa-solid fa-book"></i> Books</h1></a>
-                        <a href="#" class="list-group-item list-group-item-action mb-5"><h1> <i class="fa-solid fa-book-open"></i> Check-out Books</h1></a>
-                        <a href="#" class="list-group-item list-group-item-action mb-5"><h1> <i class="fa-solid fa-gear"></i> Settings</h1></a>
-                        <a href="#" class="list-group-item list-group-item-action mb-5"><h1> <i class="fa-regular fa-circle-question"></i> Help</h1></a>
-                    </div>
-                    <div class="mt-auto">
-                        <a href="#" class="btn btn-link text-decoration-none" style="border-radius: 10px"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a>
-                    </div>
+                    <aside class="left-sidebar">
+                        <!-- Sidebar scroll-->
+                        <div>
+                          <!-- Sidebar navigation-->
+                          <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                            <ul id="sidebarnav">
+                              <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu"><h1>Home</h1></span>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-layout-dashboard"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-solid fa-table-columns"></i> Dashboard</h2></span>
+                                </a>
+                              </li>
+                              <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu"><h1>UI COMPONENTS</h1></span>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-article"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-solid fa-person"></i> Members</h2></span>
+                                </a>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-alert-circle"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-solid fa-book"></i> Books</h2></span>
+                                </a>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-cards"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-solid fa-book-open"></i> Check-out Books</h2></span>
+                                </a>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-file-description"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-regular fa-id-card"></i> Cards</h2></span>
+                                </a>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-typography"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-solid fa-gear"></i> Settings</h2></span>
+                                </a>
+                              </li>
+                              <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu"><h1>AUTHENTICATION</h1></span>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-login"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-solid fa-right-to-bracket"></i> Login</h2></span>
+                                </a>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-user-plus"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-regular fa-registered"></i> Register</h2></span>
+                                </a>
+                              </li>
+                              <li class="sidebar-item">
+                                <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                                  <span>
+                                    <i class="ti ti-user-plus"></i>
+                                  </span>
+                                  <span class="hide-menu"><h2><i class="fa-solid fa-right-from-bracket"></i> Logout</h2></span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                          <!-- End Sidebar navigation -->
+                        </div>
+                        <!-- End Sidebar scroll-->
+                      </aside>
                 </div>
 
                 <div class="col-lg-10">
