@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
+.sidebar-link span {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-size {
+    font-size: 1.5em;
+    margin-bottom: .5rem;
+}
+
+.ml-2 {
+    margin-left: 10px; 
+}
 
 .gauge-section {
     margin-top: 1.5rem;
@@ -940,6 +958,12 @@ section{
 
     .arrivals .box{
         width: 50%;
+    }
+    .hide-menu h1, .hide-menu h2 {
+        display: none;
+    }
+    .fa-regular .fa-registered{
+        display: block;
     }
 
 }
