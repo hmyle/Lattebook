@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/styles.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/2cfbd4ba51.js" crossorigin="anonymous"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body>
@@ -20,6 +20,18 @@
     <header class="header">
 
         <section class="header-1">
+
+            <div class="header1 col-xl-none col-lg-none">
+                <div class="container">
+                  <div class="flex flex-between">
+                    <span class="btn-menu" id="btn-menu">
+                      <i class="fa-solid fa-bars logo-size"></i>
+                    </span>
+            
+                    <span class="icon"></span>
+                  </div>
+                </div>
+              </div>
 
             <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
 
@@ -38,111 +50,55 @@
     
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 vh-100 border-right d-flex flex-column">
-                <aside class="left-sidebar">
-                    <!-- Sidebar scroll-->
-                    <div>
-                      <!-- Sidebar navigation-->
-                      <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-                        <ul id="sidebarnav">
-                          <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu"><h1>Home</h1></span>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-layout-dashboard"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-solid fa-table-columns icon-size"></i><h2 class="ml-2"> Dashboard</h2></span>
-                            </a>
-                          </li>
-                          <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu"><h1>OPTIONS</h1></span>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-article"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-solid fa-person icon-size"></i><h2 class="ml-2"> Members</h2></span>
-                            </a>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-alert-circle"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-solid fa-book icon-size"></i><h2 class="ml-2"> Books</h2></span>
-                            </a>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-cards"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-solid fa-book-open icon-size"></i><h2 class="ml-2"> Check-out</h2></span>
-                            </a>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-file-description"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-regular fa-id-card icon-size"></i><h2 class="ml-2"> Cards</h2></span>
-                            </a>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-typography"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-solid fa-gear icon-size"></i><h2 class="ml-2"> Settings</h2></span>
-                            </a>
-                          </li>
-                          <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu"><h1>AUTH</h1></span>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-login"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-solid fa-right-to-bracket icon-size"></i><h2 class="ml-2"> Login</h2></span>
-                            </a>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-user-plus"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-regular fa-registered icon-size"></i><h2 class="ml-2"> Register</h2></span>                            </a>
-                          </li>
-                          <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-user-plus"></i>
-                              </span>
-                              <span class="hide-menu flex-container"><i class="fa-solid fa-right-from-bracket icon-size"></i><h2 class="ml-2"> Logout</h2></span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                      <!-- End Sidebar navigation -->
-                    </div>
-                    <!-- End Sidebar scroll-->
-                  </aside>
-            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 vh-100 border-right d-flex flex-column d-md-flex">
+                
+        <div class="nav" id="sidebar">
+      
+          <div class="btn-close" id="btn-close">
+          </div>
+          
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#dashboard" class="nav-link flex active">
+                <ion-icon name="speedometer-outline" class="nav-icon"></ion-icon>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#message" class="nav-link flex">
+                <ion-icon name="chatbox-ellipses-outline" class="nav-icon"></ion-icon>
+                Messages
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#bookmark" class="nav-link flex">
+                <ion-icon name="bookmarks-outline" class="nav-icon"></ion-icon>
+                Bookmarks
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#gifts" class="nav-link flex">
+                <ion-icon name="gift-outline" class="nav-icon"></ion-icon>
+                Gifts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#setting" class="nav-link flex">
+                <ion-icon name="settings-outline" class="nav-icon"></ion-icon>
+                Settings
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     
-            <div class="col-10">
+            <div class="col-xl-10 col-lg-9 col-md-9">
                 <div class="row mb-4" style="margin-top: 2.5rem;">
                     <div class="col-lg-3 mb-4">
                         <a href="your-link-here.html" class="text-decoration-none text-dark">
                         <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                             <div class="card-body">
-                                <h1>Borrowed Books</h1>
+                                <h1>Books Borrowed</h1>
                                 <h2>100</h2>
                                 <button type="button" class="btn btn-info float-right" disabled>+%</button>
                             </div>
@@ -160,28 +116,28 @@
                         </div>
                         </a>
                     </div>
-                        <div class="col-lg-3 mb-4">
-                            <a href="your-link-here.html" class="text-decoration-none text-dark">
-                            <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
-                                <div class="card-body">
-                                    <h1>Overdue Books</h1>
-                                    <h2>100</h2>
-                                    <button type="button" class="btn btn-info float-right" disabled>+%</button>
-                                </div>
+                    <div class="col-lg-3 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                            <div class="card-body">
+                                <h1>Overdue Books</h1>
+                                <h2>100</h2>
+                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
                             </div>
-                            </a>
                         </div>
-                        <div class="col-lg-3 mb-4">
-                            <a href="your-link-here.html" class="text-decoration-none text-dark">
-                            <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
-                                <div class="card-body">
-                                    <h1>Missing Books</h1>
-                                    <h2>50</h2>
-                                    <button type="button" class="btn btn-info float-right" disabled>-%</button>
-                                </div>
-                            </div>
-                            </a>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                            <div class="card-body">
+                                <h1>Missing Books</h1>
+                                <h2>50</h2>
+                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                             </div>
                         </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-3 mb-4">
@@ -229,6 +185,7 @@
                             </a>
                         </div>
                 </div>
+
                 <div class="row mb-4">
                     <div class="col-lg-6 mb-4">
                         <a href="your-link-here.html" class="text-decoration-none text-dark">
