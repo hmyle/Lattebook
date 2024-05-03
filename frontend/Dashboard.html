@@ -21,12 +21,12 @@
 
         <section class="header-1">
 
-            <div class="header1 col-xl-none col-lg-none">
+            <div class="header1">
                 <div class="container">
                   <div class="flex flex-between">
-                    <span class="btn-menu" id="btn-menu">
+                    <button class="btn-menu" id="btn-menu">
                       <i class="fa-solid fa-bars logo-size"></i>
-                    </span>
+                    </button>
             
                     <span class="icon"></span>
                   </div>
@@ -338,6 +338,14 @@
         $(".btn-group .btn").click(function(){
             $(".btn-group .btn").removeClass("active"); // Remove active class from all buttons
             $(this).addClass("active"); // Add active class to the clicked button
+        });
+    });
+    </script>
+
+<script>
+    $(document).ready(function(){
+        $("#btn-menu").click(function(){
+            $("#sidebar").toggleClass("active");
         });
     });
     </script>

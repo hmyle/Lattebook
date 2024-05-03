@@ -26,30 +26,41 @@
 
 <body>
 
-    <header class="header">
+  <header class="header">
 
-        <section class="header-1">
+    <section class="header-1">
 
-            <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
-
-            <div class="icons">
-                <div id="search-btn" class="fas fa-search"></div>
-                <a href="#" class="fas fa-heart"></a>
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="login.html" class="fas fa-user"></a>
+        <div class="header1">
+            <div class="container">
+              <div class="flex flex-between">
+                <button class="btn-menu" id="btn-menu">
+                  <i class="fa-solid fa-bars logo-size"></i>
+                  <i class="fa-solid fa-times logo-size"></i>
+              </button>
+        
+                <span class="icon"></span>
+              </div>
             </div>
+          </div>
 
-        </section>
+        <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
 
-    </header>
+        <div class="icons">
+            <div id="search-btn" class="fas fa-search"></div>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <a href="login.html" class="fas fa-user"></a>
+        </div>
+
+    </section>
+
+</header>
 
     <main>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-2 vh-100 border-right d-flex flex-column">
-                  <aside class="left-sidebar">
-                    <!-- Sidebar scroll-->
+        <div class="container-fluid d-flex">
+                <div class="col-xl-2 col-lg-3 vh-100 border-right d-flex flex-column">
+                  <div class="left-sidebar" id="help">
                     <div>
                       <!-- Sidebar navigation-->
                       <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
@@ -130,10 +141,10 @@
                       <!-- End Sidebar navigation -->
                     </div>
                     <!-- End Sidebar scroll-->
-                  </aside>
+                  </div>
                 </div>
 
-                <div class="col-lg-10">
+                <div class="col-xl-10 col-lg-9" style="margin-left: 1rem;">
                     <div class="row mb-4" style="margin-top: 2.5rem;">
                         <div class="col-lg-5 mb-4">
                             <a href="your-link-here.html" class="text-decoration-none text-dark">
@@ -181,7 +192,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
 
     
 
@@ -201,5 +212,23 @@
     <script type="text/javascript">
     function getTempColor(e){return e>=35?"#ff5722":e>=30?"#ff9800":e>=25?"#ffc107":e>=18?"#4caf50":e>10?"#8bc34a":e>=5?"#00bcd4":e>=-5?"#03a9f4":"#2196f3"}function getHumColor(e){var t=["#E3F2FD","#BBDEFB","#90CAF9","#64B5F6","#42A5F5","#2196F3","#1E88E5","#1976D2","#1565C0","#0D47A1","#0D47A1"];return t[Math.round(e/10)]}function refresh(){var e=new XMLHttpRequest;e.onreadystatechange=function(){if(e.readyState==XMLHttpRequest.DONE)if(200==e.status){var t=JSON.parse(e.responseText);tempGauge.setVal(t.temp).setColor(getTempColor(t.temp)),humGauge.setVal(t.hum).setColor(getHumColor(t.hum))}else console.log("Refresh failed: "+e.status)},e.open("GET","data",!0),e.send()}var tempGauge=createVerGauge("temp",-20,60," °C").setVal(0).setColor(getTempColor(0)),humGauge=createRadGauge("hum",0,100,"%").setVal(0).setColor(getHumColor(0));document.getElementById("refresh").addEventListener("click",refresh),setTimeout(refresh,100);
     </script>
+
+<script>
+  $(document).ready(function(){
+      $("#btn-menu").click(function(){
+          $("#sidebar").toggleClass("active");
+      });
+  });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+      $("#btn-menu").click(function(){
+          $(this).toggleClass("open");
+          $("#help").toggleClass("active");
+      });
+  });
+  </script>
+
 
 </html>
