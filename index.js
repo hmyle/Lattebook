@@ -12,6 +12,7 @@ const User = require('./models/user');
 
 // Importing routes
 const authRoutes = require('./routes/authRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 
 // Importing middleware
 const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware');
@@ -61,6 +62,7 @@ app.use(
 
 // Setting up routes
 app.use(authRoutes);
+app.use(profileRoutes);
 
 // Database Connection
 const mongoURI = 'mongodb+srv://hmyle:mjWS3$-2FvgUwNU@iotlibrary.tdjdpmt.mongodb.net/librarysystem';

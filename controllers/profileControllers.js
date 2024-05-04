@@ -1,0 +1,57 @@
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
+
+const User = require('../models/user');
+
+// Setting up multer
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/uploads/')  // Change this to your desired directory
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)) // Appending extension
+    }
+})
+
+const upload = multer({ storage: storage });
+
+module.exports.updateProfilePicturePost = async (req, res) => {
+    try {
+      // req.file is the `profileImage` file
+      const imageLink = '/uploads/' + req.file.filename;
+      console.log(imageLink);
+  
+      // Find the user
+      const email = req.body.email;
+      const user = await User.findOne({ email: email });
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Delete the old image file if it's not the default image
+      const oldImageLink = user.profileImage;
+      const defaultImageLink = "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
+      if (oldImageLink !== defaultImageLink) {
+        const oldImagePath = path.join(__dirname, '..', 'public', oldImageLink);
+        console.log(oldImagePath);
+        fs.unlink(oldImagePath, (err) => {
+          if (err) {
+            console.error(err);
+          }
+        });
+      }
+  
+      // Update the user's profile image
+      const updatedUser = await User.findOneAndUpdate(
+        { email: email },
+        { profileImage: imageLink },
+        { new: true }
+      );
+  
+      res.json({ message: 'Profile image updated successfully' });
+    } catch (error) {
+      res.status(500).json({ error: error.toString() });
+    }
+};
