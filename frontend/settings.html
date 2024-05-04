@@ -201,8 +201,23 @@
         }
         $("#imageUpload").change(function() {
             readURL(this);
+
+            // Submit the form via AJAX
+            var formData = new FormData($('#uploadForm')[0]);
+            $.ajax({
+            url: '/uploadProfileImage',
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function(data) {
+                console.log('Upload successful');
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            }
+            });
         });
-        // ... (previous JavaScript code remains the same)
     </script>
 </body>
     
