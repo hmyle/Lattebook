@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Settings</title>
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="image\favicon.png">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 </head>
 
 <body>
@@ -173,9 +173,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
         
     </div>
@@ -185,6 +182,7 @@
         <div class="credit">&copy; 2024 <span>Latte Book</span> | all rights reserved </div>
     </section>
 
+    <!-- Handling changing profile image -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/settings.js"></script>
     <script>
@@ -218,6 +216,77 @@
                 error: function(error) {
                     console.log('Error:', error);
                 }
+            });
+        });
+    </script>
+
+    <!-- Handling changing profile information -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value
+            };
+
+            fetch('/updateProfile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert(data.message);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+    </script>
+
+    <!-- Handling updating password-->
+    <script>
+        document.getElementById('savePassword').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var formData = {
+                currentPassword: document.getElementById('currentPassword').value,
+                newPassword: document.getElementById('newPassword').value,
+                confirmPassword: document.getElementById('confirmPassword').value
+            };
+
+            fetch('/updatePassword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
             });
         });
     </script>

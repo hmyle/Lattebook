@@ -23,7 +23,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// Profile Section
 router.post('/uploadProfileImage', checkUser, requireAuth, upload.single('profileImage'), profileControllers.updateProfilePicturePost);
+router.post('/updateProfile', checkUser, requireAuth, profileControllers.updateProfilePost);
+
+// Security Section
+router.post('/updatePassword', checkUser, requireAuth, profileControllers.updatePasswordPost);
 
 // Export the router
 module.exports = router;

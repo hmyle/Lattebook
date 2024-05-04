@@ -55,3 +55,49 @@ module.exports.updateProfilePicturePost = async (req, res) => {
       res.status(500).json({ error: error.toString() });
     }
 };
+
+module.exports.updateProfilePost = async (req, res) => {
+    try {
+        const { fullName, email, phone, address } = req.body;
+    
+        const user = await User.findOneAndUpdate(
+          { _id: res.locals.user._id },
+          { fullName: fullName, email: email, phone: phone, address: address },
+        );
+        
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+        }
+        
+        res.json({ message: 'Profile updated successfully' });
+      } catch (error) {
+        res.status(500).json({ error: error.toString() });
+    }
+}
+
+module.exports.updatePasswordPost = async (req, res) => {
+  try {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    let user = res.locals.user;
+
+    if (!user.isValidPassword(currentPassword)){
+      return res.status(400).json({ error: 'Current password is incorrect' });
+    }
+
+    // Check if the new password and confirm password match
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ error: 'New password and confirm password do not match' });
+    }
+
+    // Update the password
+    user.password = newPassword;
+
+    // Save the user
+    await user.save();
+
+    res.json({ message: 'Password updated successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.toString() });
+  }
+};

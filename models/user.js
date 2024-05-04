@@ -30,7 +30,10 @@ const userSchema = new mongoose.Schema({
         minlength: [6, 'Minimum password length is 6 characters']
     },
     phone: {
-        type: Number
+        type: String,
+    },
+    address: {
+        type: String,
     },
     totalBookCheckedOut: {
         type: Number,
@@ -68,12 +71,12 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function (next) {
-    // Only hash the password if it has been modified (or is new)
-    if (!this.isModified('password')) next();
-    /* Salting and Hashing the Password */
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
+  // Only hash the password if it has been modified (or is new)
+  if (!this.isModified('password')) return next();
+  /* Salting and Hashing the Password */
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
 userSchema.post('save', function (doc, next) {
@@ -95,6 +98,14 @@ userSchema.statics.login = async function(email, password) {
     }
     throw Error('Incorrect email');
     
+};
+
+userSchema.methods.isValidPassword = async function(password) {
+    try {
+        return await bcrypt.compare(password, this.password);
+    } catch (error) {
+        throw error;
+    }
 };
 
 // Define a model based on the schema
