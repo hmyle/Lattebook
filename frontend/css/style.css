@@ -33,7 +33,7 @@ a:hover {
     text-decoration: none;
     text-transform: capitalize;
     transition:all .2s linear;
-    transition:width none;
+    transition: none;
 }
 
 html{
@@ -847,6 +847,147 @@ section{
     height:10rem;
 }
 
+.wishlist .container {
+    background-color: lightgray;
+    border-radius: 10px;
+    width: 70%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    text-align: center;
+}
+
+.wishlist .container .bookcover {
+    margin: 1%;
+}
+
+.wishlist .container .bookcover img {
+    width: 40%;
+    
+}
+
+.wishlist .container .verticalline {
+    border-left: 2px solid darkgray;
+    height: auto;
+}
+
+.wishlist .container .bookinfo {
+    font-size: 100%;
+    width: 60%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.wishlist .container .bookinfo-buttons {
+    margin-left: auto;
+    margin-top: auto;
+    width: 20%;
+    height: 100%;
+}
+
+.arrivals .rentlist{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.arrivals .rentlist .box{
+    display: flex;
+    align-items: center;   
+    gap:1.5rem;
+    padding:2rem 1rem 1rem;
+    border:var(--border);
+    margin:1rem 1rem 1rem;
+    width: 100%;
+}
+
+.arrivals .rentlist .box:hover{
+    border:var(--border-hover);
+}
+
+.arrivals .rentlist .box .image img{
+    height:15rem;
+}
+
+.arrivals .rentlist .box .content .booktitle{
+    font-size: 2rem;
+    color:var(--black);
+    padding-bottom: .5rem;
+    font-weight: bold;
+}
+
+.arrivals .rentlist .box .content .author{
+    font-size: 1.9rem;
+    color:var(--black);
+    padding-bottom: .5rem;
+}
+
+.arrivals .rentlist .box .content .bookstatus{
+    font-size: 1.4rem;
+    color:var(--black);
+    padding-bottom: .5rem;
+}
+
+.arrivals .rentlist .box .rent{
+    margin-left: auto;
+    margin-right: 2%;
+}
+
+.arrivals .rentlist .buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.arrivals .rentlist .buttons #rentselected-btn{
+margin-top: 1rem;
+    padding:.9rem 3rem;
+    border-radius: .5rem;
+    color:#fff;
+    background:var(--brown);
+    font-size: 1.7rem;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    margin-left: 20%;
+}
+
+.arrivals .rentlist .buttons #rentall-btn{
+    margin-top: 1rem;
+    padding:.9rem 3rem;
+    border-radius: .5rem;
+    color:#fff;
+    background:var(--brown);
+    font-size: 1.7rem;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    margin-right: 20%;
+}
+
+.arrivals .rentlist #confirm-btn{
+    margin-top: 1rem;
+    padding:.9rem 3rem;
+    border-radius: .5rem;
+    color:#fff;
+    background:var(--brown);
+    font-size: 1.7rem;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+}
+
+.rentlist .container .bookinfo-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
 /* allbooks page */
 
 .arrivals .allbook{
@@ -876,7 +1017,6 @@ section{
     margin:1rem 1rem;
     width: 31%;
 }
-
 
 .show {
     display: block;
