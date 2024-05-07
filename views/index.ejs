@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LatteBook Library</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="image\favicon.png">
+</head>
+
+<body>
+
+    <!-- header section starts  -->
+    
+    <header class="header">
+
+        <section class="header-1">
+
+            <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
+
+            <form action="" class="search-form">
+                <input type="search" name="" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-shopping-cart"></a>
+                <a href="login.html" class="fas fa-user"></a>
+            </div>
+
+        </section>
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="#home">home</a>
+                <a href="#featured">featured</a>
+                <a href="#arrivals">arrivals</a>
+                <a href="#reviews">reviews</a>
+            </nav>
+        </div>
+
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- bottom navbar  -->
+
+    <nav class="bottom-navbar">
+        <a href="#home" class="fas fa-home"></a>
+        <a href="#featured" class="fas fa-list"></a>
+        <a href="#arrivals" class="fas fa-tags"></a>
+        <a href="#reviews" class="fas fa-comments"></a>
+    </nav>
+
+    <!-- home section starts  -->
+
+    <div class="home-container">
+
+        <section class="home" id="home">
+
+            <div class="row">
+
+                <div class="content">
+                    <h3>Welcome to LatteBook</h3>
+                    <h4>Savor stories as rich as your morning brew.</h4>
+                    <a href="#featured" class="btn">start exploring</a>
+                </div>
+
+                <div class="swiper books-slider">
+                    <div class="swiper-wrapper">
+                        <a href="#" class="swiper-slide"><img src="image/book1.jpg" alt=""></a>
+                        <a href="#" class="swiper-slide"><img src="image/bg.png" alt=""></a>
+                        <a href="#" class="swiper-slide"><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                        <a href="#" class="swiper-slide"><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                        <a href="#" class="swiper-slide"><img src="image/favicon.png" alt=""></a>
+                        <a href="#" class="swiper-slide"><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <img src="image/stand.png" class="stand" alt="">
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- home section ense  -->
+
+    <!-- icons section starts  -->
+
+    <section class="icons-container">
+
+        <div class="icons">
+            <i class="fas fa-redo-alt"></i>
+            <div class="content">
+                <h3>easy returns</h3>
+                <p>10 days returns</p>
+            </div>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-lock"></i>
+            <div class="content">
+                <h3>secure payment</h3>
+                <p>authorized payment message</p>
+            </div>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-headset"></i>
+            <div class="content">
+                <h3>24/7 support</h3>
+                <p>call us anytime</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- icons section ends -->
+
+    <!-- add books feature start -->
+    <center>
+        <div id="bookmenu-btn">add books <i class="fas fa-plus"></i></div>
+    </center>
+
+
+    <div class="bookmenu-form-container">
+
+        <div id="close-bookmenu-btn" class="fas fa-times"></div>
+
+        <form action="">
+            <h3>add book</h3>
+
+            <span>ISBN</span>
+            <input type="text" name="ISBN" class="box" placeholder="enter the book ISBN" id="ISBN">
+
+            <span>book title</span>
+            <input type="text" name="title" class="box" placeholder="enter the book title" id="title">
+
+            <span>details</span>
+            <div>
+                <select class="box" id="author" name="author">
+                    <option value="0">Select author:</option>
+                    <option value="1">Audi</option>
+                    <option value="2">BMW</option>
+                    <option value="3">Citroen</option>
+                </select>
+            </div>
+
+
+            <div>
+                <select class="box" id="category" name="category">
+                    <option value="0">Select category:</option>
+                    <option value="1">Audi</option>
+                    <option value="2">BMW</option>
+                    <option value="3">Citroen</option>
+                </select>
+            </div>
+
+
+            <div>
+                <select class="box" id="publisher" name="publisher">
+                    <option value="0">Select publisher:</option>
+                    <option value="1">Audi</option>
+                    <option value="2">BMW</option>
+                    <option value="3">Citroen</option>
+                </select>
+            </div>
+
+            <span>number of book</span>
+            <input type="number" name="bookCountAvailable" class="box" placeholder="enter the number of book"
+                id="bookCountAvailable">
+
+            <span>image</span>
+            <input type="file" class="account-settings-fileinput box">
+
+            <span>description</span>
+            <textarea name="description" id="description" rows="4" cols="40"
+                class="box">enter book description</textarea>
+
+            <input type="submit" value="submit" class="btn">
+
+        </form>
+
+    </div>
+
+    <!-- add books feature end -->
+
+    <!-- featured section starts  -->
+
+    <section class="featured" id="featured">
+
+        <h1 class="heading"> <span>featured books</span> </h1>
+
+        <div class="swiper featured-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/bg.png" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/bg.png" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/bg.png" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+
+                        <a href="#" class="fas fa-heart"><span>favourite</span></a>
+
+                    </div>
+                    <div class="image">
+                        <a href=""><img src="image/jeremyfragrance.jpeg" alt=""></a>
+                    </div>
+                    <div class="content">
+                        <div class="author">author</div>
+                        <h3>featured books</h3>
+                        <a href="#" class="btn">add to cart</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+        </div>
+
+    </section>
+
+    <!-- featured section ends -->
+
+    <!-- newsletter section starts -->
+
+    <div class="newsletter-container">
+
+        <section class="newsletter">
+
+            <form action="">
+                <h3>leave a review</h3>
+                <input type="text" name="" placeholder="write your review" id="" class="box">
+                <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label for="star5" title="5star">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label for="star4" title="4star">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="3star">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label for="star2" title="2star">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label for="star1" title="1star">1 star</label>
+                </div>
+                <input type="submit" value="submit" class="btn">
+            </form>
+
+        </section>
+
+    </div>
+
+    <!-- newsletter section ends -->
+
+    <!-- arrivals section starts  -->
+
+    <section class="arrivals" id="arrivals">
+
+        <h1 class="heading"> <span>new arrivals</span> </h1>
+
+        <div class="swiper arrivals-slider">
+
+            <div class="swiper-wrapper">
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/bg.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="swiper arrivals-slider">
+
+            <div class="swiper-wrapper">
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- arrivals section ends -->
+
+    <!-- deal section starts  -->
+
+    <div class="deal-container">
+
+        <section class="deal">
+
+            <div class="content">
+                <h3>book of the day</h3>
+                <h1>book name</h1>
+                <p>book desc</p>
+                <a href="#" class="btn">check availability</a>
+            </div>
+
+            <div class="image">
+                <img src="image/jeremyfragrance.jpeg" alt="bookoftheday">
+            </div>
+
+        </section>
+
+
+    </div>
+
+    <!-- deal section ends -->
+
+    <!-- reviews section starts  -->
+
+    <section class="reviews" id="reviews">
+
+        <h1 class="heading"> <span>reader's reviews</span> </h1>
+
+        <div class="swiper reviews-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="image/jeremyfragrance.jpeg" alt="customer 678">
+                    <h3>customer 678</h3>
+                    <p>review here</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/jeremyfragrance.jpeg" alt="customer 567">
+                    <h3>customer 567</h3>
+                    <p>review here</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/jeremyfragrance.jpeg" alt="customer 456">
+                    <h3>customer 456</h3>
+                    <p>review here</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/jeremyfragrance.jpeg" alt="customer 345">
+                    <h3>customer 345</h3>
+                    <p>review here</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/bg.png" alt="customer random">
+                    <h3>customer random</h3>
+                    <p>review here</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/jeremyfragrance.jpeg" alt="Thang's photo">
+                    <h3>customer 234</h3>
+                    <p>review here</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/jeremyfragrance.jpeg" alt="customer photo123">
+                    <h3>customer 123</h3>
+                    <p>review here</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- reviews section ends -->
+
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> about us </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> copyright </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> privacy policy </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> payment method </a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"> <i class='far fa-id-badge'></i> Le Ha My - s3938177 </a>
+                <a href="#"> <i class='far fa-id-badge'></i> Luong Tuan Kiet - s3980288 </a>
+                <a href="#"> <i class='far fa-id-badge'></i> Nguyen Thanh Tung - s3979489 </a>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="credit"> made by <span>group 18</span> | all rights reserved </div>
+
+    </section>
+
+    <!-- footer section ends -->
+
+    <!-- loader  -->
+
+    <!-- <div class="loader-container">
+        <img src="image/loader.gif" alt="">
+    </div> -->
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
