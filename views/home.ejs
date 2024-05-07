@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LatteBook Library</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="image\favicon.png">
+</head>
+
+<body>
+
+    <!-- header section starts  -->
+    
+    <header class="header">
+
+        <section class="header-1">
+
+            <a href="#" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
+
+            <form action="/searchResult" method="get" class="search-form">
+                <input type="search" name="query" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search" id="search-icon"></label>
+                <input type="submit" style="display: none;">
+            </form>
+
+        </section>
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="#home">home</a>
+                <a href="#featured">featured</a>
+                <a href="#arrivals">arrivals</a>
+                <a href="#reviews">reviews</a>
+            </nav>
+        </div>
+
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- bottom navbar  -->
+
+    <nav class="bottom-navbar">
+        <a href="#home" class="fas fa-home"></a>
+        <a href="#featured" class="fas fa-list"></a>
+        <a href="#arrivals" class="fas fa-tags"></a>
+        <a href="#reviews" class="fas fa-comments"></a>
+    </nav>
+
+    <!-- home section starts  -->
+
+    <div class="home-container">
+
+        <section class="home" id="home">
+
+            <div class="row">
+
+                <div class="content">
+                    <h3>Welcome to LatteBook</h3>
+                    <h4>Savor stories as rich as your morning brew.</h4>
+                    <a href="#featured" class="btn">start exploring</a>
+                </div>
+
+                <div class="swiper books-slider">
+                    <div class="swiper-wrapper">
+                        <% books.sort((a, b) => {
+                            const regex = /^(\W+|\d+|[a-zA-Z]+)/;
+                            const aMatch = a.title.match(regex);
+                            const bMatch = b.title.match(regex);
+                            const aPrefix = aMatch ? aMatch[0] : '';
+                            const bPrefix = bMatch ? bMatch[0] : '';
+                    
+                            if (/\W/.test(aPrefix) && /\W/.test(bPrefix)) {
+                                return aPrefix.localeCompare(bPrefix);
+                            } else if (/\W/.test(aPrefix)) {
+                                return -1;
+                            } else if (/\W/.test(bPrefix)) {
+                                return 1;
+                            } else if (/\d/.test(aPrefix) && /\d/.test(bPrefix)) {
+                                return aPrefix.localeCompare(bPrefix, undefined, { numeric: true });
+                            } else if (/\d/.test(aPrefix)) {
+                                return -1;
+                            } else if (/\d/.test(bPrefix)) {
+                                return 1;
+                            } else {
+                                return aPrefix.localeCompare(bPrefix);
+                            }
+                        }).slice(0, 10).forEach(book => { %>
+                            <a href="/bookDetail/<%= book._id %>" class="swiper-slide"><img src="<%= book.bookImage %>" alt="<%= book.title %>" style="aspect-ratio: 555/710; object-fit: cover;"></a>
+                        <% }) %>
+                    </div>  
+                    <img src="/images/material/stand.png" class="stand" alt="">
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- home section ense  -->
+
+    <!-- icons section starts  -->
+
+    <section class="icons-container">
+
+        <div class="icons">
+            <i class="fas fa-redo-alt"></i>
+            <div class="content">
+                <h3>easy returns</h3>
+                <p>10 days returns</p>
+            </div>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-lock"></i>
+            <div class="content">
+                <h3>secure payment</h3>
+                <p>authorized payment message</p>
+            </div>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-headset"></i>
+            <div class="content">
+                <h3>24/7 support</h3>
+                <p>call us anytime</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- icons section ends -->
+
+    <!-- add books feature start -->
+    <% if (user && user.isAdmin) { %>
+        <center>
+            <div id="bookmenu-btn">add books <i class="fas fa-plus"></i></div>
+        </center>
+    <% } else { %>
+        <!-- show nothing -->
+    <% } %>
+
+
+    <div class="bookmenu-form-container">
+
+        <div id="close-bookmenu-btn" class="fas fa-times"></div>
+
+        <form enctype="multipart/form-data" action="/addbook" id="addbook">
+            <h3>add book</h3>
+            
+            <span>ISBN</span>
+            <input type="text" name="ISBN" class="box" placeholder="enter the book ISBN" id="ISBN" required>
+            <div class="ISBN error"></div>
+            
+            <span>book title</span>
+            <input type="text" name="title" class="box" placeholder="enter the book title" id="title" required>
+            <div class="title error"></div>
+            
+            <span>details</span>
+            <div>
+                <select class="box" id="author" name="author">
+                    <option value="none" disabled selected>Select author:</option>
+                    <% authors.forEach(author => { %>
+                        <option value="<%= author._id %>" name="author"><%= author.name %></option>
+                    <% }); %>
+                </select>
+                <div class="author error"></div>
+            </div>
+            
+
+            <div>
+                <select class="box" id="category" name="category">
+                    <option value="none" disabled selected>Select category:</option>
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category._id %>" name="category"><%= category.name %></option>
+                    <% }); %>
+                </select>
+                <div class="category error"></div>
+            </div>
+            
+
+            <div>
+                <select class="box" id="publisher" name="publisher">
+                    <option value="none" disabled selected>Select publisher:</option>
+                    <% publishers.forEach(publisher => { %>
+                        <option value="<%= publisher._id %>" name="publisher"><%= publisher.name %></option>
+                    <% }); %>
+                </select>
+                <div class="publisher error"></div>
+            </div>
+            
+            <span>number of book</span>
+            <input type="number" name="bookCountAvailable" class="box" placeholder="enter the number of book" id="bookCountAvailable" required>
+            <div class="bookCountAvailable error"></div>
+
+            <span>number of pages</span>
+            <input type="number" name="numberOfPages" class="box" placeholder="enter the number of pages" id="numberOfPages" required>
+            <div class="numberOfPages error"></div>
+            
+            <span>image</span>
+            <input type="file" name="bookImage" class="account-settings-fileinput box" accept="image/*">
+            <div class="bookImage error"></div>
+
+            <span>description</span>
+            <textarea name="description" id="description" rows="4" cols="40" class="box">enter book description</textarea>
+            <div class="description error"></div>
+
+            <input type="submit" value="submit" class="btn">
+
+        </form>
+
+    </div>
+
+    <!-- add books feature end -->
+
+    <!-- featured section starts  -->
+
+    <section class="featured" id="featured">
+
+        <h1 class="heading"> <span>featured books</span> </h1>
+        
+        <div class="swiper featured-slider">
+            <div class="swiper-wrapper">
+                <!-- in this part, the code will show symbol first then number then alphabet letters -->
+                <% books.sort((a, b) => {
+                    const regex = /^(\W+|\d+|[a-zA-Z]+)/;
+                    const aMatch = a.title.match(regex);
+                    const bMatch = b.title.match(regex);
+                    const aPrefix = aMatch ? aMatch[0] : '';
+                    const bPrefix = bMatch ? bMatch[0] : '';
+            
+                    if (/\W/.test(aPrefix) && /\W/.test(bPrefix)) {
+                        return aPrefix.localeCompare(bPrefix);
+                    } else if (/\W/.test(aPrefix)) {
+                        return -1;
+                    } else if (/\W/.test(bPrefix)) {
+                        return 1;
+                    } else if (/\d/.test(aPrefix) && /\d/.test(bPrefix)) {
+                        return aPrefix.localeCompare(bPrefix, undefined, { numeric: true });
+                    } else if (/\d/.test(aPrefix)) {
+                        return -1;
+                    } else if (/\d/.test(bPrefix)) {
+                        return 1;
+                    } else {
+                        return aPrefix.localeCompare(bPrefix);
+                    }
+                }).slice(0, 10).forEach(book => { %>
+                <% const isBookInWishlist=user && user.favoriteBook.includes(book._id); %>
+                
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <!-- <a href="#" class="fas fa-heart"><span>favourite</span></a> -->
+                        <% if (user && !user.isAdmin) { %>
+                        <% if (user) { %>
+                            <% if (!isBookInWishlist) { %>
+                                <form id="mainbook" method="post" class="wishlist-form" data-action="/addToWishlist" data-book-id="<%= book._id %>">
+                                    <a href="#" class="fas fa-heart submit-link">
+                                        <span>
+                                            Add to Wishlist
+                                        </span>
+                                    </a>
+                                </form>
+                            <% } else { %>
+                                <form id="mainbook" method="post" class="wishlist-form" data-action="/removeFromWishlist" data-book-id="<%= book._id %>">
+                                    <a href="#" class="fas fa-heart submit-link">
+                                        <span>
+                                            Remove from Wishlist
+                                        </span>
+                                    </a>
+                                </form>
+                            <% } %>
+                        <% } %>
+                        <% } %>
+                    </div>
+                    
+                    <div class="image">
+                        <a href="/bookDetail/<%= book._id %>"><img src="<%= book.bookImage %>" alt="<%= book.title %>" style="aspect-ratio: 555/710; object-fit: cover;"></a>
+                    </div>
+                    <div class="content">
+                        <div class="author"><%= book.author.name %></div>
+                        <h3><%= book.title %></h3>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+            
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+        </div>
+
+    </section>
+
+    <!-- featured section ends -->
+
+    <!-- newsletter section starts -->
+    <% if (user && user.isAdmin) { %>
+        <!-- show nothing -->
+    <% } else { %> 
+        
+        <div class="newsletter-container">
+
+            <section class="newsletter">
+                    
+                <form action="/libraryReview" method = "post">
+                    <h3>leave your library review</h3>
+                    <input type="text" name="review" placeholder="write your review" class="box">
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="5star">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="4star">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="3star">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="2star">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="1star">1 star</label>
+                        </div>
+                    <input type="submit" value="submit" class="btn">
+                </form>
+    
+            </section>
+            
+    
+        </div>
+    <% } %>
+
+    <!-- newsletter section ends -->
+
+    <!-- arrivals section starts  -->
+
+    <section class="arrivals" id="arrivals">
+
+        <h1 class="heading"> <span>new arrivals</span> </h1>
+
+        <div class="swiper arrivals-slider">
+
+            <div class="swiper-wrapper">
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/bg.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="swiper arrivals-slider">
+
+            <div class="swiper-wrapper">
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/jeremyfragrance.jpeg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>new arrivals</h3>
+                        <div class="author">author name</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- arrivals section ends -->
+
+    <!-- deal section starts  -->
+
+    <div class="deal-container">
+
+        <% if (bookoftheday) { %>
+            <section class="deal">
+                <div class="content">
+                    <h3>book of the day</h3>
+                    <h1><%= bookoftheday.title %></h1>
+                    <p><%= bookoftheday.description %></p>
+                    <a href="/bookDetail/<%= bookoftheday._id %>" class="btn">Book Detail</a>
+                </div>
+            
+                <div class="image">
+                    <img src="<%= bookoftheday.bookImage %>" alt="bookoftheday">
+                </div>
+            </section>
+        <% } %>
+
+
+    </div>
+
+    <!-- deal section ends -->
+
+    <!-- reviews section starts  -->
+
+    <section class="reviews" id="reviews">
+
+        <h1 class="heading"> <span>reader's reviews</span> </h1>
+
+        <div class="swiper reviews-slider">
+
+            <div class="swiper-wrapper">
+
+                <% reviews.forEach(function(review) { %>
+                    <div class="swiper-slide box">
+                        <% if (review.reviewedUser) { %>
+                            <img src="<%= review.reviewedUser.profileImage %>" alt="<%= review.reviewedUser.fullName %> photo">
+                            <h3><%= review.reviewedUser.fullName %></h3>
+                        <% } %>
+                        <p><%= review.review %></p>
+                        <div class="stars">
+                            <% for(let i = 0; i < review.star; i++) { %>
+                                <i class="fas fa-star"></i>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- reviews section ends -->
+
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> about us </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> copyright </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> privacy policy </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> payment method </a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"> <i class='far fa-id-badge'></i> Le Ha My - s3938177 </a>
+                <a href="#"> <i class='far fa-id-badge'></i> Luong Tuan Kiet - s3980288 </a>
+                <a href="#"> <i class='far fa-id-badge'></i> Nguyen Thanh Tung - s3979489 </a>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="credit"> made by <span>group 18</span> | all rights reserved </div>
+
+    </section>
+
+    <!-- footer section ends -->
+
+    <!-- loader  -->
+
+    <!-- <div class="loader-container">
+        <img src="image/loader.gif" alt="">
+    </div> -->
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="/js/script.js"></script>
+
+</body>
+
+<!-- script section for wishlist function -->
+<script>
+    const mainbook = document.querySelectorAll('#mainbook');
+    document.addEventListener('DOMContentLoaded', () => {
+    const handleFormSubmission = async (mainbook, action) => {
+        const bookId = mainbook.dataset.bookId;
+        const isAddAction = action === '/addToWishlist';
+
+        try {
+            const res = await fetch(action, {
+                method: 'POST',
+                body: JSON.stringify({ bookId }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const data = await res.json();
+
+            if (data.errors) {
+                alert(data.errors);
+            } else {
+                // Update the UI
+                const link = mainbook.querySelector('a');
+                if (isAddAction) {
+                    link.textContent = 'Remove from Wishlist';
+                    mainbook.dataset.action = '/removeFromWishlist';
+                } else {
+                    link.textContent = 'Add to Wishlist';
+                    mainbook.dataset.action = '/addToWishlist';
+                }
+                // Remove the old event listener and add a new one
+                mainbook.removeEventListener('click', handleFormClick);
+                mainbook.addEventListener('click', handleFormClick);
+            }
+        } catch (err) { 
+            console.log(err);
+        }
+    };
+
+    const forms = document.querySelectorAll('.wishlist-form, .unwishlist-form');
+    forms.forEach(form => {
+        form.addEventListener('click', (event) => {
+            event.preventDefault();
+            const action = form.dataset.action;
+            handleFormSubmission(form, action);
+            });
+        });
+    });
+</script>
+
+<script>
+    // Get the search icon and form elements
+    const searchIcon = document.getElementById('search-icon');
+    const searchForm = document.querySelector('.search-form');
+
+    // Add a click event listener to the search icon
+    searchIcon.addEventListener('click', function() {
+        // Submit the form when the search icon is clicked
+        searchForm.submit();
+    });
+</script>
+
+<!-- script section for add book function -->
+<script>
+    
+    const addbook = document.querySelector('#addbook');
+    const ISBNError = document.querySelector('.ISBN.error');
+    const authorError = document.querySelector('.author.error');
+    const categoryError = document.querySelector('.category.error');
+    const publisherError = document.querySelector('.publisher.error');
+    const descriptionError = document.querySelector('.description.error');
+    
+
+    addbook.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // reset errors
+        ISBNError.textContent = '';
+        authorError.textContent = '';
+        categoryError.textContent = '';
+        publisherError.textContent = '';
+        descriptionError.textContent = '';
+        const authorSelect = document.querySelector('#author');
+        if (authorSelect.value === 'none') {
+            authorError.textContent = 'Please select an author';
+            return;
+        }
+        const categorySelect = document.querySelector('#category');
+        if (categorySelect.value === 'none') {
+            categoryError.textContent = 'Please select a category';
+            return;
+        }
+        const publisherSelect = document.querySelector('#publisher');
+        if (publisherSelect.value === 'none') {
+            publisherError.textContent = 'Please select a publisher';
+            return;
+        }
+        // Create a FormData instance
+        const formData = new FormData();
+        formData.append('ISBN', addbook.ISBN.value);
+        formData.append('title', addbook.title.value);
+        formData.append('numberOfPages', addbook.numberOfPages.value);
+        formData.append('author', addbook.author.value);
+        formData.append('category', addbook.category.value);
+        formData.append('publisher', addbook.publisher.value);
+        formData.append('bookCountAvailable', addbook.bookCountAvailable.value);
+        formData.append('description', addbook.description.value);
+        if (addbook.bookImage.files.length > 0) {
+          formData.append('bookImage', addbook.bookImage.files[0]);
+        }
+
+        console.log(formData);
+        try{
+            const res = await fetch('/addbook', {
+                method: 'POST',
+                body: formData, // Send the addbook data
+            });
+            const data = await res.json();
+            console.log(data);
+
+            if (data.error) {
+                ISBNError.textContent = ('This ISBN is already registered');
+            }else{
+                descriptionError.textContent = ('Added successfully');
+            }
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+</script>
+
+</html>
