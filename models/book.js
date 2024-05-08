@@ -51,11 +51,58 @@ const bookSchema = new mongoose.Schema(
     description: {
       type: String
     },
+    reviews: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'user',
+          required: true,
+        },
+        description: {
+          type: String,
+          required: true,
+        },
+        stars: {
+          type: Number,
+          required: true,
+          min: 1,
+          max: 5,
+        },
+      }
+    ],
+    totalStars: {
+      type: Number,
+      default: 0,
+    },
+    totalReviews: {
+      type: Number,
+      default: 0,
+    },
+    rate: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
   }
 );
+
+bookSchema.pre('save', function (next) {
+  if (this.isNew || this.isModified('reviews')) {
+    const lastReview = this.reviews[this.reviews.length - 1];
+    if (lastReview) {
+      this.totalStars += lastReview.stars;
+      this.totalReviews += 1;
+      this.rate = this.totalStars / this.totalReviews;
+    } else {
+      this.totalStars = 0;
+      this.totalReviews = 0;
+      this.rate = 0;
+    }
+  }
+  next();
+});
 
 bookSchema.post('save', function (doc, next) {
   console.log('New book was created & saved', doc);

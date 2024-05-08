@@ -5,16 +5,19 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
 // Importing models
-const Review = require('./models/review');
 const Book = require('./models/book');
 const User = require('./models/user');
+const Review = require('./models/review');
 const Author = require('./models/author');
 const Category = require('./models/category');
 const Publisher = require('./models/publisher');
 
 // Importing routes
 const authRoutes = require('./routes/authRoutes');
+const bookRoutes = require('./routes/bookRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
 
 // Importing middleware
 const { requireAuth, checkUser} = require('./middleware/authMiddleware');
@@ -53,7 +56,10 @@ app.use(
 
 // Setting up routes
 app.use(authRoutes);
+app.use(bookRoutes);
 app.use(profileRoutes);
+app.use(reviewRoutes);
+app.use(reservationRoutes);
 
 // Database Connection
 const mongoURI = 'mongodb+srv://hmyle:mjWS3$-2FvgUwNU@iotlibrary.tdjdpmt.mongodb.net/librarysystem';
