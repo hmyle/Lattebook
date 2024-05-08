@@ -9,6 +9,45 @@
     display: none;
 }
 
+.card-header1 {
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Allow items to wrap onto multiple lines if necessary */
+}
+
+.btn-secondary {
+    background-color: #D1BB9E;
+    border-color: #D1BB9E;
+}
+
+.btn-secondary.active,
+.btn-secondary:active,
+.btn-secondary:focus {
+    background-color: #B6A589; /* Darker shade of #D1BB9E */
+    border-color: #B6A589; /* Darker shade of #D1BB9E */
+}
+
+.btn-group {
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    padding: 10px; /* Add some padding to prevent content from touching the edges */
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background-color: rgba(93,135,255,0.1);
+    color: #5D87FF;
+}
+
+.sidebar-link:hover.has-arrow:after,
+.sidebar-link.active.has-arrow:after {
+    border-color: #5D87FF;
+}
+
+.sidebar-link.active:hover.has-arrow:after {
+    border-color: #fff;
+}
+
 #btn-menu {
     width: 50px;  /* Replace with the width of your logo */
     height: 50px; /* Replace with the height of your logo */
