@@ -381,7 +381,7 @@ section{
     box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.2); /* shadow */
     z-index: -1;
 
-    background: url(../image/movebg.png) repeat;
+    background: url(/images/movebg.png) repeat;
     background-size: 10%;
     animation: pan 180s linear infinite;
 }
@@ -582,7 +582,7 @@ section{
 }
 
 .newsletter-container{
-    background:url(../image/bg.png) no-repeat;
+    background:url(/images/bg.png) no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

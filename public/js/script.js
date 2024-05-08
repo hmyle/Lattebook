@@ -1,27 +1,28 @@
 searchForm = document.querySelector('.search-form');
 
-document.querySelector('#search-btn').onclick = () =>{
-  searchForm.classList.toggle('active');
+let searchBtn = document.querySelector('#search-btn');
+if (searchBtn) {
+  searchBtn.onclick = () => {
+    searchForm.classList.toggle('active');
+  }
 }
 
 
-window.onscroll = () =>{
-
+window.onscroll = () => {
   searchForm.classList.remove('active');
 
-  if(window.scrollY > 93){
+  if (window.scrollY > 93) {
     document.querySelector('.header .header-2').classList.add('active');
-  }else{
+  } else {
     document.querySelector('.header .header-2').classList.remove('active');
   }
 
 }
 
-window.onload = () =>{
-
-  if(window.scrollY > 80){
+window.onload = () => {
+  if (window.scrollY > 80) {
     document.querySelector('.header .header-2').classList.add('active');
-  }else{
+  } else {
     document.querySelector('.header .header-2').classList.remove('active');
   }
 
@@ -29,16 +30,16 @@ window.onload = () =>{
 
 }
 
-function loader(){
+function loader() {
   document.querySelector('.loader-container').classList.add('active');
 }
 
-function fadeOut(){
+function fadeOut() {
   setTimeout(loader, 4000);
 }
 
 var swiper = new Swiper(".books-slider", {
-  loop:true,
+  loop: true,
   centeredSlides: true,
   autoplay: {
     delay: 9500,
@@ -59,7 +60,7 @@ var swiper = new Swiper(".books-slider", {
 
 var swiper = new Swiper(".featured-slider", {
   spaceBetween: 10,
-  loop:true,
+  loop: true,
   centeredSlides: true,
   autoplay: {
     delay: 9500,
@@ -87,7 +88,7 @@ var swiper = new Swiper(".featured-slider", {
 
 var swiper = new Swiper(".arrivals-slider", {
   spaceBetween: 10,
-  loop:true,
+  loop: true,
   centeredSlides: true,
   autoplay: {
     delay: 9500,
@@ -108,8 +109,8 @@ var swiper = new Swiper(".arrivals-slider", {
 
 var swiper = new Swiper(".reviews-slider", {
   spaceBetween: 10,
-  grabCursor:true,
-  loop:true,
+  grabCursor: true,
+  loop: true,
   centeredSlides: true,
   autoplay: {
     delay: 9500,
@@ -130,8 +131,8 @@ var swiper = new Swiper(".reviews-slider", {
 
 var swiper = new Swiper(".blogs-slider", {
   spaceBetween: 10,
-  grabCursor:true,
-  loop:true,
+  grabCursor: true,
+  loop: true,
   centeredSlides: true,
   autoplay: {
     delay: 9500,
@@ -152,11 +153,17 @@ var swiper = new Swiper(".blogs-slider", {
 
 let bookmenuForm = document.querySelector('.bookmenu-form-container');
 
-document.querySelector('#bookmenu-btn').onclick = () =>{
-  bookmenuForm.classList.toggle('active');
-  console.log('clicked');
+let bookmenuBtn = document.querySelector('#bookmenu-btn');
+if (bookmenuBtn) {
+  bookmenuBtn.onclick = () => {
+    bookmenuForm.classList.toggle('active');
+    console.log('clicked');
+  }
 }
 
-document.querySelector('#close-bookmenu-btn').onclick = () =>{
-  bookmenuForm.classList.remove('active');
+let closeBookmenuBtn = document.querySelector('#close-bookmenu-btn');
+if (closeBookmenuBtn) {
+  closeBookmenuBtn.onclick = () => {
+    bookmenuForm.classList.remove('active');
+  }
 }
