@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const DashboardStats = require('./dashboardStats');
 
 const bookSchema = new mongoose.Schema(
   {
@@ -104,13 +105,33 @@ bookSchema.pre('save', function (next) {
   next();
 });
 
-bookSchema.post('save', function (doc, next) {
-  console.log('New book was created & saved', doc);
+bookSchema.post('save', async (doc, next) => {
+  if (doc.isNew) {
+    // If the book is new, increment the totalBooks count
+    const dashboardStats = await DashboardStats.findOne();
+    dashboardStats.totalBooks += 1;
+    await dashboardStats.save();
+  }
+  console.log('Book was created & saved', doc);
+  console.log('Dashboard stats updated');
+
   next();
 });
 
-bookSchema.post('updateOne', async function (doc, next) {
-  console.log('Book has been updated', doc);
+bookSchema.post('updateOne', async (doc, next) => {
+  const dashboardStats = await DashboardStats.findOne();
+  if (doc.updatedFields.bookStatus === 'Borrowed') {
+    dashboardStats.booksBorrowed += 1;
+    dashboardStats.booksReturned -= 1;
+  } else if (doc.updatedFields.bookStatus === 'Available') {
+    dashboardStats.booksBorrowed -= 1;
+    dashboardStats.booksReturned += 1;
+  }
+  await dashboardStats.save();
+
+  console.log('Book was created & saved', doc);
+  console.log('Dashboard stats updated');
+
   next();
 });
 

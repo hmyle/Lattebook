@@ -10,5 +10,11 @@ const checkinSchema = new mongoose.Schema({
         timestamps: true
 });
 
+checkinSchema.post('save', async function (doc) {
+    const dashboardStats = await DashboardStats.findOne();
+    dashboardStats.visitors += 1;
+    await dashboardStats.save();
+});
+
 const Checkin = mongoose.model('checkin', checkinSchema);
 module.exports = Checkin;

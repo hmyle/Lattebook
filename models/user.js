@@ -79,7 +79,14 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.post('save', function (doc, next) {
+userSchema.post('save', async function (doc, next) {
+    if (doc.isNew) {
+      // If the user is new, increment the newMembers count
+      const dashboardStats = await DashboardStats.findOne();
+      dashboardStats.newMembers += 1;
+      await dashboardStats.save();
+    }
+    
     console.log('New User was created & saved', doc);
     next();
 });
