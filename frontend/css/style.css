@@ -1131,11 +1131,15 @@ margin-top: 1rem;
     }
 
     .filterDiv {
-        display: flex;
+        display: none;
         align-items:center;
         gap:1.5rem;
         margin:1rem 1rem;
         width: 31%;
+    }
+    
+    .show {
+        display: block;
     }
 
     #myBtnContainer > * {
@@ -1212,12 +1216,16 @@ margin-top: 1rem;
     }
 
     .filterDiv {
-        display: grid;
+        display: none;
         align-items:center;
         gap:1.5rem;
         margin:1rem 1rem;
         width: 100%;
         grid-template-columns: 1fr;
+    }
+
+    .show{
+        display: grid;
     }
 
     #myBtnContainer > * {
