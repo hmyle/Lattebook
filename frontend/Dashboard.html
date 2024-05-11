@@ -158,13 +158,11 @@
                         </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6 mb-4 align-items-center">
                         <a href="your-link-here.html" class="text-decoration-none text-dark">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                 <h3>Check-out Statistics</h3>
-                            </div>
-                            <div class="card-body">
                                 <canvas id="myChart"></canvas>
                             </div>
                         </div>
@@ -195,7 +193,29 @@
                         </a>
                     </div>
                 </div>
-         
+
+                <div class="row">
+                    <div class="col-6 align-items-center">
+                        <div class="card mb-4" style="background-color: #FFFFFF;">
+                            <div class="card-body">
+                                <div class="gauge-section d-flex flex-column justify-content-center align-items-center">
+                                    <h3>Humidity</h3>
+                                    <div id="hum" class="gauge"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 align-items-center">
+                        <div class="card mb-4" style="background-color: #FFFFFF;">
+                            <div class="card-body">
+                                <div class="gauge-section d-flex flex-column justify-content-center align-items-center">
+                                    <h3>Temperature</h3>
+                                    <div id="temp" class="gauge"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
          
                 <div class="row mb-4">
                     <div class="col-lg-8 mb-4">
@@ -308,6 +328,32 @@
             $(this).addClass("active"); // Add active class to the clicked button
         });
     });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    function createRadGauge(t,e,a,n){function r(t,e,a,n){return{x:t+a*Math.cos(n),y:e+a*Math.sin(n)}}function s(t,e,a,n,s,o){var d=r(t,e,a,-Math.PI),l=r(t,e,a,-Math.PI*(1-1/(o-s)*(n-s))),i=["M",d.x,d.y,"A",a,a,0,0,1,l.x,l.y].join(" ");return i}var o='<svg class="rGauge" viewBox="0 0 200 145"><path class="rGauge-base" id="'+t+'_base" stroke-width="30" /><path class="rGauge-progress" id="'+t+'_progress" stroke-width="30" stroke="#1565c0" /><text class="rGauge-val" id="'+t+'_val" x="100" y="105" text-anchor="middle"></text><text class="rGauge-min-val" id="'+t+'_minVal" x="40" y="125" text-anchor="middle"></text><text class="rGauge-max-val" id="'+t+'_maxVal" x="160" y="125" text-anchor="middle"></text></svg>';document.getElementById(t).innerHTML=o,document.getElementById(t+"_base").setAttribute("d",s(100,100,60,1,0,1)),document.getElementById(t+"_progress").setAttribute("d",s(100,100,60,e,e,a)),document.getElementById(t+"_minVal").textContent=e,document.getElementById(t+"_maxVal").textContent=a;var d={setVal:function(r){return r=Math.max(e,Math.min(r,a)),document.getElementById(t+"_progress").setAttribute("d",s(100,100,60,r,e,a)),document.getElementById(t+"_val").textContent=r+(void 0!==n?n:""),d},setColor:function(e){return document.getElementById(t+"_progress").setAttribute("stroke",e),d}};return d}function createVerGauge(t,e,a,n){var r='<svg class="vGauge" viewBox="0 0 145 145"><rect class="vGauge-base" id="'+t+'_base" x="30" y="25" width="30" height="100"></rect><rect class="vGauge-progress" id="'+t+'_progress" x="30" y="25" width="30" height="0" fill="#1565c0"></rect><text class="vGauge-val" id="'+t+'_val" x="70" y="80" text-anchor="start"></text><text class="vGauge-min-val" id="'+t+'_minVal" x="70" y="125"></text><text class="vGauge-max-val" id="'+t+'_maxVal" x="70" y="30" text-anchor="start"></text></svg>';document.getElementById(t).innerHTML=r,document.getElementById(t+"_minVal").textContent=e,document.getElementById(t+"_maxVal").textContent=a;var s={setVal:function(r){r=Math.max(e,Math.min(r,a));var o=100/(a-e)*(r-e);return document.getElementById(t+"_progress").setAttribute("height",o),document.getElementById(t+"_progress").setAttribute("y",25+(100-o)),document.getElementById(t+"_val").textContent=r+(void 0!==n?n:""),s},setColor:function(e){return document.getElementById(t+"_progress").setAttribute("fill",e),s}};return s}
+  </script>
+
+  <script type="text/javascript">
+    function getTempColor(e){return e>=35?"#ff5722":e>=30?"#ff9800":e>=25?"#ffc107":e>=18?"#4caf50":e>10?"#8bc34a":e>=5?"#00bcd4":e>=-5?"#03a9f4":"#2196f3"}function getHumColor(e){var t=["#E3F2FD","#BBDEFB","#90CAF9","#64B5F6","#42A5F5","#2196F3","#1E88E5","#1976D2","#1565C0","#0D47A1","#0D47A1"];return t[Math.round(e/10)]}function refresh(){var e=new XMLHttpRequest;e.onreadystatechange=function(){if(e.readyState==XMLHttpRequest.DONE)if(200==e.status){var t=JSON.parse(e.responseText);tempGauge.setVal(t.temp).setColor(getTempColor(t.temp)),humGauge.setVal(t.hum).setColor(getHumColor(t.hum))}else console.log("Refresh failed: "+e.status)},e.open("GET","data",!0),e.send()}var tempGauge=createVerGauge("temp",-20,60," °C").setVal(0).setColor(getTempColor(0)),humGauge=createRadGauge("hum",0,100,"%").setVal(0).setColor(getHumColor(0));document.getElementById("refresh").addEventListener("click",refresh),setTimeout(refresh,100);
+  </script>
+
+<script>
+  $(document).ready(function(){
+      $("#btn-menu").click(function(){
+          $("#sidebar").toggleClass("active");
+      });
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+      $("#btn-menu").click(function(){
+          $(this).toggleClass("open");
+          $("#help").toggleClass("active");
+      });
+  });
 </script>
 
 <script src = "js/theme.js"></script>
