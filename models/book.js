@@ -89,7 +89,7 @@ const bookSchema = new mongoose.Schema(
   }
 );
 
-bookSchema.pre('save', function (next) {
+bookSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('reviews')) {
     const lastReview = this.reviews[this.reviews.length - 1];
     if (lastReview) {
@@ -100,6 +100,17 @@ bookSchema.pre('save', function (next) {
       this.totalStars = 0;
       this.totalReviews = 0;
       this.rate = 0;
+    }
+
+    // Update number of books
+    let dashboardStats = DashboardStats.findOne();
+    dashboardStats.totalReviews += 1;
+    
+    try {
+      await dashboardStats.save();
+      console.log('Dashboard Stats was updated', dashboardStats);
+    } catch (err) {
+      console.error('Error saving Dashboard Stats', err);
     }
   }
   next();

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const DashboardStats = require('./dashboardStats');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 
@@ -76,19 +77,26 @@ userSchema.pre('save', async function (next) {
   /* Salting and Hashing the Password */
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
+
+  if (this.isNew) {
+    // If the user is new, increment the newMembers count
+    let dashboardStats = await DashboardStats.findOne();
+    dashboardStats.newMembers += 1;
+
+    try {
+      await dashboardStats.save();
+      console.log('Dashboard Stats was updated', dashboardStats);
+    } catch (err) {
+      console.error('Error saving Dashboard Stats', err);
+    }
+  }
+
   next();
 });
 
 userSchema.post('save', async function (doc, next) {
-    if (doc.isNew) {
-      // If the user is new, increment the newMembers count
-      const dashboardStats = await DashboardStats.findOne();
-      dashboardStats.newMembers += 1;
-      await dashboardStats.save();
-    }
-    
-    console.log('New User was created & saved', doc);
-    next();
+  console.log('User was created & saved', doc);
+  next();
 });
 
 // User method

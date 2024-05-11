@@ -12,8 +12,19 @@ const checkinSchema = new mongoose.Schema({
 
 checkinSchema.post('save', async function (doc) {
     const dashboardStats = await DashboardStats.findOne();
+
+    // If dashboardStats is null, create a new document
+    if (!dashboardStats) {
+      dashboardStats = new DashboardStats();
+    }
+
     dashboardStats.visitors += 1;
-    await dashboardStats.save();
+
+    try {
+      await dashboardStats.save();
+    } catch (err) {
+      console.error('Error saving Dashboard Stats', err);
+    }
 });
 
 const Checkin = mongoose.model('checkin', checkinSchema);

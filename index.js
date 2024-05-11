@@ -1,4 +1,5 @@
 // Importing required modules
+const cron = require('node-cron');
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -11,6 +12,7 @@ const Review = require('./models/review');
 const Author = require('./models/author');
 const Category = require('./models/category');
 const Publisher = require('./models/publisher');
+const DashboardStats = require('./models/dashboardStats');
 
 // Importing routes
 const authRoutes = require('./routes/authRoutes');
@@ -65,8 +67,40 @@ app.use(reservationRoutes);
 const mongoURI = 'mongodb+srv://hmyle:mjWS3$-2FvgUwNU@iotlibrary.tdjdpmt.mongodb.net/librarysystem';
 
 mongoose.connect(mongoURI)
-.then(() => console.log('Connected to MongoDB Atlas'))
-.catch((error) => console.log(error.message));
+  .then(async () => {
+    console.log('Connected to MongoDB Atlas');
+
+    // Check if a DashboardStats document exists
+    const existingDashboardStats = await DashboardStats.findOne();
+
+    if (!existingDashboardStats) {
+      // If no DashboardStats document exists, create a new one
+      const newDashboardStats = new DashboardStats();
+      await newDashboardStats.save();
+      console.log('DashboardStats document created and saved');
+    } else {
+      console.log('DashboardStats document already exists');
+    }
+  })
+  .catch((error) => console.log(error.message));
+
+// Schedule a job to run at 00:00 every day
+cron.schedule('0 0 * * *', async function() {
+  const dashboardStats = await DashboardStats.findOne();
+
+  // If dashboardStats is null, create a new document
+  if (!dashboardStats) {
+    dashboardStats = new DashboardStats();
+  }
+
+  dashboardStats.visitors = 0;
+
+  try {
+    await dashboardStats.save();
+  } catch (err) {
+    console.error('Error resetting visitors', err);
+  }
+});
 
 // Route for all types of users
 app.get('/', checkUser, async (req,res) => {
