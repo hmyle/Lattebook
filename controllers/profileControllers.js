@@ -4,18 +4,6 @@ const multer = require('multer');
 
 const User = require('../models/user');
 
-// Setting up multer
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './public/uploads/')  // Change this to your desired directory
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)) // Appending extension
-    }
-})
-
-const upload = multer({ storage: storage });
-
 module.exports.updateProfilePicturePost = async (req, res) => {
     try {
       // req.file is the `profileImage` file

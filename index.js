@@ -314,7 +314,7 @@ app.get('/management', checkUser, async (req, res) => {
     console.error('Error processing transactions:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+}); 
 
 
 

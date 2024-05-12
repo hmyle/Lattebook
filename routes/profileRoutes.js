@@ -1,5 +1,4 @@
 // Import the necessary libraries
-const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const express = require('express');

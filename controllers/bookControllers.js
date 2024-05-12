@@ -119,7 +119,7 @@ module.exports.addBookPost = async (req, res) => {
         let bookData = { ISBN, title, author, category, publisher, numberOfPages, bookCountAvailable, description };
 
         if (req.file) {
-            bookData.bookImage = "/images/bookImage/" + req.file.filename;
+            bookData.bookImage = "/uploads/" + req.file.filename;
         }
 
         const book = await Book.create(bookData);
@@ -152,11 +152,12 @@ module.exports.updateBookPost = async (req, res) => {
     try {
         const book = await Book.findById(req.params.id);
         if (book.bookImage) {
-            fs.unlink(path.join(__dirname, 'public', book.bookImage), err => {
+            const oldImagePath = path.join(__dirname, '..', 'public', book.bookImage);
+            fs.unlink(oldImagePath, err => {
                 if (err) console.error(err);
             });
         }
-        const bookImage = "/images/bookImage/" + (req.file ? req.file.filename : '');
+        const bookImage = "/uploads/" + (req.file ? req.file.filename : '');
 
         const updatedBook = await Book.findByIdAndUpdate(req.params.id, { ISBN, title, bookImage, author, category, publisher, numberOfPages, bookCountAvailable, description }, { new: true });
         // Update the author, category, and publisher if provided
@@ -221,15 +222,16 @@ module.exports.updateBookImagePost = async (req, res) => {
     try {
         const book = await Book.findById(req.params.id);
         if (book.bookImage) {
-        fs.unlink(path.join(__dirname, 'public', book.bookImage), err => {
-            if (err) console.error(err);
-        });
+            const oldImagePath = path.join(__dirname, '..', 'public', book.bookImage);
+            fs.unlink(oldImagePath, err => {
+                if (err) console.error(err);
+            });
         }
-        const bookImage = "/images/bookImage/" + (req.file ? req.file.filename : '');
+        const bookImage = "/uploads/" + (req.file ? req.file.filename : '');
         const updatedBook = await Book.findByIdAndUpdate(req.params.id, { bookImage }, { new: true });
 
         if (!updatedBook) {
-        return res.status(404).json({ message: 'Book not found' });
+            return res.status(404).json({ message: 'Book not found' });
         }
         res.json({ message: 'Book image update successful' });
     } catch (err) {
@@ -283,7 +285,8 @@ module.exports.deleteBook = async (req, res) => {
 
         // Remove Image
         if (book.bookImage && book.bookImage !== 'https://i.ibb.co/K05xQk1/book7.png') {
-            fs.unlink(path.join(__dirname, 'public', book.bookImage), err => {
+            const oldImagePath = path.join(__dirname, '..', 'public', book.bookImage);
+            fs.unlink(oldImagePath, err => {
                 if (err) console.error(err);
             });
         }
