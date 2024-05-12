@@ -8,7 +8,7 @@ const { getUserById, getBookById } = require('../middleware/nameMiddleware');
 
 // ----------------------------------Wishlist---------------------------------------- //
 
-// Controller to get user's wishlist
+// Controller to get user's rentcart
 module.exports.wishlistGet = async (req, res) => {
   let user = res.locals.user;
   let books = [];
@@ -27,7 +27,7 @@ module.exports.wishlistGet = async (req, res) => {
   }
 
   // Render the wishlist page with user and books data
-  res.render('wishlist', { user, books });
+  res.render('rentcart', { user, books });
 }
 
 // Controller to add a book to user's wishlist
