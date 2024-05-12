@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const { getUserById, getBookById } = require('../middleware/nameMiddleware');
 
-
 // ----------------------------------Wishlist---------------------------------------- //
 
 // Controller to get user's wishlist

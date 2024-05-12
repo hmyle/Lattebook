@@ -1,9 +1,11 @@
 // Importing required modules
 const cron = require('node-cron');
 const express = require('express');
+const { OpenAI } = require("openai");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const { RateLimiterMemory } = require('rate-limiter-flexible');
 
 // Importing models
 const Book = require('./models/book');
@@ -12,6 +14,7 @@ const Review = require('./models/review');
 const Author = require('./models/author');
 const Category = require('./models/category');
 const Publisher = require('./models/publisher');
+const Transaction = require('./models/transaction');
 const DashboardStats = require('./models/dashboardStats');
 
 // Importing routes
@@ -27,6 +30,12 @@ const { requireAuth, checkUser} = require('./middleware/authMiddleware');
 // Initializing express app
 const app = express();
 const port = 3000;
+const openai = new OpenAI({ apiKey: "sk-proj-DY9awujayyspaSzeCMVRT3BlbkFJMFujWBBJZkFcgnO2pXHA" });
+
+const rateLimiter = new RateLimiterMemory({
+  points: 5, // Number of points (requests) allowed
+  duration: 1, // Duration in seconds for which the points are valid
+});
 
 // Setting up middleware
 app.use(express.urlencoded({ extended: true }));
@@ -42,6 +51,55 @@ let selectedDate;
 
 // Checking user for all routes
 app.get('*', checkUser);
+
+app.get('/recommendation', checkUser, (req, res) => {
+  res.render('recommendation');
+});
+
+app.get('/recommend', async (req, res) => {
+  console.log("Hello");
+  try {
+    // Check if the client is allowed to make a request
+    await rateLimiter.consume(req.ip)
+      .catch(() => {
+        res.status(429).send('Too many requests from this IP, please try again after a minute');
+    });
+
+    // Find the user by email
+    const user = res.locals.user;
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    const favoriteBookId = user.favoriteBook[0]; // Assuming there's only one favorite book
+
+    // Fetch the book details
+    const Book = mongoose.model('Book');
+    const favoriteBook = await Book.findById(favoriteBookId);
+
+    const userInput = `Recommend books similar to ${favoriteBook.title} by ${favoriteBook.author}. Here are the details: ${favoriteBook.description}`;
+
+    const completion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: userInput,
+      max_tokens: 1024,
+      temperature: 0.7,
+    });
+
+    const recommendedBook = completion.choices[0].text;
+    console.log(recommendedBook);
+    res.send(recommendedBook);
+  } catch (error) {
+    if (error.status === 429) {
+      console.error('Rate limit exceeded');
+      res.status(429).send('Rate limit exceeded. Please try again later.');
+    } else {
+      console.error(error);
+      res.status(500).send(`An error occurred while processing your request.`);
+    }
+  }
+});
 
 // Setting up session
 app.use(
@@ -143,7 +201,7 @@ app.get('/', checkUser, async (req,res) => {
       };
     }));
   
-    // Render the index page with the fetched data
+    // Render the home page with the fetched data
     res.render('home', { books, authors, categories, publishers, bookoftheday: selectedBook, reviews: reviewsWithUser });
   
   } catch (err) {
@@ -156,6 +214,109 @@ app.get('/', checkUser, async (req,res) => {
 app.get('/settings', checkUser, requireAuth, (req, res) => {
   res.render('settings', { user: res.locals.user });
 });
+
+// My Account page
+app.get('/management', checkUser, async (req, res) => {
+  try {
+    // Get the user from res.locals
+    let user = res.locals.user;
+  
+    // Fetch all authors and publishers from the database
+    const authors = await Author.find();
+    const publishers = await Publisher.find();
+  
+    // Fetch the user's favorite books and populate their author and category details
+    let books = await Book.find();
+
+    // Fetch the user's details and populate their active and previous transactions
+    const userDetails = await User.findById(user._id)
+      .populate('activeTransactions')
+      .populate('prevTransactions')
+      .exec();
+  
+    // If the user details are not found, return a 404 error
+    if (!userDetails) {
+      console.error('User not found:', userDetails._id);
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+  
+    // Fetch all transactions
+    const transactions = await Transaction.find();
+  
+    // Update the status and fine of overdue transactions
+    await Promise.all(transactions.map(async (transaction) => {
+      if ((transaction.returnDate < Date.now() && transaction.status == 'Reserved') || (transaction.returnDate < Date.now() && transaction.status == 'Overdue')) {
+        await Transaction.findByIdAndUpdate(
+          transaction._id,
+          {
+            $set: {
+              status: 'Overdue',
+              fine: 1000 * Math.floor((Date.now() - new Date(transaction.returnDate)) / (1000 * 60 * 60 * 24))
+            }
+          },
+          { new: true },
+        );
+      }
+    }));
+  
+    // Fetch the book details for each of the user's active transactions
+    const allActiveTransactions = await Promise.all(
+      userDetails.activeTransactions.map(async (transaction) => {
+        const book = await getBookById(transaction.bookId);
+        return {
+          bookTitle: book.title,
+          status: transaction.status,
+          pickUpDate: transaction.pickUpDate,
+          returnDate: transaction.returnDate,
+          fine: transaction.fine,
+        };
+      })
+    );
+  
+    // Fetch the book details for each of the user's previous transactions
+    const allPrevTransactions = await Promise.all(
+      userDetails.prevTransactions.map(async (transaction) => {
+        const book = await getBookById(transaction.bookId);
+        return {
+          bookTitle: book.title,
+          status: transaction.status,
+          pickUpDate: transaction.pickUpDate,
+          returnDate: transaction.returnDate,
+          fine: transaction.fine,
+        };
+      })
+    );
+  
+    // Fetch the user and book details for each transaction
+    const transactionsWithDetails = await Promise.all(
+      transactions.map(async (transaction) => {
+        const user = await User.findById(transaction.userId).exec();
+        const book = await Book.findById(transaction.bookId).exec();
+  
+        const userEmail = user ? user.email : 'User not found';
+        const bookTitle = book ? book.title : 'Book not found';
+  
+        return {
+          _id: transaction._id,
+          userEmail: userEmail,
+          bookTitle: bookTitle,
+          status: transaction.status,
+          pickUpDate: transaction.pickUpDate,
+          returnDate: transaction.returnDate,
+          fine: transaction.fine,
+        };
+      })
+    );
+    res.render('management', { user: user, books: books, allActiveTransactions, allPrevTransactions, transactions: transactionsWithDetails, authors: authors, publishers: publishers });
+  
+  } catch (error) {
+    // Log any error that occurs and return a 500 error
+    console.error('Error processing transactions:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);

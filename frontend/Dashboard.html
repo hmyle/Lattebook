@@ -21,11 +21,13 @@
 </head>
 
 <body>
-    
+
+    <!-- header section starts  -->
+
     <header class="header">
 
         <section class="header-1">
-
+    
             <a href="index.html" class="logo"> <img src="image/favicon.png" alt="Lattebook Logo"> LatteBook </a>
 
             <form action="" class="search-form">
@@ -35,38 +37,59 @@
 
             <div class="icons">
                 <div id="search-btn" class="fas fa-search"></div>
-                <a href="wishlist.html" class="fas fa-heart"></a>
-                <a href="rentlist.html" class="fas fa-shopping-cart"></a>
-                <a href="login.html" class="fas fa-user"></a>
+                <a href="/" class="fas fa-heart"></a>
+                <a href="/" class="fas fa-shopping-cart"></a>
+                <a href="/login" class="fas fa-user"></a>
             </div>
 
         </section>
 
+        <!-- bottom navbar for responsive purpose  -->
+
+        <nav class="bottom-navbar">
+            <a href="#general" class="fa fa-sliders nav-link active"></a>
+            <a href="#allreservation" class="fas fa-book nav-link"></a>
+            <a href="#borrowing" class="fas fa-book nav-link"></a>
+            <a href="#pastreservation" class="fas fa-book nav-link"></a>
+            <a href="#author" class="fas fa-pen nav-link"></a>
+            <a href="#publisher" class="fas fa-building nav-link"></a>
+            <a href="#member" class="fas fa-user nav-link"></a>
+        </nav>
+
     </header>
 
-    <main>
+    <!-- header section ends -->
     
-    <div class="container-fluid">
+    <div class="container">
         <div class="row main-container">
-            <div class="col-lg-2 vh-100 border-right d-flex flex-column sidebar">
+
+            <div class="col-md-3 sidebar">
                 <div class="sidebar-header">
                     <h2>Management</h2>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a href="#dashboard" class="nav-link active">Dashboard</a></li>
-                    <li class="nav-item"><a href="#members" class="nav-link">Members</a></li>
-                    <li class="nav-item"><a href="#books" class="nav-link">Books</a></li>
-                    <li class="nav-item"><a href="#checkout" class="nav-link">Check-out Books</a></li>
+                    <li class="nav-item"><a href="#allreservation" class="nav-link">All Reservation</a></li>
+                    <li class="nav-item"><a href="#borrowing" class="nav-link">All Borrowing Books</a></li>
+                    <li class="nav-item"><a href="#pastreservation" class="nav-link">All Past Reservation</a></li>
+                    <li class="nav-item"><a href="#author" class="nav-link">All Author</a></li>
+                    <li class="nav-item"><a href="#publisher" class="nav-link">All Publisher</a></li>
+                    <li class="nav-item"><a href="#member" class="nav-link">All Member</a></li>
                 </ul>
             </div>
-    
-            <div class="col-lg-10">
+            
+        <!-- Main Content -->
+        <div class = "tab-content col-md-9">
+
+            <!-- Dashboard Tab-->
+            <div class="main-content tab-pane nav-active" id="dashboard">
                 <div class="dashboard-header">
                     <h2>Dashboard</h2>
                     <p>Overall Performance of LatteBook.</p>
                 </div>
+
                 <div class="row mb-4" style="margin-top: 2.5rem;">
-                    <div class="col-lg-3 mb-4">
+                    <div class="col-lg-3 col-sm-6 mb-4">
                         <a href="your-link-here.html" class="text-decoration-none text-dark">
                         <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                             <div class="card-body">
@@ -77,7 +100,7 @@
                         </div>
                         </a>
                     </div>
-                    <div class="col-lg-3 mb-4">
+                    <div class="col-lg-3 col-sm-6 mb-4">
                         <a href="your-link-here.html" class="text-decoration-none text-dark">
                         <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                             <div class="card-body">
@@ -88,7 +111,7 @@
                         </div>
                         </a>
                     </div>
-                        <div class="col-lg-3 mb-4">
+                        <div class="col-lg-3 col-sm-6 mb-4">
                             <a href="your-link-here.html" class="text-decoration-none text-dark">
                             <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                                 <div class="card-body">
@@ -99,7 +122,7 @@
                             </div>
                             </a>
                         </div>
-                        <div class="col-lg-3 mb-4">
+                        <div class="col-lg-3 col-sm-6 mb-4">
                             <a href="your-link-here.html" class="text-decoration-none text-dark">
                             <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                                 <div class="card-body">
@@ -112,7 +135,7 @@
                         </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-lg-3 mb-4">
+                    <div class="col-lg-3 col-sm-6 mb-4">
                         <a href="your-link-here.html" class="text-decoration-none text-dark">
                         <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                             <div class="card-body">
@@ -123,7 +146,7 @@
                         </div>
                         </a>
                     </div>
-                    <div class="col-lg-3 mb-4">
+                    <div class="col-lg-3 col-sm-6 mb-4">
                         <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                             <a href="your-link-here.html" class="text-decoration-none text-dark">
                             <div class="card-body">
@@ -134,7 +157,7 @@
                             </a>
                         </div>
                     </div>
-                        <div class="col-lg-3 mb-4">
+                        <div class="col-lg-3 col-sm-6 mb-4">
                             <a href="your-link-here.html" class="text-decoration-none text-dark">
                             <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                                 <div class="card-body">
@@ -145,7 +168,7 @@
                             </div>
                             </a>
                         </div>
-                        <div class="col-lg-3 mb-4">
+                        <div class="col-lg-3 col-sm-6 mb-4">
                             <a href="your-link-here.html" class="text-decoration-none text-dark">
                             <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
                                 <div class="card-body">
@@ -216,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-         
+            
                 <div class="row mb-4">
                     <div class="col-lg-8 mb-4">
                         <a href="your-link-here.html" class="text-decoration-none text-dark">
@@ -244,8 +267,7 @@
                         </div>
                         </a>
                     </div>
-         
-         
+            
                     <div class="col-lg-4 mb-4">
                         <div class="card" style="background-color: #FFF2E1;">
                             <div class="card-header">
@@ -276,6 +298,313 @@
                     </div>
                 </div>
             </div>
+
+            <!-- End of Dashboard Tab-->
+
+
+            <!-- All Reservation Tab -->
+            <div class="main-content tab-pane" id ="allreservation">
+                <div class="general-header">
+                    <h2>All Reservation</h2>
+                    <p>Search and Find Reservation.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+                <br>
+
+                <% let reservationTransactions = transactions.filter(transaction => transaction.status == 'Pending'); %>
+                    <table id="bookTable" class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>User</th>
+                                <th>Book</th>
+                                <th>Status</th>
+                                <th>Pick Up Date</th>
+                                <th>Return Date</th>
+                                <th>Fine</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% reservationTransactions.forEach((transaction, index) => { %>
+                                <tr>
+                                    <td class="searchablereservation"><%= index + 1 %></td>
+                                    <td class="searchablereservation"><%= transaction.userEmail %></td>
+                                    <td class="searchablereservation"><%= transaction.bookTitle %></td>
+                                    <td class="searchablereservation"><%= transaction.status %></td>
+                                    <td class="searchablereservation"><%= new Date(transaction.pickUpDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                    <td class="searchablereservation"><%= new Date(transaction.returnDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                                    <td class="searchablereservation"><%= transaction.fine %> $</td>
+                                    <td class="searchablereservation"><button class="borrow-button delete-btn" data-id="<%= transaction._id %>">Borrow</button></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table> 
+            </div>
+
+            <!-- End of All Reservation Tab-->
+
+
+            <!-- All Borrowing Book Tab -->
+
+            <div class="main-content tab-pane" id ="borrowing">
+                <div class="general-header">
+                    <h2>All Borrowing Book</h2>
+                    <p>Search and Find Borrowing Book.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% let currentTransactions = transactions.filter(transaction => transaction.status !== 'Returned' && transaction.status !== 'Pending'); %>
+                <table id="bookTable" class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>User</th>
+                            <th>Book</th>
+                            <th>Status</th>
+                            <th>Pick Up Date</th>
+                            <th>Return Date</th>
+                            <th>Fine</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% currentTransactions.forEach((transaction, index) => { %>
+                            <tr>
+                                <td class="searchableborrow"><%= index + 1 %></td>
+                                <td class="searchableborrow"><%= transaction.userEmail %></td>
+                                <td class="searchableborrow"><%= transaction.bookTitle %></td>
+                                <td class="searchableborrow"><%= transaction.status %></td>
+                                <td class="searchableborrow"><%= new Date(transaction.pickUpDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                <td class="searchableborrow"><%= new Date(transaction.returnDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                                <td class="searchableborrow"><%= transaction.fine %> $</td>
+                                <td class="searchableborrow"><button class="return-button delete-btn" data-id="<%= transaction._id %>">Return</button></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- End of All Borrowing Book Tab -->
+
+
+            <!-- All Past Reservation Tab -->
+            <div class="main-content tab-pane" id ="pastreservation">
+                <div class="general-header">
+                    <h2>All Past Reservation</h2>
+                    <p>Search and Find Past Reservation.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% let returnedTransactions = transactions.filter(transaction => transaction.status == 'Returned'); %>
+                <table id="bookTable" class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>User</th>
+                            <th>Book</th>
+                            <th>Status</th>
+                            <th>Pick Up Date</th>
+                            <th>Return Date</th>
+                            <th>Fine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% returnedTransactions.forEach((transaction, index) => { %>
+                            <tr>
+                                <td class="searchablereturn"><%= index + 1 %></td>
+                                <td class="searchablereturn"><%= transaction.userEmail %></td>
+                                <td class="searchablereturn"><%= transaction.bookTitle %></td>
+                                <td class="searchablereturn"><%= transaction.status %></td>
+                                <td class="searchablereturn"><%= new Date(transaction.pickUpDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                <td class="searchablereturn"><%= new Date(transaction.returnDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                                <td class="searchablereturn"><%= transaction.fine %> $</td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table><!-- End of table-->
+            </div>
+
+            <!-- End of All Past Reservation Tab -->
+
+
+            <!-- All Author Tab -->
+            <div class="main-content tab-pane" id ="author">
+                <div class="general-header">
+                    <h2>All Author</h2>
+                    <p>Search and Find Author.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% if (authors.length === 0) { %>
+                    <table class="styled-table">
+                        <tr>
+                            <td>You don't have any author</td>
+                        </tr>
+                    </table>
+                <% } else { %>
+                    <table class="styled-table"> <!-- Start of table-->
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Author Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% authors.forEach(async (author, index) => { %>
+                            <tr>
+                                <td class="searchableauthor"><%= index + 1 %></td>
+                                <td class="searchableauthor"><%= author.name %></td>
+                                <% if (author.book.length === 0) { %>
+                                    <td class="searchableauthor"><button class="delete-btn author-remove" data-id="<%= author._id %>">Delete</button></td>
+                                <% } else { %>
+                                    <td class="searchableauthor">This Author is populated</td>
+                                <% } %>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% } %> <!-- End of table-->
+                <div class="btn-container">
+                    <button class="addBtn" onclick="openAuthorForm()">Add Author</button>
+                </div>
+            </div>
+
+            <!-- Popup Form for Author -->
+            <div id="authorForm" class="authorForm">
+                <div class="popup-content">
+                    <form id="addauthorinfor">
+                        <span class="close" onclick="closeAuthorForm()">&times;</span>
+                        <label for="authorName">Author Name:</label>
+                        <input type="text" id="authorName" name="authorName" required>
+                        <div class="authorName error"></div>
+                        <button class="addBtn" type="submit">Add Author</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- End of All Author Tab -->
+
+
+            <!-- All Publisher Tab -->
+
+            <div class="main-content tab-pane" id ="publisher">
+                <div class="general-header">
+                    <h2>All Publisher</h2>
+                    <p>Search and Find Publisher.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% if (publishers.length === 0) { %>
+                    <table class="styled-table">
+                        <tr>
+                            <td>You don't have any publisher</td>
+                        </tr>
+                    </table>
+                <% } else { %>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Publisher Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% publishers.forEach((publisher, index) => { %>
+                            <tr>
+                                <td class="searchablepublisher"><%= index + 1 %></td>
+                                <td class="searchablepublisher"><%= publisher.name %></td>
+                                <% if (publisher.book.length === 0) { %>
+                                    <td class="searchablepublisher"><button class="delete-btn publisher-remove" data-id="<%= publisher._id %>">Delete</button></td>
+                                <% } else { %>
+                                    <td class="searchablepublisher">This Publisher is populated</td>
+                                <% } %>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% } %> <!-- End of table-->
+                <div class="btn-container">
+                    <button class="addBtn" onclick="openPublisherForm()">Add Publisher</button>
+                </div>
+            </div>
+
+            <!-- Popup Form -->
+            <div id="publisherForm" class="publisherForm">
+                <div class="popup-content">
+                    <form id="addpublisherinfor">
+                        <span class="close" onclick="closePublisherForm()">&times;</span>
+                        <label for="publisherName">Publisher Name:</label>
+                        <input type="text" id="publisherName" name="publisherName" required>
+                        <div class="publisherName error"></div>
+                        <button class="addBtn" type="submit">Add Publisher</button>
+                    </form>
+                </div>
+            </div>
+            <!-- End of All Publisher Tab -->
+
+
+            <!-- All Member Tab -->
+
+            <div class="main-content tab-pane" id ="member">
+                <div class="general-header">
+                    <h2>All Member</h2>
+                    <p>Search and Find Member.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+            </div>
+            <!-- End of All Member Tab -->
+
+        </div>
+            
         </div>
       
     </div>
@@ -356,7 +685,371 @@
   });
 </script>
 
+<script>
+    function openPublisherForm() {
+        var publisherForm = document.getElementById("publisherForm");
+        publisherForm.style.display = "block";
+    }
+
+    function closePublisherForm() {
+        var publisherForm = document.getElementById("publisherForm");
+        publisherForm.style.display = "none";
+    }
+
+    function openAuthorForm() {
+        var authorForm = document.getElementById("authorForm");
+        authorForm.style.display = "block";
+    }
+
+    function closeAuthorForm() {
+        var authorForm = document.getElementById("authorForm");
+        authorForm.style.display = "none";
+    }
+
+    function openPopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+    }
+</script>
+
+<!-- refresh prevention when remove book from wishlist -->
+<script>
+    $(document).ready(function() {
+        $('.removeBookForm').submit(function(e) {
+            e.preventDefault();
+
+            var $form = $(this);
+            var bookId = $form.attr('action').split('/').pop();
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'post',
+                success: function() {
+                    // Remove the parent tr of the form that was submitted
+                    $form.closest('tr').remove();
+                },
+                error: function() {
+                    // Handle error here. For example, you can show an error message.
+                }
+            });
+        });
+    });
+</script>
+
+<!-- remove all wishlist -->
+<script>
+    async function clearFavoriteBooks() {
+        try {
+            const response = await fetch('/clearWishlist', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Clear the favorite books on the page
+            const favoriteBooksElement = document.getElementById('tab2');
+            if (favoriteBooksElement) {
+                while (favoriteBooksElement.firstChild) {
+                    favoriteBooksElement.removeChild(favoriteBooksElement.firstChild);
+                }
+
+                // Add a message indicating that there are no favorite books
+                const messageElement = document.createElement('p');
+                messageElement.textContent = 'All books have been removed from the wishlist.';
+                favoriteBooksElement.appendChild(messageElement);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
+
+<!-- Reserved to Borrowing -->
+<script>
+    document.querySelectorAll('.borrow-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const transactionId = this.getAttribute('data-id');
+        console.log('transactionId:', transactionId);
+
+        // Update the status cell in the row
+        const row = this.parentElement.parentElement;
+        const statusCell = row.children[3]; // The status cell is the 4rd cell in the row
+        statusCell.innerText = 'Borrowed'; // Change 'Returned' to 'Borrowed'
+        
+        // Remove the borrow button
+        this.remove(); // Change this to remove only the button
+
+        // Move the row to the "Finished Reservation" table
+        const finishedTable = document.querySelectorAll('table')[1].querySelector('tbody'); // The finished table is the 2nd table in the document
+        finishedTable.appendChild(row);
+
+        fetch(`/reservations/borrow`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ transactionId: transactionId }),
+        })
+        .then(response => response.text()) // Change this to response.text() if the server is sending a string
+        .then(data => {
+            console.log(data);
+            if (data === 'Transaction was saved') { // Check if the server response is 'Transaction was saved'
+                console.log('Successfully borrowed transaction');
+            } else {
+                console.error('Failed to borrow transaction');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    });
+</script>
+
+<!-- borrowing to past reservation -->
+<script>
+    document.querySelectorAll('.return-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const transactionId = this.getAttribute('data-id');
+        console.log('transactionId:', transactionId);
+    
+        fetch(`/reservations/return`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: transactionId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Update the status cell in the row
+            const row = this.parentElement.parentElement;
+            const statusCell = row.children[3]; // The status cell is the 4rd cell in the row
+            statusCell.innerText = 'Returned';
+            
+            // Remove the return button
+            this.parentElement.remove();
+  
+            // Move the row to the "Finished Reservation" table
+            const finishedTable = document.querySelectorAll('table')[2].querySelector('tbody'); // The finished table is the 3nd table in the document
+            finishedTable.appendChild(row);
+            console.log('Successfully returned transaction');
+          } else {
+            console.error('Failed to return transaction');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    });
+</script>
+<!-- add author popup -->
+<script>
+    const addauthorinfor = document.querySelector('#addauthorinfor');
+    const authorNameError = document.querySelector('.authorName.error');
+    addauthorinfor.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = addauthorinfor.authorName.value;
+
+        try {
+            const res = await fetch('/author', {
+                method: 'POST',
+                body: JSON.stringify({ name }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors) {
+                authorNameError.textContent = data.errors.name;
+            }
+            else {
+                authorNameError.textContent = ('Added successfully');
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+</script>
+
+<!-- add publisher popup -->
+<script>
+    const addpublisherinfor = document.querySelector('#addpublisherinfor');
+    const publisherNameError = document.querySelector('.publisherName.error');
+    addpublisherinfor.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = addpublisherinfor.publisherName.value;
+
+        try{
+            const res = await fetch('/publisher', {
+                method: 'POST',
+                body: JSON.stringify({ name }),
+                headers: { 'Content-Type': 'application/json'}
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors){
+                publisherNameError.textContent = data.errors.name;
+            }
+            else{
+                publisherNameError.textContent = ('Added successfully');
+            }
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+</script>
+
+    <!-- Delete author -->
+    <script>
+    $(document).ready(function() {
+        $('.author-remove').click(function(event) {
+            event.preventDefault();
+            const row = $(this).closest('tr');
+            const authorId = $(this).data('id');
+            $.ajax({
+                url: '/deleteAuthor/' + authorId,
+                type: 'POST',
+                success: function(response) {
+                    row.remove();
+                }
+            });
+        });
+    });
+    </script>
+
+    <!-- Delete publisher -->
+    <script>
+        $(document).ready(function() {
+            $('.publisher-remove').click(function(event) {
+                event.preventDefault();
+
+                const row = $(this).closest('tr');
+                const publisherId = $(this).data('id');
+                $.ajax({
+                    url: '/deletePublisher/' + publisherId,
+                    type: 'POST',
+                    success: function(response) {
+                        row.remove();
+                    }
+                });
+            });
+        });
+        </script>
+
+    <!-- Search -->
+    <script>
+        document.getElementById('searchInputreservation').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#bookTable tbody tr');
+    
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchablereservation'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+    
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputborrow').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#bookTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchableborrow'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputreturn').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#bookTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchablereturn'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputauthor').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('.styled-table tbody tr');
+
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchableauthor'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputpublisher').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('.styled-table tbody tr');
+    
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchablepublisher'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+    
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+<script>
+    // Get the search icon and form elements
+    const searchIcon = document.getElementById('search-icon');
+    const searchForm = document.querySelector('.search-form');
+
+    // Add a click event listener to the search icon
+    searchIcon.addEventListener('click', function() {
+        // Submit the form when the search icon is clicked
+        searchForm.submit();
+    });
+</script>
+
 <script src = "js/theme.js"></script>
+<script src = "js/settings.js"></script>
 
 
 </html>

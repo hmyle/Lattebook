@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/v4-shims.min.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/editProfile.css">
+    <link rel="stylesheet" href="/css/management.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/2cfbd4ba51.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <!-- header section starts  -->
+
+    <header class="header">
+
+        <section class="header-1">
+    
+            <a href="index.html" class="logo"> <img src="/images/favicon.png" alt="Lattebook Logo"> LatteBook </a>
+
+            <form action="" class="search-form">
+                <input type="search" name="" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                <a href="/" class="fas fa-heart"></a>
+                <a href="/" class="fas fa-shopping-cart"></a>
+                <a href="/login" class="fas fa-user"></a>
+            </div>
+
+        </section>
+
+        <!-- bottom navbar for responsive purpose  -->
+
+        <nav class="bottom-navbar">
+            <a href="#general" class="fa fa-sliders nav-link active"></a>
+            <a href="#allreservation" class="fas fa-book nav-link"></a>
+            <a href="#borrowing" class="fas fa-book nav-link"></a>
+            <a href="#pastreservation" class="fas fa-book nav-link"></a>
+            <a href="#author" class="fas fa-pen nav-link"></a>
+            <a href="#publisher" class="fas fa-building nav-link"></a>
+            <a href="#member" class="fas fa-user nav-link"></a>
+        </nav>
+
+    </header>
+
+    <!-- header section ends -->
+    
+    <div class="container">
+        <div class="row main-container">
+
+            <div class="col-md-3 sidebar">
+                <div class="sidebar-header">
+                    <h2>Management</h2>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                    <li class="nav-item"><a href="#allreservation" class="nav-link">All Reservation</a></li>
+                    <li class="nav-item"><a href="#borrowing" class="nav-link">All Borrowing Books</a></li>
+                    <li class="nav-item"><a href="#pastreservation" class="nav-link">All Past Reservation</a></li>
+                    <li class="nav-item"><a href="#author" class="nav-link">All Author</a></li>
+                    <li class="nav-item"><a href="#publisher" class="nav-link">All Publisher</a></li>
+                    <li class="nav-item"><a href="#member" class="nav-link">All Member</a></li>
+                </ul>
+            </div>
+            
+        <!-- Main Content -->
+        <div class = "tab-content col-md-9">
+
+            <!-- Dashboard Tab-->
+            <div class="main-content tab-pane nav-active" id="dashboard">
+                <div class="dashboard-header">
+                    <h2>Dashboard</h2>
+                    <p>Overall Performance of LatteBook.</p>
+                </div>
+
+                <div class="row mb-4" style="margin-top: 2.5rem;">
+                    <div class="col-lg-3 col-sm-6 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                            <div class="card-body">
+                                <h3>Borrowed Books</h3>
+                                <h3>100</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                            <div class="card-body">
+                                <h3>Returned Books</h3>
+                                <h3>50</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                        <div class="col-lg-3 col-sm-6 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                                <div class="card-body">
+                                    <h3>Overdue Books</h3>
+                                    <h3>100</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                                <div class="card-body">
+                                    <h3>Missing Books</h3>
+                                    <h3>50</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-sm-6 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                            <div class="card-body">
+                                <h3>Total Books</h3>
+                                <h3>100</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 mb-4">
+                        <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card-body">
+                                <h3>Visitors</h3>
+                                <h3>50</h3>
+                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                        <div class="col-lg-3 col-sm-6 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                                <div class="card-body">
+                                    <h3>New Members</h3>
+                                    <h3>100</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-4">
+                            <a href="your-link-here.html" class="text-decoration-none text-dark">
+                            <div class="card" style = "background-color: #FFF2E1; border-radius: 10px">
+                                <div class="card-body">
+                                    <h3>Pending Fees</h3>
+                                    <h3>50</h3>
+                                    <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-6 mb-4 align-items-center">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <h3>Check-out Statistics</h3>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style="background-color: #FFF2E1;">
+                            <div class="card-header">
+                                <h3>Overdue's History</h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 37%;">Title</th>
+                                            <th style="width: 21%;">Member ID</th>
+                                            <th style="width: 21%;">Due Date</th>
+                                            <th style="width: 21%;">Fine</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data rows will go here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 align-items-center">
+                        <div class="card mb-4" style="background-color: #FFFFFF;">
+                            <div class="card-body">
+                                <div class="gauge-section d-flex flex-column justify-content-center align-items-center">
+                                    <h3>Humidity</h3>
+                                    <div id="hum" class="gauge"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 align-items-center">
+                        <div class="card mb-4" style="background-color: #FFFFFF;">
+                            <div class="card-body">
+                                <div class="gauge-section d-flex flex-column justify-content-center align-items-center">
+                                    <h3>Temperature</h3>
+                                    <div id="temp" class="gauge"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row mb-4">
+                    <div class="col-lg-8 mb-4">
+                        <a href="your-link-here.html" class="text-decoration-none text-dark">
+                        <div class="card" style="background-color: #FFF2E1;">
+                            <div class="card-header">
+                                <h3>Recent Check-out's</h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%;">Transaction ID</th>
+                                            <th style="width: 35%;">Title</th>
+                                            <th style="width: 18%;">Author</th>
+                                            <th style="width: 10%;">Member ID</th>
+                                            <th style="width: 13.5%;">Issued Date</th>
+                                            <th style="width: 13.5%;">Return Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data rows will go here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+            
+                    <div class="col-lg-4 mb-4">
+                        <div class="card" style="background-color: #FFF2E1;">
+                            <div class="card-header">
+                                <h3>Top Book</h3>
+                            </div>
+                            <div class="row border-bottom pb-2">
+                                <div class="col-12 ml-3">
+                                    <h3>Book Title</h3>
+                                    <h5>Author Name</h5>
+                                    <button type="button" class="btn btn-info" disabled>Status</button>
+                                </div>
+                            </div>
+                            <div class="row border-bottom pb-2">
+                                <div class="col-12 ml-3">
+                                    <h3>Book Title</h3>
+                                    <h5>Author Name</h5>
+                                    <button type="button" class="btn btn-info" disabled>Status</button>
+                                </div>
+                            </div>
+                            <div class="row border-bottom pb-2">
+                                <div class="col-12 ml-3">
+                                    <h3>Book Title</h3>
+                                    <h5>Author Name</h5>
+                                    <button type="button" class="btn btn-info" disabled>Status</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End of Dashboard Tab-->
+
+
+            <!-- All Reservation Tab -->
+            <div class="main-content tab-pane" id ="allreservation">
+                <div class="general-header">
+                    <h2>All Reservation</h2>
+                    <p>Search and Find Reservation.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+                <br>
+
+                <% let reservationTransactions = transactions.filter(transaction => transaction.status == 'Pending'); %>
+                    <table id="bookTable" class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>User</th>
+                                <th>Book</th>
+                                <th>Status</th>
+                                <th>Pick Up Date</th>
+                                <th>Return Date</th>
+                                <th>Fine</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% reservationTransactions.forEach((transaction, index) => { %>
+                                <tr>
+                                    <td class="searchablereservation"><%= index + 1 %></td>
+                                    <td class="searchablereservation"><%= transaction.userEmail %></td>
+                                    <td class="searchablereservation"><%= transaction.bookTitle %></td>
+                                    <td class="searchablereservation"><%= transaction.status %></td>
+                                    <td class="searchablereservation"><%= new Date(transaction.pickUpDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                    <td class="searchablereservation"><%= new Date(transaction.returnDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                                    <td class="searchablereservation"><%= transaction.fine %> $</td>
+                                    <td class="searchablereservation"><button class="borrow-button delete-btn" data-id="<%= transaction._id %>">Borrow</button></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table> 
+            </div>
+
+            <!-- End of All Reservation Tab-->
+
+
+            <!-- All Borrowing Book Tab -->
+
+            <div class="main-content tab-pane" id ="borrowing">
+                <div class="general-header">
+                    <h2>All Borrowing Book</h2>
+                    <p>Search and Find Borrowing Book.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% let currentTransactions = transactions.filter(transaction => transaction.status !== 'Returned' && transaction.status !== 'Pending'); %>
+                <table id="bookTable" class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>User</th>
+                            <th>Book</th>
+                            <th>Status</th>
+                            <th>Pick Up Date</th>
+                            <th>Return Date</th>
+                            <th>Fine</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% currentTransactions.forEach((transaction, index) => { %>
+                            <tr>
+                                <td class="searchableborrow"><%= index + 1 %></td>
+                                <td class="searchableborrow"><%= transaction.userEmail %></td>
+                                <td class="searchableborrow"><%= transaction.bookTitle %></td>
+                                <td class="searchableborrow"><%= transaction.status %></td>
+                                <td class="searchableborrow"><%= new Date(transaction.pickUpDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                <td class="searchableborrow"><%= new Date(transaction.returnDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                                <td class="searchableborrow"><%= transaction.fine %> $</td>
+                                <td class="searchableborrow"><button class="return-button delete-btn" data-id="<%= transaction._id %>">Return</button></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- End of All Borrowing Book Tab -->
+
+
+            <!-- All Past Reservation Tab -->
+            <div class="main-content tab-pane" id ="pastreservation">
+                <div class="general-header">
+                    <h2>All Past Reservation</h2>
+                    <p>Search and Find Past Reservation.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% let returnedTransactions = transactions.filter(transaction => transaction.status == 'Returned'); %>
+                <table id="bookTable" class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>User</th>
+                            <th>Book</th>
+                            <th>Status</th>
+                            <th>Pick Up Date</th>
+                            <th>Return Date</th>
+                            <th>Fine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% returnedTransactions.forEach((transaction, index) => { %>
+                            <tr>
+                                <td class="searchablereturn"><%= index + 1 %></td>
+                                <td class="searchablereturn"><%= transaction.userEmail %></td>
+                                <td class="searchablereturn"><%= transaction.bookTitle %></td>
+                                <td class="searchablereturn"><%= transaction.status %></td>
+                                <td class="searchablereturn"><%= new Date(transaction.pickUpDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                <td class="searchablereturn"><%= new Date(transaction.returnDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                                <td class="searchablereturn"><%= transaction.fine %> $</td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table><!-- End of table-->
+            </div>
+
+            <!-- End of All Past Reservation Tab -->
+
+
+            <!-- All Author Tab -->
+            <div class="main-content tab-pane" id ="author">
+                <div class="general-header">
+                    <h2>All Author</h2>
+                    <p>Search and Find Author.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% if (authors.length === 0) { %>
+                    <table class="styled-table">
+                        <tr>
+                            <td>You don't have any author</td>
+                        </tr>
+                    </table>
+                <% } else { %>
+                    <table class="styled-table"> <!-- Start of table-->
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Author Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% authors.forEach(async (author, index) => { %>
+                            <tr>
+                                <td class="searchableauthor"><%= index + 1 %></td>
+                                <td class="searchableauthor"><%= author.name %></td>
+                                <% if (author.book.length === 0) { %>
+                                    <td class="searchableauthor"><button class="delete-btn author-remove" data-id="<%= author._id %>">Delete</button></td>
+                                <% } else { %>
+                                    <td class="searchableauthor">This Author is populated</td>
+                                <% } %>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% } %> <!-- End of table-->
+                <div class="btn-container">
+                    <button class="addBtn" onclick="openAuthorForm()">Add Author</button>
+                    <!-- <a href="/author"><button class="addBtn">Add Author</button></a> -->
+                </div>
+            </div>
+
+            <!-- Popup Form for Author -->
+            <div id="authorForm" class="authorForm">
+                <div class="popup-content">
+                    <form id="addauthorinfor">
+                        <span class="close" onclick="closeAuthorForm()">&times;</span>
+                        <label for="authorName">Author Name:</label>
+                        <input type="text" id="authorName" name="authorName" required>
+                        <div class="authorName error"></div>
+                        <button class="addBtn" type="submit">Add Author</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- End of All Author Tab -->
+
+
+            <!-- All Publisher Tab -->
+
+            <div class="main-content tab-pane" id ="publisher">
+                <div class="general-header">
+                    <h2>All Publisher</h2>
+                    <p>Search and Find Publisher.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+
+                <% if (publishers.length === 0) { %>
+                    <table class="styled-table">
+                        <tr>
+                            <td>You don't have any publisher</td>
+                        </tr>
+                    </table>
+                <% } else { %>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Publisher Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% publishers.forEach((publisher, index) => { %>
+                            <tr>
+                                <td class="searchablepublisher"><%= index + 1 %></td>
+                                <td class="searchablepublisher"><%= publisher.name %></td>
+                                <% if (publisher.book.length === 0) { %>
+                                    <td class="searchablepublisher"><button class="delete-btn publisher-remove" data-id="<%= publisher._id %>">Delete</button></td>
+                                <% } else { %>
+                                    <td class="searchablepublisher">This Publisher is populated</td>
+                                <% } %>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% } %> <!-- End of table-->
+                <div class="btn-container">
+                    <button class="addBtn" onclick="openPublisherForm()">Add Publisher</button>
+                </div>
+            </div>
+
+            <!-- Popup Form -->
+            <div id="publisherForm" class="publisherForm">
+                <div class="popup-content">
+                    <form id="addpublisherinfor">
+                        <span class="close" onclick="closePublisherForm()">&times;</span>
+                        <label for="publisherName">Publisher Name:</label>
+                        <input type="text" id="publisherName" name="publisherName" required>
+                        <div class="publisherName error"></div>
+                        <button class="addBtn" type="submit">Add Publisher</button>
+                    </form>
+                </div>
+            </div>
+            <!-- End of All Publisher Tab -->
+
+
+            <!-- All Member Tab -->
+
+            <div class="main-content tab-pane" id ="member">
+                <div class="general-header">
+                    <h2>All Member</h2>
+                    <p>Search and Find Member.</p>
+                </div>
+                
+                <br>
+
+                <div id="searchInputContainer">
+                    <input type="text" id="searchInputreservation" placeholder="Search here...">
+                    <i id="searchIcon" class="fa fa-search"></i>
+                </div>
+
+                <br>
+            </div>
+            <!-- End of All Member Tab -->
+
+        </div>
+            
+        </div>
+      
+    </div>
+
+    </main>
+
+
+</body>
+  
+  <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              datasets: [{
+                  label: '# of Books Borrowed',
+                  data: [1200, 1900, 3000, 5000, 2000, 3000, 2400],
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              },
+              {
+                  label: '# of Books Returned',
+                  data: [1000, 1500, 3500, 4500, 2500, 2800, 2200],
+                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      ticks: {
+                          callback: function(value, index, values) {
+                              return value / 1000 + 'k';
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  </script>
+
+<script>
+    $(document).ready(function(){
+        $(".btn-group .btn").click(function(){
+            $(".btn-group .btn").removeClass("active"); // Remove active class from all buttons
+            $(this).addClass("active"); // Add active class to the clicked button
+        });
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    function createRadGauge(t,e,a,n){function r(t,e,a,n){return{x:t+a*Math.cos(n),y:e+a*Math.sin(n)}}function s(t,e,a,n,s,o){var d=r(t,e,a,-Math.PI),l=r(t,e,a,-Math.PI*(1-1/(o-s)*(n-s))),i=["M",d.x,d.y,"A",a,a,0,0,1,l.x,l.y].join(" ");return i}var o='<svg class="rGauge" viewBox="0 0 200 145"><path class="rGauge-base" id="'+t+'_base" stroke-width="30" /><path class="rGauge-progress" id="'+t+'_progress" stroke-width="30" stroke="#1565c0" /><text class="rGauge-val" id="'+t+'_val" x="100" y="105" text-anchor="middle"></text><text class="rGauge-min-val" id="'+t+'_minVal" x="40" y="125" text-anchor="middle"></text><text class="rGauge-max-val" id="'+t+'_maxVal" x="160" y="125" text-anchor="middle"></text></svg>';document.getElementById(t).innerHTML=o,document.getElementById(t+"_base").setAttribute("d",s(100,100,60,1,0,1)),document.getElementById(t+"_progress").setAttribute("d",s(100,100,60,e,e,a)),document.getElementById(t+"_minVal").textContent=e,document.getElementById(t+"_maxVal").textContent=a;var d={setVal:function(r){return r=Math.max(e,Math.min(r,a)),document.getElementById(t+"_progress").setAttribute("d",s(100,100,60,r,e,a)),document.getElementById(t+"_val").textContent=r+(void 0!==n?n:""),d},setColor:function(e){return document.getElementById(t+"_progress").setAttribute("stroke",e),d}};return d}function createVerGauge(t,e,a,n){var r='<svg class="vGauge" viewBox="0 0 145 145"><rect class="vGauge-base" id="'+t+'_base" x="30" y="25" width="30" height="100"></rect><rect class="vGauge-progress" id="'+t+'_progress" x="30" y="25" width="30" height="0" fill="#1565c0"></rect><text class="vGauge-val" id="'+t+'_val" x="70" y="80" text-anchor="start"></text><text class="vGauge-min-val" id="'+t+'_minVal" x="70" y="125"></text><text class="vGauge-max-val" id="'+t+'_maxVal" x="70" y="30" text-anchor="start"></text></svg>';document.getElementById(t).innerHTML=r,document.getElementById(t+"_minVal").textContent=e,document.getElementById(t+"_maxVal").textContent=a;var s={setVal:function(r){r=Math.max(e,Math.min(r,a));var o=100/(a-e)*(r-e);return document.getElementById(t+"_progress").setAttribute("height",o),document.getElementById(t+"_progress").setAttribute("y",25+(100-o)),document.getElementById(t+"_val").textContent=r+(void 0!==n?n:""),s},setColor:function(e){return document.getElementById(t+"_progress").setAttribute("fill",e),s}};return s}
+  </script>
+
+  <script type="text/javascript">
+    function getTempColor(e){return e>=35?"#ff5722":e>=30?"#ff9800":e>=25?"#ffc107":e>=18?"#4caf50":e>10?"#8bc34a":e>=5?"#00bcd4":e>=-5?"#03a9f4":"#2196f3"}function getHumColor(e){var t=["#E3F2FD","#BBDEFB","#90CAF9","#64B5F6","#42A5F5","#2196F3","#1E88E5","#1976D2","#1565C0","#0D47A1","#0D47A1"];return t[Math.round(e/10)]}function refresh(){var e=new XMLHttpRequest;e.onreadystatechange=function(){if(e.readyState==XMLHttpRequest.DONE)if(200==e.status){var t=JSON.parse(e.responseText);tempGauge.setVal(t.temp).setColor(getTempColor(t.temp)),humGauge.setVal(t.hum).setColor(getHumColor(t.hum))}else console.log("Refresh failed: "+e.status)},e.open("GET","data",!0),e.send()}var tempGauge=createVerGauge("temp",-20,60," °C").setVal(0).setColor(getTempColor(0)),humGauge=createRadGauge("hum",0,100,"%").setVal(0).setColor(getHumColor(0));document.getElementById("refresh").addEventListener("click",refresh),setTimeout(refresh,100);
+  </script>
+
+<script>
+  $(document).ready(function(){
+      $("#btn-menu").click(function(){
+          $("#sidebar").toggleClass("active");
+      });
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+      $("#btn-menu").click(function(){
+          $(this).toggleClass("open");
+          $("#help").toggleClass("active");
+      });
+  });
+</script>
+
+<script>
+    function openPublisherForm() {
+        var publisherForm = document.getElementById("publisherForm");
+        publisherForm.style.display = "block";
+    }
+
+    function closePublisherForm() {
+        var publisherForm = document.getElementById("publisherForm");
+        publisherForm.style.display = "none";
+    }
+
+    function openAuthorForm() {
+        var authorForm = document.getElementById("authorForm");
+        authorForm.style.display = "block";
+    }
+
+    function closeAuthorForm() {
+        var authorForm = document.getElementById("authorForm");
+        authorForm.style.display = "none";
+    }
+
+    function openPopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+    }
+</script>
+
+<!-- refresh prevention when remove book from wishlist -->
+<script>
+    $(document).ready(function() {
+        $('.removeBookForm').submit(function(e) {
+            e.preventDefault();
+
+            var $form = $(this);
+            var bookId = $form.attr('action').split('/').pop();
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'post',
+                success: function() {
+                    // Remove the parent tr of the form that was submitted
+                    $form.closest('tr').remove();
+                },
+                error: function() {
+                    // Handle error here. For example, you can show an error message.
+                }
+            });
+        });
+    });
+</script>
+
+<!-- remove all wishlist -->
+<script>
+    async function clearFavoriteBooks() {
+        try {
+            const response = await fetch('/clearWishlist', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Clear the favorite books on the page
+            const favoriteBooksElement = document.getElementById('tab2');
+            if (favoriteBooksElement) {
+                while (favoriteBooksElement.firstChild) {
+                    favoriteBooksElement.removeChild(favoriteBooksElement.firstChild);
+                }
+
+                // Add a message indicating that there are no favorite books
+                const messageElement = document.createElement('p');
+                messageElement.textContent = 'All books have been removed from the wishlist.';
+                favoriteBooksElement.appendChild(messageElement);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
+
+<!-- Reserved to Borrowing -->
+<script>
+    document.querySelectorAll('.borrow-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const transactionId = this.getAttribute('data-id');
+        console.log('transactionId:', transactionId);
+
+        // Update the status cell in the row
+        const row = this.parentElement.parentElement;
+        const statusCell = row.children[3]; // The status cell is the 4rd cell in the row
+        statusCell.innerText = 'Borrowed'; // Change 'Returned' to 'Borrowed'
+        
+        // Remove the borrow button
+        this.remove(); // Change this to remove only the button
+
+        // Move the row to the "Finished Reservation" table
+        const finishedTable = document.querySelectorAll('table')[1].querySelector('tbody'); // The finished table is the 2nd table in the document
+        finishedTable.appendChild(row);
+
+        fetch(`/reservations/borrow`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ transactionId: transactionId }),
+        })
+        .then(response => response.text()) // Change this to response.text() if the server is sending a string
+        .then(data => {
+            console.log(data);
+            if (data === 'Transaction was saved') { // Check if the server response is 'Transaction was saved'
+                console.log('Successfully borrowed transaction');
+            } else {
+                console.error('Failed to borrow transaction');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    });
+</script>
+
+<!-- borrowing to past reservation -->
+<script>
+    document.querySelectorAll('.return-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const transactionId = this.getAttribute('data-id');
+        console.log('transactionId:', transactionId);
+    
+        fetch(`/reservations/return`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: transactionId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Update the status cell in the row
+            const row = this.parentElement.parentElement;
+            const statusCell = row.children[3]; // The status cell is the 4rd cell in the row
+            statusCell.innerText = 'Returned';
+            
+            // Remove the return button
+            this.parentElement.remove();
+  
+            // Move the row to the "Finished Reservation" table
+            const finishedTable = document.querySelectorAll('table')[2].querySelector('tbody'); // The finished table is the 3nd table in the document
+            finishedTable.appendChild(row);
+            console.log('Successfully returned transaction');
+          } else {
+            console.error('Failed to return transaction');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    });
+</script>
+<!-- add author popup -->
+<script>
+    const addauthorinfor = document.querySelector('#addauthorinfor');
+    const authorNameError = document.querySelector('.authorName.error');
+    addauthorinfor.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = addauthorinfor.authorName.value;
+
+        try {
+            const res = await fetch('/author', {
+                method: 'POST',
+                body: JSON.stringify({ name }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors) {
+                authorNameError.textContent = data.errors.name;
+            }
+            else {
+                authorNameError.textContent = ('Added successfully');
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+</script>
+
+<!-- add publisher popup -->
+<script>
+    const addpublisherinfor = document.querySelector('#addpublisherinfor');
+    const publisherNameError = document.querySelector('.publisherName.error');
+    addpublisherinfor.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = addpublisherinfor.publisherName.value;
+
+        try{
+            const res = await fetch('/publisher', {
+                method: 'POST',
+                body: JSON.stringify({ name }),
+                headers: { 'Content-Type': 'application/json'}
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors){
+                publisherNameError.textContent = data.errors.name;
+            }
+            else{
+                publisherNameError.textContent = ('Added successfully');
+            }
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+</script>
+
+    <!-- Delete author -->
+    <script>
+    $(document).ready(function() {
+        $('.author-remove').click(function(event) {
+            event.preventDefault();
+            const row = $(this).closest('tr');
+            const authorId = $(this).data('id');
+            $.ajax({
+                url: '/deleteAuthor/' + authorId,
+                type: 'POST',
+                success: function(response) {
+                    row.remove();
+                }
+            });
+        });
+    });
+    </script>
+
+    <!-- Delete publisher -->
+    <script>
+        $(document).ready(function() {
+            $('.publisher-remove').click(function(event) {
+                event.preventDefault();
+
+                const row = $(this).closest('tr');
+                const publisherId = $(this).data('id');
+                $.ajax({
+                    url: '/deletePublisher/' + publisherId,
+                    type: 'POST',
+                    success: function(response) {
+                        row.remove();
+                    }
+                });
+            });
+        });
+        </script>
+
+    <!-- Search -->
+    <script>
+        document.getElementById('searchInputreservation').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#bookTable tbody tr');
+    
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchablereservation'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+    
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputborrow').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#bookTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchableborrow'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputreturn').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#bookTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchablereturn'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputauthor').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('.styled-table tbody tr');
+
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchableauthor'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('searchInputpublisher').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('.styled-table tbody tr');
+    
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByClassName('searchablepublisher'));
+                const cellText = cells.map(cell => cell.textContent.toLowerCase()).join(' ');
+    
+                if (cellText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+<script>
+    // Get the search icon and form elements
+    const searchIcon = document.getElementById('search-icon');
+    const searchForm = document.querySelector('.search-form');
+
+    // Add a click event listener to the search icon
+    searchIcon.addEventListener('click', function() {
+        // Submit the form when the search icon is clicked
+        searchForm.submit();
+    });
+</script>
+
+<script src = "/js/theme.js"></script>
+<script src = "/js/settings.js"></script>
+
+
+</html>
