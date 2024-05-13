@@ -85,7 +85,6 @@ userSchema.pre('save', async function (next) {
 
     try {
       await dashboardStats.save();
-      console.log('Dashboard Stats was updated', dashboardStats);
     } catch (err) {
       console.error('Error saving Dashboard Stats', err);
     }

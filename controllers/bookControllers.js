@@ -5,7 +5,8 @@ const Book = require('../models/book');
 const Author = require('../models/author');
 const Category = require('../models/category');
 const Publisher = require('../models/publisher');
-const Transaction = require('../models/transaction')
+const Transaction = require('../models/transaction');
+const DashboardStats = require('../models/dashboardStats');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const path = require('path');
@@ -126,6 +127,17 @@ module.exports.addBookPost = async (req, res) => {
         const updatedAuthor = await Author.findOneAndUpdate({ _id: author }, { $push: { book: book._id } }, { new: true });
         const updatedCategory = await Category.findOneAndUpdate({ _id: category }, { $push: { book: book._id } }, { new: true });
         const updatedPublisher = await Publisher.findOneAndUpdate({ _id: publisher }, { $push: { book: book._id } }, { new: true });
+
+        let dashboardStats = await DashboardStats.findOne();
+        dashboardStats.totalBooks += 1;
+
+        try {
+            await dashboardStats.save();
+            console.log('Dashboard Stats was updated', dashboardStats);
+        } catch (err) {
+            console.error('Error saving Dashboard Stats', err);
+        }
+
         res.status(200).json({ book, updatedAuthor, updatedCategory, updatedPublisher });
     }
     catch (err) {

@@ -1,6 +1,7 @@
 // Import necessary modules
 const User = require('../models/user');
 const Book = require('../models/book');
+const DashboardStats = require('../models/dashboardStats');
 const Transaction = require('../models/transaction');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
@@ -411,6 +412,12 @@ module.exports.reservationsReturnPost = async (req, res) => {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
+    // Update the dashboard stats for books borrowed and books returned
+    const dashboardStats = await DashboardStats.findOne();
+    dashboardStats.booksBorrowed -= 1;
+    dashboardStats.booksReturned += 1;
+    await dashboardStats.save();
+
     // Send a success response
     res.json({ success: true });
   } catch (error) {
@@ -437,6 +444,12 @@ module.exports.reservationsBorrowedPost = async (req, res) => {
     // If the transaction status is 'Reserved', update it to 'Borrowed'
     if (transaction.status === 'Pending') {
       transaction.status = 'Borrowed';
+
+      // Update the dashboard stats for books borrowed
+      const dashboardStats = await DashboardStats.findOne();
+      dashboardStats.booksBorrowed += 1;
+      await dashboardStats.save();
+
       await transaction.save(); // Save the updated transaction
       res.status(200).send('Transaction status updated successfully');
     } else {
@@ -488,6 +501,12 @@ module.exports.userReservationGet = async (req, res, next) => {
                 { new: true },
               );
             }
+
+            // Update the dashboard stats for overdue books and pending fees
+            const dashboardStats = await DashboardStats.findOne();
+            dashboardStats.pendingFees += reservation.fine;
+            dashboardStats.overdueBooks += 1;
+            await dashboardStats.save();
           }));
 
           // Get all active transactions of the user

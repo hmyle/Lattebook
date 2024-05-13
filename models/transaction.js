@@ -32,18 +32,8 @@ const transactionSchema = new mongoose.Schema(
     }
 );
 
-transactionSchema.post('save', async function (doc) {
-    const dashboardStats = await DashboardStats.findOne();
-  
-    // Update pendingFees
-    if (doc.status === 'Overdue') {
-      dashboardStats.pendingFees += doc.fine;
-    }
-  
-    await dashboardStats.save();
-
+transactionSchema.post('save', async function (doc, next) {
     console.log('Transaction was saved', doc);
-    console.log('Dashboard Stats was updated', dashboardStats);
     next();
 });
 
