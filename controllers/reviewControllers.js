@@ -40,30 +40,30 @@ module.exports.libraryReviewPost = async (req, res) => {
 }
 
 module.exports.bookReviewPost = async (req, res) => {
-    let bookId = req.params.id;
+    let transactionId = req.params.id;
     let userId = res.locals.user._id;
-
+    
     try {
-        // Extract review and rate from the request body
-        const { review, rate } = req.body;
-    
-        const book = await Book.findById(bookId);
-        if (!book) {
-            return res.status(404).send('Book not found');
-        }
-    
-        book.reviews.push({
-          userId,
-          description: review,
-          stars: rate,
-        });
-    
-        await book.save();
-    
-        res.send('<script>alert("Review submitted succesfully!"); window.location.href = "/setttings";</script>');
-
+      const { review, rate } = req.body;
+      const transaction = await Transaction.findById(transactionId).populate('bookId');
+      
+      if (!transaction) {
+        return res.status(404).send('Transaction not found');
+      }
+      
+      const book = transaction.bookId;
+      
+      book.reviews.push({
+        userId,
+        description: review, 
+        stars: rate,
+      });
+      
+      await book.save();
+      
+      res.send('<script>alert("Review submitted successfully!"); window.location.href = "/settings";</script>');
     } catch (err) {
-        console.error(err);
-        res.status(500).send('Server error');
-    }
-}
+      console.error(err);
+      res.status(500).send('Server error');
+    }  
+  };

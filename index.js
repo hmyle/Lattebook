@@ -25,7 +25,7 @@ const profileRoutes = require('./routes/profileRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 
 // Importing middleware
-const { requireAuth, checkUser} = require('./middleware/authMiddleware');
+const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware');
 
 // Initializing express app
 const app = express();
@@ -216,8 +216,10 @@ app.get('/settings', checkUser, requireAuth, (req, res) => {
 });
 
 // My Account page
-app.get('/management', checkUser, async (req, res) => {
+app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
   try {
+    let dashboardStats = await DashboardStats.findOne();
+
     // Get the user from res.locals
     let user = res.locals.user;
   
@@ -307,7 +309,11 @@ app.get('/management', checkUser, async (req, res) => {
         };
       })
     );
-    res.render('management', { user: user, books: books, allActiveTransactions, allPrevTransactions, transactions: transactionsWithDetails, authors: authors, publishers: publishers });
+
+    const users = await User.find();
+
+    // Render the management page with the fetched data
+    res.render('management', { dashboardStats, user: user, books: books, allActiveTransactions, allPrevTransactions, transactions: transactionsWithDetails, authors, publishers , users});
   
   } catch (error) {
     // Log any error that occurs and return a 500 error

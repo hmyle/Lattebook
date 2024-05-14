@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Checkin = require('./models/checkin');
 const User = require('./models/user');
+const DashboardStats = require('./models/dashboardStats');
 const TemperatureHumidity = require('./models/temperatureHumidity');
 
 const app = express();

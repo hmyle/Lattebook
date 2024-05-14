@@ -66,6 +66,9 @@ const userSchema = new mongoose.Schema({
         require: true,
         default: 'default',
     },
+    RFID: {
+        type: String
+    }
 },
     {
         timestamps: true

@@ -127,8 +127,7 @@ h3 {
 .btn:active {
     background: #ddd;
 }
-
-.authorForm, .publisherForm {
+.authorForm, .publisherForm, .rfidForm {
     display: none;
     position: fixed;
     top: 0;
@@ -138,7 +137,7 @@ h3 {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.authorForm input, .publisherForm input {
+.authorForm input, .publisherForm input, .rfidForm input {
     background-color: #eee;
     border: none;
     margin: 1rem 0;
@@ -146,4 +145,143 @@ h3 {
     font-size: 1.5rem;
     border-radius: 1rem;
     width: 100%;
+}
+
+.styled-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px; /* Add border radius */
+    overflow: auto; /* Hide overflow to respect border radius */
+}
+
+.styled-table thead tr {
+    background-color: #A79277; /* Change color to match your palette */
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #A79277; /* Change color to match your palette */
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #A79277; /* Change color to match your palette */
+}
+
+/* Customize scrollbar */
+.styled-table::-webkit-scrollbar {
+    width: 10px;
+}
+
+.styled-table::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.styled-table::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.styled-table::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* CSS */
+
+.addBtn, #borrowBtn, #returnBtn {
+    background-color: #3C5B6F; /* primary color */
+    color: #ffffff; /* white color for text */
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 15px; /* match border radius with .card */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* match box shadow with .card */
+}
+
+.addBtn:hover, #borrowBtn:hover, #returnBtn:hover {
+    background-color: #153448; /* secondary color */
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* match box shadow with .card:hover */
+}
+
+.publisher-remove, .author-remove {
+    background-color: #D24545; /* primary color */
+    color: #ffffff; /* white color for text */
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px; /* match border radius with .card */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* match box shadow with .card */
+}
+
+.publisher-remove:hover, .author-remove:hover {
+    background-color: #A94438; /* secondary color */
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* match box shadow with .card:hover */
+}
+
+/* The popup form */
+.authorForm, .publisherForm, .rfidForm {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* The popup content */
+.authorForm .popup-content, .publisherForm .popup-content, .rfidForm .popup-content{
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Adjust this to make the box smaller or larger */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/* The close button */
+.authorForm .close, .publisherForm .close, .rfidForm .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.authorForm .close:hover, .publisherForm .close:hover,
+.authorForm .close:focus, .publisherForm .close:focus, 
+.rfidForm .close:focus, .rfidForm .close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

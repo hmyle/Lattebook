@@ -89,3 +89,17 @@ module.exports.updatePasswordPost = async (req, res) => {
     res.status(500).json({ error: error.toString() });
   }
 };
+
+module.exports.addRfidPost = async (req, res) => {
+  const rfidString = req.body.rfidString;
+  const userId = req.params.id;
+
+  await User.findByIdAndUpdate(userId, { $set: { "RFID": rfidString }}).then((user) => {
+    console.log(user);
+    res.json({ success: true });
+  })
+  .catch((error) => {
+      console.error('Error:', error);
+      res.status(500).json({ success: false });
+  });
+}

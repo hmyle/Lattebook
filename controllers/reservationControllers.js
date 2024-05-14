@@ -196,6 +196,11 @@ module.exports.reservationGet = async (req, res) => {
           },
           { new: true },
         );
+
+        const dashboardStats = await DashboardStats.findOne();
+        dashboardStats.overdueBooks += 1;
+        dashboardStats.pendingFees += transaction.fine;
+        await dashboardStats.save();
       }
     }));
 
@@ -339,6 +344,7 @@ async function reserveBooks(req, res) {
         // Add the transaction to the user's transactions
         user.activeTransactions.push(transaction._id);
         user.favoriteBook.pull(book._id);
+
         // Save the updated user
         await user.save();
 
@@ -405,6 +411,8 @@ module.exports.reservationsReturnPost = async (req, res) => {
 
     // Move the transaction from the user's activeTransactions to prevTransactions
     const user = await User.findByIdAndUpdate(transaction.userId, { $pull: { activeTransactions: id }, $push: { prevTransactions: id } }, { new: true });
+    user.points += 1;
+    await user.save();
 
     // Check if the user exists
     if (!user) {
@@ -444,6 +452,10 @@ module.exports.reservationsBorrowedPost = async (req, res) => {
     // If the transaction status is 'Reserved', update it to 'Borrowed'
     if (transaction.status === 'Pending') {
       transaction.status = 'Borrowed';
+
+      const user = await User.findById(transaction.userId);
+      user.totalBookCheckedOut += 1;
+      await user.save();
 
       // Update the dashboard stats for books borrowed
       const dashboardStats = await DashboardStats.findOne();
@@ -501,12 +513,6 @@ module.exports.userReservationGet = async (req, res, next) => {
                 { new: true },
               );
             }
-
-            // Update the dashboard stats for overdue books and pending fees
-            const dashboardStats = await DashboardStats.findOne();
-            dashboardStats.pendingFees += transaction.fine;
-            dashboardStats.overdueBooks += 1;
-            await dashboardStats.save();
           }));
 
           // Get all active transactions of the user

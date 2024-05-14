@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const DashboardStats = require('./dashboardStats');
 
 const checkinSchema = new mongoose.Schema({
     uid: {

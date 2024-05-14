@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/editProfile.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/settings.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Settings</title>
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
@@ -15,47 +15,47 @@
 
 <body>
 
-        <!-- header section starts  -->
+    <!-- header section starts  -->
+    <header class="header">
+
+        <section class="header-1">
     
-        <header class="header">
-
-            <section class="header-1">
-        
-                <a href="/" class="logo"> <img src="/images/favicon.png" alt="Lattebook Logo"> LatteBook </a>
-        
-                <form action="/searchResult" method="get" class="search-form">
-                    <input type="search" name="query" placeholder="search here..." id="search-box">
-                    <label for="search-box" class="fas fa-search" id="search-icon"></label>
-                    <input type="submit" style="display: none;">
-                </form>
-        
-                <div class="icons">
-                    <div id="search-btn" class="fas fa-search"></div>
-                    <% if (user) { %>
-                        <% if (!user.isAdmin) { %>
-                            <a href="/wishlist" class="fas fa-heart"></a>
-                            <a href="/userReservations" class="fas fa-list"></a>
-                        <% } else { %>
-                            <a href="/management" class="fas fa-tachometer-alt"></a>
-                        <% } %>
-                        <a href="/settings" class="fas fa-user"></a>
-                    <%} else { %>
-                        <a href="/login" class="fas fa-heart"></a>
-                        <a href="/login" class="fas fa-list"></a>
-                        <a href="/login" class="fas fa-user"></a>
-                    <%} %>
-                </div>
-            </section>
-
-            <!-- bottom navbar for responsive purpose  -->
-
-            <nav class="bottom-navbar">
-                <a href="#general" class="fa fa-sliders nav-link active"></a>
-                <a href="#profile" class="fas fa-user nav-link"></a>
-                <a href="#security" class="fas fa-lock nav-link"></a>
-            </nav>
+            <a href="/" class="logo"> <img src="/images/favicon.png" alt="Lattebook Logo"> LatteBook </a>
     
-        </header>
+            <form action="/searchResult" method="get" class="search-form">
+                <input type="search" name="query" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search" id="search-icon"></label>
+                <input type="submit" style="display: none;">
+            </form>
+    
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                <% if (user) { %>
+                    <% if (!user.isAdmin) { %>
+                        <a href="/wishlist" class="fas fa-heart"></a>
+                        <a href="/userReservations" class="fas fa-list"></a>
+                    <% } else { %>
+                        <a href="/management" class="fas fa-tachometer-alt"></a>
+                    <% } %>
+                    <a href="/settings" class="fas fa-user"></a>
+                <%} else { %>
+                    <a href="/login" class="fas fa-heart"></a>
+                    <a href="/login" class="fas fa-list"></a>
+                    <a href="/login" class="fas fa-user"></a>
+                <%} %>
+            </div>
+        </section>
+
+        <!-- bottom navbar for responsive purpose  -->
+
+        <nav class="bottom-navbar">
+            <a href="#general" class="fa fa-sliders nav-link active"></a>
+            <a href="#profile" class="fas fa-user nav-link"></a>
+            <a href="#security" class="fas fa-lock nav-link"></a>
+            <a href="/logout" class="fas fa-sign-out-alt nav-link" id = "logout-button"></a>
+        </nav>
+
+    </header>
     
         <!-- header section ends -->
 
@@ -69,6 +69,7 @@
                     <li class="nav-item"><a href="#general" class="nav-link active">General</a></li>
                     <li class="nav-item"><a href="#profile" class="nav-link">Profile</a></li>
                     <li class="nav-item"><a href="#security" class="nav-link">Security</a></li>
+                    <li class="nav-item"><a href="/logout" class="nav-link" id = "logout">Logout</a></li>
                 </ul>
             </div>
         

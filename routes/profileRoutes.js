@@ -29,5 +29,8 @@ router.post('/updateProfile', checkUser, requireAuth, profileControllers.updateP
 // Security Section
 router.post('/updatePassword', checkUser, requireAuth, profileControllers.updatePasswordPost);
 
+// Update User RFID
+router.post('/addRfid/:id', checkUser, requireAuth, isAdmin, profileControllers.addRfidPost);
+
 // Export the router
 module.exports = router;

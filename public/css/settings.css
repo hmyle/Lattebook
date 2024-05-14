@@ -31,6 +31,10 @@ h2 {
     cursor: pointer;
 }
 
+#logout {
+    color: #D24545;
+}
+
 .container {
     max-width: 960px;
     margin: 30px auto;
@@ -54,6 +58,7 @@ h2 {
 .nav-link {
     color: #333;
     transition: color 0.3s ease;
+    height: 35px;
 }
 
 .nav-link:hover {
@@ -69,6 +74,12 @@ h2 {
     justify-content: flex-end;
     align-items: end;
 }
+
+#logout-button {
+    border-radius: 10px;
+    color: #D24545;
+}
+
 
 .btn {
     background: #D1BB9E;
