@@ -26,21 +26,33 @@
     <header class="header">
 
         <section class="header-1">
-
-            <a href="#" class="logo"> <img src="/images/favicon.png" alt="Lattebook Logo"> LatteBook </a>
-
-            <form action="" class="search-form">
-                <input type="search" name="" placeholder="search here..." id="search-box">
-                <label for="search-box" class="fas fa-search"></label>
+        
+            <a href="/" class="logo"> <img src="/images/favicon.png" alt="Lattebook Logo"> LatteBook </a>
+    
+            <form action="/searchResult" method="get" class="search-form">
+                <input type="search" name="query" placeholder="search here..." id="search-box">
+                <label for="search-box" class="fas fa-search" id="search-icon"></label>
+                <input type="submit" style="display: none;">
             </form>
-
+    
             <div class="icons">
                 <div id="search-btn" class="fas fa-search"></div>
-                <a href="/wishlist" class="fas fa-heart"></a>
-                <a href="/wishlist" class="fas fa-shopping-cart"></a>
-                <a href="/settings" class="fas fa-user"></a>
+                <% if (user) { %>
+                    <% if (!user.isAdmin) { %>
+                        <a href="/wishlist" class="fas fa-heart"></a>
+                        <a href="/userReservations" class="fas fa-list"></a>
+                    <% } else { %>
+                        <a href="/management" class="fas fa-tachometer-alt"></a>
+                    <% } %>
+                    <a href="/settings" class="fas fa-user"></a>
+                <%} else { %>
+                    <a href="/login" class="fas fa-heart"></a>
+                    <a href="/login" class="fas fa-list"></a>
+                    <a href="/login" class="fas fa-user"></a>
+                <%} %>
             </div>
-
+    
+    
         </section>
 
     </header>
@@ -78,7 +90,7 @@
                         <div class="bookstatus">Status: <%=book.bookStatus%></div>
                     </div>
                     <div class="rent">
-                        <div id="btn" data-book-id="<%=book._id%>">add to rentlist </div>
+                        <div class="btn" data-book-id="<%=book._id%>">add to rentlist</div>
                     </div>
                 </a>
             <% }); %>

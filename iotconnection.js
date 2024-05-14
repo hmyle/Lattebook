@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Checkin = require('./models/checkin');
 const User = require('./models/user');
+const TemperatureHumidity = require('./models/temperatureHumidity');
 
 const app = express();
 const port = 3000;
@@ -35,6 +36,20 @@ app.post('/api/uid', async (req, res) => {
     }
   } catch (error) {
     console.error('Error retrieving user information:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/api/temperature', async (req, res) => {
+  const { temperature, humidity } = req.body;
+
+  try {
+    const temperatureHumidityData = new TemperatureHumidity({ temperature, humidity });
+    const savedData = await temperatureHumidityData.save();
+    console.log('Temperature and humidity data saved:', savedData);
+    res.json({ message: 'Temperature and humidity data saved' });
+  } catch (error) {
+    console.error('Error saving temperature and humidity data:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });

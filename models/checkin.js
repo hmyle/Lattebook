@@ -7,7 +7,7 @@ const checkinSchema = new mongoose.Schema({
     }
 },
     {
-        timestamps: true
+      timestamps: true
 });
 
 checkinSchema.post('save', async function (doc) {

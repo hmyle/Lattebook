@@ -90,7 +90,7 @@ module.exports.clearWishlistPost = async (req, res) => {
 
     user.favoriteBook = []; // Clear the user's favoriteBook array
     await user.save(); // Save the user
-    res.redirect('/myAccount'); // Redirect back to the myAccount page
+    res.redirect('/settings'); // Redirect back to the myAccount page
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error'); // Handle server errors
@@ -504,7 +504,7 @@ module.exports.userReservationGet = async (req, res, next) => {
 
             // Update the dashboard stats for overdue books and pending fees
             const dashboardStats = await DashboardStats.findOne();
-            dashboardStats.pendingFees += reservation.fine;
+            dashboardStats.pendingFees += transaction.fine;
             dashboardStats.overdueBooks += 1;
             await dashboardStats.save();
           }));
