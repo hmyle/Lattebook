@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Checkin = require('./models/checkin');
 const User = require('./models/user');
-const DashboardStats = require('./models/dashboardStats');
 const TemperatureHumidity = require('./models/temperatureHumidity');
 
 const app = express();
@@ -27,7 +26,7 @@ app.post('/api/uid', async (req, res) => {
   checkInUid.save().then(console.log('Data saved to database')).catch((error) => console.log(error.message));
 
   try {
-    const user = await User.findOne({ uid: userUid });
+    const user = await User.findOne({ RFID: userUid });
     if (user) {
       console.log("User found:", user);
       res.json(user);

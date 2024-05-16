@@ -88,7 +88,7 @@
                 <div class="content">
                     <h3>Welcome to LatteBook</h3>
                     <h4>Savor stories as rich as your morning brew.</h4>
-                    <a href="#featured" class="btn">start exploring</a>
+                    <a href="/allbooks" class="btn">start exploring</a>
                 </div>
 
                 <div class="swiper books-slider">
@@ -285,7 +285,7 @@
                         <% if (user) { %>
                             <% if (!isBookInWishlist) { %>
                                 <form id="mainbook" method="post" class="wishlist-form" data-action="/addToWishlist" data-book-id="<%= book._id %>">
-                                    <a href="#" class="fas fa-heart submit-link">
+                                    <a class="fas fa-heart submit-link">
                                         <span>
                                             Add to Wishlist
                                         </span>
@@ -293,7 +293,7 @@
                                 </form>
                             <% } else { %>
                                 <form id="mainbook" method="post" class="wishlist-form" data-action="/removeFromWishlist" data-book-id="<%= book._id %>">
-                                    <a href="#" class="fas fa-heart submit-link">
+                                    <a class="fas fa-heart submit-link">
                                         <span>
                                             Remove from Wishlist
                                         </span>

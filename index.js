@@ -211,10 +211,6 @@ app.get('/', checkUser, async (req,res) => {
   }
 }); 
 
-app.get('/settings', checkUser, requireAuth, (req, res) => {
-  res.render('settings', { user: res.locals.user });
-});
-
 // My Account page
 app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
   try {
@@ -321,8 +317,6 @@ app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }); 
-
-
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
