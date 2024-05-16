@@ -4,6 +4,10 @@ const multer = require('multer');
 
 const User = require('../models/user');
 
+module.exports.settingsGet = (req, res) => {
+  res.render('settings', { user: res.locals.user });
+}
+
 module.exports.updateProfilePicturePost = async (req, res) => {
     try {
       // req.file is the `profileImage` file
