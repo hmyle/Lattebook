@@ -92,7 +92,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -108,7 +108,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -124,7 +124,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:rgb(204, 0, 0);
     font-size: 1.7rem;
     cursor: pointer;
@@ -220,7 +220,7 @@ section{
 }
 
 .header .header-2 .navbar a{
-    color:#fff;
+    color:#fff !important;
     display: inline-block;
     padding:1.2rem;
     font-size: 1.7rem;
@@ -248,7 +248,7 @@ section{
 .bottom-navbar a{
     font-size: 2.5rem;
     padding:2rem;
-    color:#fff;
+    color:#fff !important;
 }
 
 .bottom-navbar a:hover{
@@ -260,7 +260,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -336,7 +336,7 @@ section{
 
 .bookmenu-form-container form .checkbox label{
     font-size: 1.5rem;
-    color:var(--light-color);
+    color:var(--light-color) !important;
     cursor: pointer;
     user-select: none;
 }
@@ -349,7 +349,7 @@ section{
 
 .bookmenu-form-container form p{
     padding-top: .8rem;
-    color:var(--light-color);
+    color:var(--light-color) !important;
     font-size: 1.5rem;
 }
 
@@ -381,7 +381,7 @@ section{
     box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.2); /* shadow */
     z-index: -1;
 
-    background: url(../image/movebg.png) repeat;
+    background: url(/images/movebg.png) repeat;
     background-size: 10%;
     animation: pan 180s linear infinite;
 }
@@ -442,7 +442,7 @@ section{
 }
 
 .home .row .content p{
-    color:var(--light-color);
+    color:var(--light-color) !important;
     font-size: 1.4rem;
     line-height: 2;
     padding:1rem 0;
@@ -485,7 +485,7 @@ section{
 
 .icons-container .icons p{
     font-size: 1.4rem;
-    color:var(--light-color);
+    color:var(--light-color) !important;
 }
 
 .featured .featured-slider .box{
@@ -544,7 +544,7 @@ section{
 
 .featured .featured-slider .box .icons a:hover{
     background:var(--brown);
-    color:#fff;
+    color:#fff !important;
 }
 
 .featured .featured-slider .box .content{
@@ -580,11 +580,11 @@ section{
 .swiper-button-next:hover,
 .swiper-button-prev:hover{
     background: var(--black);
-    color:#fff;
+    color:#fff !important;
 }
 
 .newsletter-container{
-    background:url(../image/bg.png) no-repeat;
+    background:url(/images/bg.png) no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -600,7 +600,7 @@ section{
 
 .newsletter form h3{
     font-size: 2.2rem;
-    color:#fff;
+    color:#fff !important;
     padding-bottom: .7rem;
     font-weight: normal;
 }
@@ -732,7 +732,7 @@ section{
 
 .deal .content p{
     padding:1rem 0;
-    color:var(--light-color);
+    color:var(--light-color) !important;
     font-size: 1.4rem;
     line-height: 2;
 }
@@ -762,7 +762,7 @@ section{
 }
 
 .reviews .reviews-slider .box p{
-    color:var(--light-color);
+    color:var(--light-color) !important;
     font-size: 1.4rem;
     padding:1rem 0;
     line-height: 2;
@@ -792,7 +792,7 @@ section{
 .footer .box-container .box a{
     display: block;
     font-size: 1.4rem;
-    color:var(--light-color);
+    color:var(--light-color) !important;
     padding:1rem 0;
 }
 
@@ -820,7 +820,7 @@ section{
     padding:1rem;
     padding-top: 2.5rem;
     font-size: 2rem;
-    color:var(--light-color);
+    color:var(--light-color) !important;
     text-align: center;
     /* padding-bottom: 10rem; */
 }
@@ -906,7 +906,7 @@ section{
 margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -918,7 +918,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -930,7 +930,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1001,7 +1001,7 @@ margin-top: 1rem;
 margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1013,7 +1013,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1025,7 +1025,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff;
+    color:#fff !important;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1048,17 +1048,22 @@ margin-top: 1rem;
 
 #myBtnContainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 5rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    margin-left: 7rem;
+    margin-right: 7rem;
 }
 
-#myBtnContainer > * {
-    flex: 0 0 21%;
-    margin: 0.5rem;
+#myBtnContainer .btn {
+    padding: 1rem;
+    font-size: 1.5rem;
+    width: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .filterDiv {
@@ -1145,8 +1150,14 @@ margin-top: 1rem;
     }
 
     #myBtnContainer > * {
-        flex: 0 0 20%;
-        margin: 0.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    #myBtnContainer .btn {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        width: auto;
     }
 
 }
@@ -1230,9 +1241,19 @@ margin-top: 1rem;
         display: grid;
     }
 
+    #myBtnContainer{
+        display: contents;
+    }
+
     #myBtnContainer > * {
         flex: 0 0 1px;
         margin: 0.2rem;
+    }
+
+    #myBtnContainer .btn {
+        padding: 0.5rem;
+        font-size: 1.7rem;
+        width: auto;
     }
 }
 

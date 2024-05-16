@@ -1048,17 +1048,22 @@ margin-top: 1rem;
 
 #myBtnContainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 5rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    margin-left: 7rem;
+    margin-right: 7rem;
 }
 
-#myBtnContainer > * {
-    flex: 0 0 21%;
-    margin: 0.5rem;
+#myBtnContainer .btn {
+    padding: 1rem;
+    font-size: 1.5rem;
+    width: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .filterDiv {
@@ -1145,8 +1150,14 @@ margin-top: 1rem;
     }
 
     #myBtnContainer > * {
-        flex: 0 0 20%;
-        margin: 0.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    #myBtnContainer .btn {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        width: auto;
     }
 
 }
@@ -1230,9 +1241,19 @@ margin-top: 1rem;
         display: grid;
     }
 
+    #myBtnContainer{
+        display: contents;
+    }
+
     #myBtnContainer > * {
         flex: 0 0 1px;
         margin: 0.2rem;
+    }
+
+    #myBtnContainer .btn {
+        padding: 0.5rem;
+        font-size: 1.7rem;
+        width: auto;
     }
 }
 
