@@ -1,4 +1,5 @@
 // Import necessary modules
+const nodemailer = require("nodemailer");
 const User = require('../models/user');
 const Book = require('../models/book');
 const DashboardStats = require('../models/dashboardStats');
@@ -178,57 +179,6 @@ module.exports.createReservationPost = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the reservation' });
   }
 }
-
-module.exports.reservationGet = async (req, res) => {
-  try {
-    // Fetch transactions from the database
-    const transactions = await Transaction.find();
-
-    await Promise.all(transactions.map(async (transaction) => {
-      if ((transaction.returnDate < Date.now() && transaction.status == 'Reserved') || (transaction.returnDate < Date.now() && transaction.status == 'Overdue')) {
-        await Transaction.findByIdAndUpdate(
-          transaction._id, 
-          { 
-            $set: { 
-              status: 'Overdue',
-              fine: 1000 * Math.floor((Date.now() - new Date(transaction.returnDate)) / (1000 * 60 * 60 * 24))
-            }
-          },
-          { new: true },
-        );
-
-        const dashboardStats = await DashboardStats.findOne();
-        dashboardStats.overdueBooks += 1;
-        dashboardStats.pendingFees += transaction.fine;
-        await dashboardStats.save();
-      }
-    }));
-
-    // Fetch user and book details for each transaction
-    const transactionsWithDetails = await Promise.all(
-      transactions.map(async (transaction) => {
-        const userEmail = await getUserById(transaction.userId).email;
-        const bookTitle = await getBookById(transaction.bookId).title;
-
-        return {
-          _id: transaction._id,
-          userEmail: userEmail,
-          bookTitle: bookTitle,
-          status: transaction.status,
-          pickUpDate: transaction.pickUpDate,
-          returnDate: transaction.returnDate,
-          fine: transaction.fine,
-        };
-      })
-    );
-
-    // Render the template with transaction data
-    res.render('allreservation', { transactions: transactionsWithDetails });
-  } catch (error) {
-    console.error('Error processing transactions:', error);
-    res.status(500).send('Internal Server Error');
-  }
-};
 
 // Controller to get all reservations
 module.exports.reservationGet = async (req, res) => {

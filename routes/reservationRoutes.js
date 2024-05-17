@@ -25,8 +25,6 @@ router.post('/addAllToReservation', requireAuth, checkUser, reservationControlle
 
 // Define the routes for managing reservations
 // The user must be authenticated to access these routes
-// Only admins can access the '/reservations' route
-router.get('/reservations', requireAuth, checkUser, isAdmin, reservationController.reservationGet);
 router.get('/userReservations', requireAuth, checkUser, reservationController.userReservationGet);
 router.post('/reservations/borrow', requireAuth, checkUser, isAdmin, reservationController.reservationsBorrowedPost);
 router.post('/reservations/return', requireAuth, checkUser, isAdmin, reservationController.reservationsReturnPost);

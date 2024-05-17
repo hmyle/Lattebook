@@ -25,6 +25,7 @@ const profileRoutes = require('./routes/profileRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 
 // Importing middleware
+const { updateReservationStatus } = require('./middleware/emailMiddleware');
 const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware');
 
 // Initializing express app
@@ -144,6 +145,9 @@ mongoose.connect(mongoURI)
 
 // Schedule a job to run at 00:00 every day
 cron.schedule('0 0 * * *', async function() {
+  // Update reservation status by day and send emails to users with overdue books
+  updateReservationStatus();
+
   const dashboardStats = await DashboardStats.findOne();
 
   // If dashboardStats is null, create a new document
