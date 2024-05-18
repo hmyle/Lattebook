@@ -36,9 +36,7 @@ const updateReservationStatus = async (req, res, next) => {
         const dashboardStats = await DashboardStats.findOne();
         dashboardStats.overdueBooks = overdueBooks;
         dashboardStats.pendingFees = pendingFees;
-        await dashboardStats.save();
-  
-      next();
+        await dashboardStats.save();  
     } catch (error) {
       console.error('Error processing transactions:', error);
       res.status(500).send('Internal Server Error');
@@ -63,7 +61,7 @@ async function sendOverdueEmail(recipentEmail, returnDate) {
         day: 'numeric'
     });
 
-    let info = await transporter.sendMail({
+    await transporter.sendMail({
         from: '"Latte Book" lattebook.rmit@gmail.com',
         to: recipentEmail,
         subject: "Reminder for Overdue Book Return - Latte Book Co.",
@@ -83,7 +81,79 @@ async function sendOverdueEmail(recipentEmail, returnDate) {
         `,
     });
 
-    console.log(info.messageId);
+    console.log('Overdue email sent to recipent: ', recipentEmail);
 }
 
-module.exports = { updateReservationStatus };
+async function sendHighTemperatureEmail(temperature) {
+  let recipentEmail = 'hmyle.it@gmail.com';
+  
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com", 
+    port: 587, 
+    secure: false, 
+    auth: {
+    user: "lattebook.rmit@gmail.com",
+    pass: "nehywywzqwmjaxdc",
+    },
+  });
+
+  await transporter.sendMail({
+    from: '"Latte Book" lattebook.rmit@gmail.com',
+    to: recipentEmail,
+    subject: "The Book is On Fire! - Latte Book Co.",
+    html: `
+    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #A79277; padding: 30px; background-color: #FFFFFF; border: 2px solid #EAD8C0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <h1 style="color: #A79277; border-bottom: 2px solid #D1BB9E; padding-bottom: 15px; text-align: center; font-size: 28px; text-transform: uppercase; letter-spacing: 2px;">Warning,</h1>
+    <div style="border: 1px solid #D1BB9E; margin: 20px 0; padding: 20px; border-radius: 5px; background-color: #FFFFFF;">
+    <p style="font-size: 18px; line-height: 1.8;">We hope this email finds you well. We noticed that the temperature of the book you currently have in your possession is ${temperature} degrees, which is too high. This could potentially damage the book.</p>
+    <p style="font-size: 18px; line-height: 1.8;">Please ensure the book is stored in a cooler environment to prevent any damage. If the book is already damaged, please contact us immediately.</p>
+    <p style="font-size: 18px; line-height: 1.8;">Should you have any inquiries or require further assistance, please do not hesitate to reach out to us. Our dedicated team is here to help you with any questions or concerns you may have.</p>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+    <p style="font-size: 18px; line-height: 1.8;">Warm regards,</p>
+    <p style="font-size: 22px; line-height: 1.8; font-weight: bold; color: #A79277;">Latte Book Co.</p>
+    </div>
+    </div>
+    `,
+});
+
+  console.log('High temperature email sent to recipent: ', recipentEmail);
+}
+
+async function sendLowTemperatureEmail(temperature) {
+  let recipentEmail = 'hmyle.it@gmail.com';
+  
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com", 
+    port: 587, 
+    secure: false, 
+    auth: {
+      user: "lattebook.rmit@gmail.com",
+      pass: "nehywywzqwmjaxdc",
+    },
+  });
+
+  await transporter.sendMail({
+    from: '"Latte Book" lattebook.rmit@gmail.com',
+    to: recipentEmail,
+    subject: "The Book is Freezing! - Latte Book Co.",
+    html: `
+    <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #A79277; padding: 30px; background-color: #FFFFFF; border: 2px solid #EAD8C0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <h1 style="color: #A79277; border-bottom: 2px solid #D1BB9E; padding-bottom: 15px; text-align: center; font-size: 28px; text-transform: uppercase; letter-spacing: 2px;">Warning,</h1>
+    <div style="border: 1px solid #D1BB9E; margin: 20px 0; padding: 20px; border-radius: 5px; background-color: #FFFFFF;">
+    <p style="font-size: 18px; line-height: 1.8;">We hope this email finds you well. We noticed that the temperature of the book you currently have in your possession is ${temperature} degrees, which is too low. This could potentially damage the book.</p>
+    <p style="font-size: 18px; line-height: 1.8;">Please ensure the book is stored in a warmer environment to prevent any damage. If the book is already damaged, please contact us immediately.</p>
+    <p style="font-size: 18px; line-height: 1.8;">Should you have any inquiries or require further assistance, please do not hesitate to reach out to us. Our dedicated team is here to help you with any questions or concerns you may have.</p>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+    <p style="font-size: 18px; line-height: 1.8;">Warm regards,</p>
+    <p style="font-size: 22px; line-height: 1.8; font-weight: bold; color: #A79277;">Latte Book Co.</p>
+    </div>
+    </div>
+    `,
+  });
+
+  console.log('Low temperature email sent to recipent: ', recipentEmail);
+}
+
+module.exports = { updateReservationStatus, sendHighTemperatureEmail, sendLowTemperatureEmail };

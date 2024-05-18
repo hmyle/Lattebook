@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Checkin = require('./models/checkin');
 const User = require('./models/user');
+const { sendHighTemperatureEmail, sendLowTemperatureEmail } = require('./middleware/emailMiddleware');
 const TemperatureHumidity = require('./models/temperatureHumidity');
 
 const app = express();
@@ -21,12 +22,19 @@ mongoose.connect(mongoURI)
 app.post('/api/uid', async (req, res) => {
   const uidData = req.body;
   const checkInUid = new Checkin(uidData);
-  let userUid = checkInUid.uid.replace(/\s+/, '');
 
-  checkInUid.save().then(console.log('Data saved to database')).catch((error) => console.log(error.message));
+  let uid = checkInUid.uid.replace(/\s+/, '');
+
+  const user = await User.findOne({ RFID: uid });
+  const book = await Book.findOne({ RFID: uid });
+
+  if (book) {
+    console.log("Book found:", book);
+    res.json(book);
+  }
 
   try {
-    const user = await User.findOne({ RFID: userUid });
+    checkInUid.save().then(console.log('Data saved to database')).catch((error) => console.log(error.message));
     if (user) {
       console.log("User found:", user);
       res.json(user);
@@ -42,6 +50,16 @@ app.post('/api/uid', async (req, res) => {
 
 app.post('/api/temperature', async (req, res) => {
   const { temperature, humidity } = req.body;
+  
+  if (temperature < 10) {
+    console.log('Temperature is too low:', temperature);
+    sendLowTemperatureEmail(temperature);
+  }
+
+  if (temperature > 30) {
+    console.log('Temperature is too high:', temperature);
+    sendHighTemperatureEmail(temperature);
+  }
 
   try {
     const temperatureHumidityData = new TemperatureHumidity({ temperature, humidity });

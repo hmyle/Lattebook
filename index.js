@@ -5,7 +5,6 @@ const { OpenAI } = require("openai");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const { RateLimiterMemory } = require('rate-limiter-flexible');
 
 // Importing models
 const Book = require('./models/book');
@@ -27,16 +26,12 @@ const reservationRoutes = require('./routes/reservationRoutes');
 // Importing middleware
 const { updateReservationStatus } = require('./middleware/emailMiddleware');
 const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware');
+const TemperatureHumidity = require('./models/temperatureHumidity');
 
 // Initializing express app
 const app = express();
 const port = 3000;
 const openai = new OpenAI({ apiKey: "sk-proj-DY9awujayyspaSzeCMVRT3BlbkFJMFujWBBJZkFcgnO2pXHA" });
-
-const rateLimiter = new RateLimiterMemory({
-  points: 5, // Number of points (requests) allowed
-  duration: 1, // Duration in seconds for which the points are valid
-});
 
 // Setting up middleware
 app.use(express.urlencoded({ extended: true }));
@@ -49,56 +44,57 @@ app.use(express.static('public'));
 let selectedBook;
 let selectedDate;
 
-
 // Checking user for all routes
 app.get('*', checkUser);
 
-app.get('/recommendation', checkUser, (req, res) => {
+app.get('/tempData', async (req, res) => {
+    const tempData = await TemperatureHumidity.findOne().sort({createdAt: -1});
+    res.json({temp: tempData.temperature, hum: tempData.humidity});
+});
+
+app.get('/recommendation', checkUser, requireAuth, (req, res) => {
   res.render('recommendation');
 });
 
-app.get('/recommend', async (req, res) => {
-  console.log("Hello");
+app.post("/recommend", checkUser, requireAuth, async (req, res) => {
   try {
-    // Check if the client is allowed to make a request
-    await rateLimiter.consume(req.ip)
-      .catch(() => {
-        res.status(429).send('Too many requests from this IP, please try again after a minute');
+    const userInput = req.body.input;
+    const completion = await openai.chat.completions.create({
+      messages: [
+        { role: "system", content: "You are helpful in recommending books." },
+        { role: "user", content: userInput + "\\n list out all books" },
+      ],
+      model: "gpt-3.5-turbo",
     });
+    console.log(completion);
 
-    // Find the user by email
-    const user = res.locals.user;
+    const recommendedBooks = completion.choices[0].message.content
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line !== '' && line.includes('"'))
+      .map(line => line.split('"')[1].trim());
+    console.log(recommendedBooks);
 
-    if (!user) {
-      return res.status(404).send('User not found');
+    let foundBooks = [];
+    for (const bookTitle of recommendedBooks) {
+      let book = await Book.findOne({ title: bookTitle });
+      if (book) {
+        foundBooks.push(book);
+      }
     }
 
-    const favoriteBookId = user.favoriteBook[0]; // Assuming there's only one favorite book
-
-    // Fetch the book details
-    const Book = mongoose.model('Book');
-    const favoriteBook = await Book.findById(favoriteBookId);
-
-    const userInput = `Recommend books similar to ${favoriteBook.title} by ${favoriteBook.author}. Here are the details: ${favoriteBook.description}`;
-
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: userInput,
-      max_tokens: 1024,
-      temperature: 0.7,
+    let categories = await Category.find().populate('author').populate('category');
+    res.render('recommendationResult', { books: foundBooks }, (err, html) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('An error occurred while rendering the allbooks page.');
+      } else {
+        res.send(html);
+      }
     });
-
-    const recommendedBook = completion.choices[0].text;
-    console.log(recommendedBook);
-    res.send(recommendedBook);
   } catch (error) {
-    if (error.status === 429) {
-      console.error('Rate limit exceeded');
-      res.status(429).send('Rate limit exceeded. Please try again later.');
-    } else {
-      console.error(error);
-      res.status(500).send(`An error occurred while processing your request.`);
-    }
+    console.error(error);
+    res.status(500).send(`An error occurred while processing your request.`);
   }
 });
 
@@ -145,6 +141,7 @@ mongoose.connect(mongoURI)
 
 // Schedule a job to run at 00:00 every day
 cron.schedule('0 0 * * *', async function() {
+  console.log("Running scheduled job...");
   // Update reservation status by day and send emails to users with overdue books
   updateReservationStatus();
 
@@ -162,6 +159,8 @@ cron.schedule('0 0 * * *', async function() {
   } catch (err) {
     console.error('Error resetting visitors', err);
   }
+
+  console.log("Scheduled job completed");
 });
 
 // Route for all types of users
