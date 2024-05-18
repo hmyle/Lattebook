@@ -5,7 +5,6 @@ const { OpenAI } = require("openai");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const { RateLimiterMemory } = require('rate-limiter-flexible');
 
 // Importing models
 const Book = require('./models/book');
@@ -57,28 +56,45 @@ app.get('/recommendation', checkUser, requireAuth, (req, res) => {
   res.render('recommendation');
 });
 
-app.get("/recommend", async (req, res) => {
+app.post("/recommend", checkUser, requireAuth, async (req, res) => {
   try {
-      const userInput = req.query.input;
-      const completion = await openai.chat.completions.create({
-          messages: [
-              {
-                  role: "system",
-                  content: "You are helpful in recommending books."
-              },
-              {
-                  role: "user",
-                  content: userInput + "\n list out all books"
-              },
-          ],
-          model: "gpt-3.5-turbo",
-      });
-      const recommendedBook = completion.choices[0].message.content;
-      res.send(recommendedBook);
+    const userInput = req.body.input;
+    const completion = await openai.chat.completions.create({
+      messages: [
+        { role: "system", content: "You are helpful in recommending books." },
+        { role: "user", content: userInput + "\\n list out all books" },
+      ],
+      model: "gpt-3.5-turbo",
+    });
+    console.log(completion);
+
+    const recommendedBooks = completion.choices[0].message.content
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line !== '' && line.includes('"'))
+      .map(line => line.split('"')[1].trim());
+    console.log(recommendedBooks);
+
+    let foundBooks = [];
+    for (const bookTitle of recommendedBooks) {
+      let book = await Book.findOne({ title: bookTitle });
+      if (book) {
+        foundBooks.push(book);
+      }
+    }
+
+    let categories = await Category.find().populate('author').populate('category');
+    res.render('recommendationResult', { books: foundBooks }, (err, html) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('An error occurred while rendering the allbooks page.');
+      } else {
+        res.send(html);
+      }
+    });
   } catch (error) {
-      console.error(error);
-      res.status(500).send(`
-  An error occurred while processing your request.`);
+    console.error(error);
+    res.status(500).send(`An error occurred while processing your request.`);
   }
 });
 
