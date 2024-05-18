@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Checkin = require('./models/checkin');
 const User = require('./models/user');
+const { sendHighTemperatureEmail, sendLowTemperatureEmail } = require('./middleware/emailMiddleware');
 const TemperatureHumidity = require('./models/temperatureHumidity');
 
 const app = express();
@@ -49,6 +50,16 @@ app.post('/api/uid', async (req, res) => {
 
 app.post('/api/temperature', async (req, res) => {
   const { temperature, humidity } = req.body;
+  
+  if (temperature < 10) {
+    console.log('Temperature is too low:', temperature);
+    sendLowTemperatureEmail(temperature);
+  }
+
+  if (temperature > 30) {
+    console.log('Temperature is too high:', temperature);
+    sendHighTemperatureEmail(temperature);
+  }
 
   try {
     const temperatureHumidityData = new TemperatureHumidity({ temperature, humidity });

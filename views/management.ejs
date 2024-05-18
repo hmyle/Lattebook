@@ -655,12 +655,99 @@
   </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-    function createRadGauge(t,e,a,n){function r(t,e,a,n){return{x:t+a*Math.cos(n),y:e+a*Math.sin(n)}}function s(t,e,a,n,s,o){var d=r(t,e,a,-Math.PI),l=r(t,e,a,-Math.PI*(1-1/(o-s)*(n-s))),i=["M",d.x,d.y,"A",a,a,0,0,1,l.x,l.y].join(" ");return i}var o='<svg class="rGauge" viewBox="0 0 200 145"><path class="rGauge-base" id="'+t+'_base" stroke-width="30" /><path class="rGauge-progress" id="'+t+'_progress" stroke-width="30" stroke="#1565c0" /><text class="rGauge-val" id="'+t+'_val" x="100" y="105" text-anchor="middle"></text><text class="rGauge-min-val" id="'+t+'_minVal" x="40" y="125" text-anchor="middle"></text><text class="rGauge-max-val" id="'+t+'_maxVal" x="160" y="125" text-anchor="middle"></text></svg>';document.getElementById(t).innerHTML=o,document.getElementById(t+"_base").setAttribute("d",s(100,100,60,1,0,1)),document.getElementById(t+"_progress").setAttribute("d",s(100,100,60,e,e,a)),document.getElementById(t+"_minVal").textContent=e,document.getElementById(t+"_maxVal").textContent=a;var d={setVal:function(r){return r=Math.max(e,Math.min(r,a)),document.getElementById(t+"_progress").setAttribute("d",s(100,100,60,r,e,a)),document.getElementById(t+"_val").textContent=r+(void 0!==n?n:""),d},setColor:function(e){return document.getElementById(t+"_progress").setAttribute("stroke",e),d}};return d}function createVerGauge(t,e,a,n){var r='<svg class="vGauge" viewBox="0 0 145 145"><rect class="vGauge-base" id="'+t+'_base" x="30" y="25" width="30" height="100"></rect><rect class="vGauge-progress" id="'+t+'_progress" x="30" y="25" width="30" height="0" fill="#1565c0"></rect><text class="vGauge-val" id="'+t+'_val" x="70" y="80" text-anchor="start"></text><text class="vGauge-min-val" id="'+t+'_minVal" x="70" y="125"></text><text class="vGauge-max-val" id="'+t+'_maxVal" x="70" y="30" text-anchor="start"></text></svg>';document.getElementById(t).innerHTML=r,document.getElementById(t+"_minVal").textContent=e,document.getElementById(t+"_maxVal").textContent=a;var s={setVal:function(r){r=Math.max(e,Math.min(r,a));var o=100/(a-e)*(r-e);return document.getElementById(t+"_progress").setAttribute("height",o),document.getElementById(t+"_progress").setAttribute("y",25+(100-o)),document.getElementById(t+"_val").textContent=r+(void 0!==n?n:""),s},setColor:function(e){return document.getElementById(t+"_progress").setAttribute("fill",e),s}};return s}
-</script>
 
 <script type="text/javascript">
-    function getTempColor(e){return e>=35?"#ff5722":e>=30?"#ff9800":e>=25?"#ffc107":e>=18?"#4caf50":e>10?"#8bc34a":e>=5?"#00bcd4":e>=-5?"#03a9f4":"#2196f3"}function getHumColor(e){var t=["#E3F2FD","#BBDEFB","#90CAF9","#64B5F6","#42A5F5","#2196F3","#1E88E5","#1976D2","#1565C0","#0D47A1","#0D47A1"];return t[Math.round(e/10)]}function refresh(){var e=new XMLHttpRequest;e.onreadystatechange=function(){if(e.readyState==XMLHttpRequest.DONE)if(200==e.status){var t=JSON.parse(e.responseText);tempGauge.setVal(t.temp).setColor(getTempColor(t.temp)),humGauge.setVal(t.hum).setColor(getHumColor(t.hum))}else console.log("Refresh failed: "+e.status)},e.open("GET","data",!0),e.send()}var tempGauge=createVerGauge("temp",-20,60," °C").setVal(0).setColor(getTempColor(0)),humGauge=createRadGauge("hum",0,100,"%").setVal(0).setColor(getHumColor(0));document.getElementById("refresh").addEventListener("click",refresh),setTimeout(refresh,100);
+    var tempGauge, humGauge;
+
+    function getTempColor(temp) {
+        return temp >= 35 ? "#ff5722" : temp >= 30 ? "#ff9800" : temp >= 25 ? "#ffc107" : temp >= 18 ? "#4caf50" : temp > 10 ? "#8bc34a" : temp >= 5 ? "#00bcd4" : temp >= -5 ? "#03a9f4" : "#2196f3";
+    }
+    
+    function getHumColor(hum) {
+        var colors = ["#E3F2FD", "#BBDEFB", "#90CAF9", "#64B5F6", "#42A5F5", "#2196F3", "#1E88E5", "#1976D2", "#1565C0", "#0D47A1", "#0D47A1"];
+        return colors[Math.round(hum / 10)];
+    }
+    
+    function createRadGauge(t, e, a, n) {
+        // function definitions
+        function r(t, e, a, n) {
+            return { x: t + a * Math.cos(n), y: e + a * Math.sin(n) }
+        }
+
+        function s(t, e, a, n, s, o) {
+            var d = r(t, e, a, -Math.PI),
+                l = r(t, e, a, -Math.PI * (1 - 1 / (o - s) * (n - s))),
+                i = ["M", d.x, d.y, "A", a, a, 0, 0, 1, l.x, l.y].join(" ");
+            return i
+        }
+
+        // main function body
+        var o = '<svg class="rGauge" viewBox="0 0 200 145"><path class="rGauge-base" id="' + t + '_base" stroke-width="30" /><path class="rGauge-progress" id="' + t + '_progress" stroke-width="30" stroke="#1565c0" /><text class="rGauge-val" id="' + t + '_val" x="100" y="105" text-anchor="middle"></text><text class="rGauge-min-val" id="' + t + '_minVal" x="40" y="125" text-anchor="middle"></text><text class="rGauge-max-val" id="' + t + '_maxVal" x="160" y="125" text-anchor="middle"></text></svg>';
+        document.getElementById(t).innerHTML = o;
+        document.getElementById(t + "_base").setAttribute("d", s(100, 100, 60, 1, 0, 1));
+        document.getElementById(t + "_progress").setAttribute("d", s(100, 100, 60, e, e, a));
+        document.getElementById(t + "_minVal").textContent = e;
+        document.getElementById(t + "_maxVal").textContent = a;
+        var d = {
+            setVal: function (r) {
+                r = Math.max(e, Math.min(r, a));
+                document.getElementById(t + "_progress").setAttribute("d", s(100, 100, 60, r, e, a));
+                document.getElementById(t + "_val").textContent = r + (void 0 !== n ? n : "");
+                return d;
+            },
+            setColor: function (e) {
+                document.getElementById(t + "_progress").setAttribute("stroke", e);
+                return d;
+            }
+        };
+        return d;
+    }
+    
+    function createVerGauge(t, e, a, n) {
+        var r = '<svg class="vGauge" viewBox="0 0 145 145"><rect class="vGauge-base" id="' + t + '_base" x="30" y="25" width="30" height="100"></rect><rect class="vGauge-progress" id="' + t + '_progress" x="30" y="25" width="30" height="0" fill="#1565c0"></rect><text class="vGauge-val" id="' + t + '_val" x="70" y="80" text-anchor="start"></text><text class="vGauge-min-val" id="' + t + '_minVal" x="70" y="125"></text><text class="vGauge-max-val" id="' + t + '_maxVal" x="70" y="30" text-anchor="start"></text></svg>';
+        document.getElementById(t).innerHTML = r;
+        document.getElementById(t + "_minVal").textContent = e;
+        document.getElementById(t + "_maxVal").textContent = a;
+        var s = {
+            setVal: function (r) {
+                r = Math.max(e, Math.min(r, a));
+                var o = 100 / (a - e) * (r - e);
+                document.getElementById(t + "_progress").setAttribute("height", o);
+                document.getElementById(t + "_progress").setAttribute("y", 25 + (100 - o));
+                document.getElementById(t + "_val").textContent = r + (void 0 !== n ? n : "");
+                return s;
+            },
+            setColor: function (e) {
+                document.getElementById(t + "_progress").setAttribute("fill", e);
+                return s;
+            }
+        };
+        return s;
+    }
+    
+    function refreshGauges() {
+        fetch('/tempData')
+            .then(response => response.json())
+            .then(data => {
+                if (!tempGauge) {
+                    tempGauge = createVerGauge("temp", -20, 60, " °C");
+                }
+                if (!humGauge) {
+                    humGauge = createRadGauge("hum", 0, 100, "%");
+                }
+                tempGauge.setVal(data.temp).setColor(getTempColor(data.temp));
+                humGauge.setVal(data.hum).setColor(getHumColor(data.hum));
+            })
+            .catch(error => {
+                console.log('Refresh failed:', error);
+            });
+    }
+    
+    // Call the refreshGauges function initially
+    refreshGauges();
+    
+    // Optionally, you can set an interval to refresh the data periodically
+    setInterval(refreshGauges, 5000); // Refresh every 5 seconds
 </script>
 
 <script>

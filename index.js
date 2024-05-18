@@ -27,16 +27,12 @@ const reservationRoutes = require('./routes/reservationRoutes');
 // Importing middleware
 const { updateReservationStatus } = require('./middleware/emailMiddleware');
 const { requireAuth, checkUser, isAdmin } = require('./middleware/authMiddleware');
+const TemperatureHumidity = require('./models/temperatureHumidity');
 
 // Initializing express app
 const app = express();
 const port = 3000;
 const openai = new OpenAI({ apiKey: "sk-proj-DY9awujayyspaSzeCMVRT3BlbkFJMFujWBBJZkFcgnO2pXHA" });
-
-const rateLimiter = new RateLimiterMemory({
-  points: 5, // Number of points (requests) allowed
-  duration: 1, // Duration in seconds for which the points are valid
-});
 
 // Setting up middleware
 app.use(express.urlencoded({ extended: true }));
@@ -51,6 +47,11 @@ let selectedDate;
 
 // Checking user for all routes
 app.get('*', checkUser);
+
+app.get('/tempData', async (req, res) => {
+    const tempData = await TemperatureHumidity.findOne().sort({createdAt: -1});
+    res.json({temp: tempData.temperature, hum: tempData.humidity});
+});
 
 app.get('/recommendation', checkUser, requireAuth, (req, res) => {
   res.render('recommendation');
