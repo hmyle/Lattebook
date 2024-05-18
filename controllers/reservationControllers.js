@@ -331,6 +331,19 @@ module.exports.reservationsReturnPost = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid id' });
     }
 
+    let transactionCheck = await Transaction.findById(id);
+    if (transactionCheck.status === 'Overdue') {
+      try {
+        let dashboardStats = await DashboardStats.findOne();
+        dashboardStats.overdueBooks -= 1;
+        dashboardStats.pendingFees -= transactionCheck.fine;
+        await dashboardStats.save();
+      } catch (error) {
+        console.error('Error updating dashboard stats:', error)
+      }
+    }
+
+
     // Update the transaction status to 'Returned'
     const transaction = await Transaction.findByIdAndUpdate(id, { status: 'Returned' }, { new: true });
 

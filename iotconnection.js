@@ -21,12 +21,19 @@ mongoose.connect(mongoURI)
 app.post('/api/uid', async (req, res) => {
   const uidData = req.body;
   const checkInUid = new Checkin(uidData);
-  let userUid = checkInUid.uid.replace(/\s+/, '');
 
-  checkInUid.save().then(console.log('Data saved to database')).catch((error) => console.log(error.message));
+  let uid = checkInUid.uid.replace(/\s+/, '');
+
+  const user = await User.findOne({ RFID: uid });
+  const book = await Book.findOne({ RFID: uid });
+
+  if (book) {
+    console.log("Book found:", book);
+    res.json(book);
+  }
 
   try {
-    const user = await User.findOne({ RFID: userUid });
+    checkInUid.save().then(console.log('Data saved to database')).catch((error) => console.log(error.message));
     if (user) {
       console.log("User found:", user);
       res.json(user);

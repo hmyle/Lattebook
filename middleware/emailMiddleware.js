@@ -37,8 +37,6 @@ const updateReservationStatus = async (req, res, next) => {
         dashboardStats.overdueBooks = overdueBooks;
         dashboardStats.pendingFees = pendingFees;
         await dashboardStats.save();
-  
-      next();
     } catch (error) {
       console.error('Error processing transactions:', error);
       res.status(500).send('Internal Server Error');
@@ -83,7 +81,7 @@ async function sendOverdueEmail(recipentEmail, returnDate) {
         `,
     });
 
-    console.log(info.messageId);
+    console.log('Email sent to recipent: ', recipentEmail);
 }
 
 module.exports = { updateReservationStatus };

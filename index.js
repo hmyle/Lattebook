@@ -49,56 +49,35 @@ app.use(express.static('public'));
 let selectedBook;
 let selectedDate;
 
-
 // Checking user for all routes
 app.get('*', checkUser);
 
-app.get('/recommendation', checkUser, (req, res) => {
+app.get('/recommendation', checkUser, requireAuth, (req, res) => {
   res.render('recommendation');
 });
 
-app.get('/recommend', async (req, res) => {
-  console.log("Hello");
+app.get("/recommend", async (req, res) => {
   try {
-    // Check if the client is allowed to make a request
-    await rateLimiter.consume(req.ip)
-      .catch(() => {
-        res.status(429).send('Too many requests from this IP, please try again after a minute');
-    });
-
-    // Find the user by email
-    const user = res.locals.user;
-
-    if (!user) {
-      return res.status(404).send('User not found');
-    }
-
-    const favoriteBookId = user.favoriteBook[0]; // Assuming there's only one favorite book
-
-    // Fetch the book details
-    const Book = mongoose.model('Book');
-    const favoriteBook = await Book.findById(favoriteBookId);
-
-    const userInput = `Recommend books similar to ${favoriteBook.title} by ${favoriteBook.author}. Here are the details: ${favoriteBook.description}`;
-
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: userInput,
-      max_tokens: 1024,
-      temperature: 0.7,
-    });
-
-    const recommendedBook = completion.choices[0].text;
-    console.log(recommendedBook);
-    res.send(recommendedBook);
+      const userInput = req.query.input;
+      const completion = await openai.chat.completions.create({
+          messages: [
+              {
+                  role: "system",
+                  content: "You are helpful in recommending books."
+              },
+              {
+                  role: "user",
+                  content: userInput + "\n list out all books"
+              },
+          ],
+          model: "gpt-3.5-turbo",
+      });
+      const recommendedBook = completion.choices[0].message.content;
+      res.send(recommendedBook);
   } catch (error) {
-    if (error.status === 429) {
-      console.error('Rate limit exceeded');
-      res.status(429).send('Rate limit exceeded. Please try again later.');
-    } else {
       console.error(error);
-      res.status(500).send(`An error occurred while processing your request.`);
-    }
+      res.status(500).send(`
+  An error occurred while processing your request.`);
   }
 });
 
@@ -145,6 +124,7 @@ mongoose.connect(mongoURI)
 
 // Schedule a job to run at 00:00 every day
 cron.schedule('0 0 * * *', async function() {
+  console.log("Running scheduled job...");
   // Update reservation status by day and send emails to users with overdue books
   updateReservationStatus();
 
@@ -162,6 +142,8 @@ cron.schedule('0 0 * * *', async function() {
   } catch (err) {
     console.error('Error resetting visitors', err);
   }
+
+  console.log("Scheduled job completed");
 });
 
 // Route for all types of users
