@@ -47,57 +47,6 @@ let selectedDate;
 // Checking user for all routes
 app.get('*', checkUser);
 
-app.get('/tempData', async (req, res) => {
-    const tempData = await TemperatureHumidity.findOne().sort({createdAt: -1});
-    res.json({temp: tempData.temperature, hum: tempData.humidity});
-});
-
-app.get('/recommendation', checkUser, requireAuth, (req, res) => {
-  res.render('recommendation');
-});
-
-app.post("/recommend", checkUser, requireAuth, async (req, res) => {
-  try {
-    const userInput = req.body.input;
-    const completion = await openai.chat.completions.create({
-      messages: [
-        { role: "system", content: "You are helpful in recommending books." },
-        { role: "user", content: userInput + "\\n list out all books" },
-      ],
-      model: "gpt-3.5-turbo",
-    });
-    console.log(completion);
-
-    const recommendedBooks = completion.choices[0].message.content
-      .split('\n')
-      .map(line => line.trim())
-      .filter(line => line !== '' && line.includes('"'))
-      .map(line => line.split('"')[1].trim());
-    console.log(recommendedBooks);
-
-    let foundBooks = [];
-    for (const bookTitle of recommendedBooks) {
-      let book = await Book.findOne({ title: bookTitle });
-      if (book) {
-        foundBooks.push(book);
-      }
-    }
-
-    let categories = await Category.find().populate('author').populate('category');
-    res.render('recommendationResult', { books: foundBooks }, (err, html) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send('An error occurred while rendering the allbooks page.');
-      } else {
-        res.send(html);
-      }
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(`An error occurred while processing your request.`);
-  }
-});
-
 // Setting up session
 app.use(
   session({
@@ -320,6 +269,51 @@ app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }); 
+
+app.get('/tempData', async (req, res) => {
+  const tempData = await TemperatureHumidity.findOne().sort({createdAt: -1});
+  res.json({temp: tempData.temperature, hum: tempData.humidity});
+});
+
+app.get('/recommendation', checkUser, requireAuth, (req, res) => {
+res.render('recommendation');
+});
+
+app.post("/recommend", checkUser, requireAuth, async (req, res) => {
+try {
+  const userInput = req.body.input;
+  const completion = await openai.chat.completions.create({
+    messages: [
+      { role: "system", content: "You are helpful in recommending books." },
+      { role: "user", content: userInput + "\\n list out all books" },
+    ],
+    model: "gpt-3.5-turbo",
+  });
+  console.log(completion);
+
+  const recommendedBooks = completion.choices[0].message.content
+    .split('\n')
+    .map(line => line.trim())
+    .filter(line => line !== '' && line.includes('"'))
+    .map(line => line.split('"')[1].trim());
+  console.log(recommendedBooks);
+
+  let foundBooks = [];
+  for (const bookTitle of recommendedBooks) {
+    let book = await Book.findOne({ title: bookTitle }).populate('author').populate('category');
+    if (book) {
+      foundBooks.push(book);
+    }
+  }
+
+  console.log(foundBooks);
+
+  res.render('recommendationResult', { query: userInput, books: foundBooks });
+} catch (error) {
+  console.error(error);
+  res.status(500).send(`An error occurred while processing your request.`);
+}
+});
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
