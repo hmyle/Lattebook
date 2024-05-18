@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Checkin = require('./models/checkin');
 const User = require('./models/user');
+const Book = require('./models/book');
 const { sendHighTemperatureEmail, sendLowTemperatureEmail } = require('./middleware/emailMiddleware');
 const TemperatureHumidity = require('./models/temperatureHumidity');
 

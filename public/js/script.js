@@ -165,5 +165,6 @@ let closeBookmenuBtn = document.querySelector('#close-bookmenu-btn');
 if (closeBookmenuBtn) {
   closeBookmenuBtn.onclick = () => {
     bookmenuForm.classList.remove('active');
+    location.assign('/');
   }
 }

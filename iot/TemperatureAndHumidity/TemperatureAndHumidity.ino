@@ -6,9 +6,9 @@
 #include <ESP8266HTTPClient.h>
 
 // Define wifi connection
-const char* ssid = "P2201";
-const char* password = "29191948";
-const char* serverUrl = "http://192.168.1.8:3000/api/temperature";
+const char* ssid = "Samsung";
+const char* password = "12345678";
+const char* serverUrl = "http://172.20.10.10:3000/api/temperature";
 
 //param = DHT22 signal pin
 Bonezegei_DHT22 dht(D7);

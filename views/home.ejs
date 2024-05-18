@@ -368,91 +368,18 @@
         <div class="swiper arrivals-slider">
 
             <div class="swiper-wrapper">
-
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="/images/bg.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="author">author name</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                <% newArrivals.forEach((book) => { %>
+                    <a href="/bookDetail/<%= book._id %>" class="swiper-slide box">
+                        <div class="image">
+                            <img src="<%= book.bookImage %>" alt="<%= book.title %>" style="aspect-ratio: 555/710; object-fit: cover;">
                         </div>
-                    </div>
-                </a>
-
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="/images/jeremyfragrance.jpeg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="author">author name</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <div class="content">
+                            <h3><%= book.title %></h3>
+                            <div class="author"><%= book.author.name %></div>
                         </div>
-                    </div>
-                </a>
+                    </a>
 
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="/images/jeremyfragrance.jpeg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="author">author name</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="/images/jeremyfragrance.jpeg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="author">author name</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="/images/jeremyfragrance.jpeg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="author">author name</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
+                <% }); %>
 
             </div>
 

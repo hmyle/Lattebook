@@ -12,10 +12,10 @@ mongoose.connect('mongodb+srv://hmyle:mjWS3$-2FvgUwNU@iotlibrary.tdjdpmt.mongodb
 
 const seedCategories = [
     { name: 'Fiction' },
-    { name: 'Non-fiction' },
     { name: 'Science' },
     { name: 'Biography' },
     { name: 'History' },
+    { name: 'Non-Fiction' },
     // add more categories as needed
 ];
 

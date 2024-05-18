@@ -122,6 +122,8 @@ app.get('/', checkUser, async (req,res) => {
   
     // Fetch all books and populate their author, category, and publisher fields
     let books = await Book.find().populate('author').populate('category').populate('publisher');
+
+    let newArrivals = await Book.find().sort({ createdAt: -1 }).limit(5).populate('author').populate('category').populate('publisher');
   
     // Get the total count of books
     const count = await Book.countDocuments();
@@ -154,7 +156,7 @@ app.get('/', checkUser, async (req,res) => {
     }));
   
     // Render the home page with the fetched data
-    res.render('home', { books, authors, categories, publishers, bookoftheday: selectedBook, reviews: reviewsWithUser });
+    res.render('home', { books, newArrivals, authors, categories, publishers, bookoftheday: selectedBook, reviews: reviewsWithUser });
   
   } catch (err) {
     // Log any error that occurs and redirect to the home page
