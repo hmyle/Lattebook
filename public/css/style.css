@@ -803,30 +803,7 @@ section{
 
 .footer .box-container .box a:hover i{
     padding-right: 2rem;
-}
-
-.footer .box-container .box .map{
-    width:100%;
-}
-
-.footer .share{
-    padding:1rem 0;
-    text-align: center;
-}
-
-.footer .credit{
-    border-top: var(--border);
-    margin-top: 2rem;
-    padding:1rem;
-    padding-top: 2.5rem;
-    font-size: 2rem;
-    color:var(--light-color) !important;
-    text-align: center;
-    /* padding-bottom: 10rem; */
-}
-
-.footer .credit span{
-    color:var(--brown);
+    transition: ease-out 0.5s;
 }
 
 .loader-container{
@@ -1160,6 +1137,51 @@ margin-top: 1rem;
 
 .arrivals .recommend #recommendation{
     font-size: 1.7rem;
+}
+
+.footergradient{
+    width: 100%;
+    height: 20rem;
+    background: linear-gradient(90deg,#A79277 0%,#D1BB9E 100%);
+    opacity: 0.8;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2.5rem;
+}
+
+.footergradient .logo img{
+    width: 5rem;
+    height: auto;
+}
+
+.footergradient .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap:1.5rem;
+}
+
+.footergradient .box-container .box h3{
+    font-size: 2.2rem;
+    color:var(--black);
+    padding:1rem 0;
+}
+
+.footergradient .box-container .box a{
+    display: block;
+    font-size: 1.4rem;
+    color:var(--light-color) !important;
+    padding:1rem 0;
+}
+
+.footergradient .box-container .box a i{
+    color:var(--black);
+    padding-right: .5rem;
+}
+
+.footergradient .box-container .box a:hover i{
+    padding-right: 2rem;
+    transition: ease-out 0.5s;
 }
 
 /* media queries  */
