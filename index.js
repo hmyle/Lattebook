@@ -176,6 +176,8 @@ app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
     // Fetch all authors and publishers from the database
     const authors = await Author.find();
     const publishers = await Publisher.find();
+
+    let overdueTransactions = await Transaction.find({ status: 'Overdue' }).populate('book').populate('user');
   
     // Fetch the user's favorite books and populate their author and category details
     let books = await Book.find();
@@ -263,7 +265,7 @@ app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
     const users = await User.find();
 
     // Render the management page with the fetched data
-    res.render('management', { dashboardStats, user: user, books: books, allActiveTransactions, allPrevTransactions, transactions: transactionsWithDetails, authors, publishers , users});
+    res.render('management', { dashboardStats, overdueTransactions, user: user, books: books, allActiveTransactions, allPrevTransactions, transactions: transactionsWithDetails, authors, publishers , users});
   
   } catch (error) {
     // Log any error that occurs and return a 500 error
@@ -274,7 +276,7 @@ app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
 
 app.get('/tempData', async (req, res) => {
   const tempData = await TemperatureHumidity.findOne().sort({createdAt: -1});
-  res.json({temp: tempData.temperature, hum: tempData.humidity});
+  res.json({temp: parseFloat(tempData.temperature.toFixed(1)), hum: parseFloat(tempData.humidity.toFixed(1))});
 });
 
 app.get('/recommendation', checkUser, requireAuth, (req, res) => {
@@ -315,6 +317,57 @@ try {
   console.error(error);
   res.status(500).send(`An error occurred while processing your request.`);
 }
+});
+
+// app.get('/api/visitorData', async (req, res) => {
+//   try {
+//     const visitorData = await Checkin.aggregate([
+//       {
+//         $group: {
+//           _id: { $dayOfWeek: '$createdAt' },
+//           count: { $sum: 1 }
+//         }
+//       },
+//       {
+//         $project: {
+//           _id: 0,
+//           dayOfWeek: {
+//             $arrayElemAt: [
+//               ['', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+//               '$_id'
+//             ]
+//           },
+//           count: 1
+//         }
+//       },
+//       {
+//         $sort: { dayOfWeek: 1 }
+//       }
+//     ]);
+
+//     res.json(visitorData);
+//   } catch (error) {
+//     console.error('Error retrieving visitor data:', error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
+
+app.get('/api/visitorData', async (req, res) => {
+  try {
+    const visitorData = [
+      { dayOfWeek: 'Mon', count: 10 },
+      { dayOfWeek: 'Tue', count: 20 },
+      { dayOfWeek: 'Wed', count: 15 },
+      { dayOfWeek: 'Thu', count: 25 },
+      { dayOfWeek: 'Fri', count: 30 },
+      { dayOfWeek: 'Sat', count: 40 },
+      { dayOfWeek: 'Sun', count: 35 }
+    ];
+    res.json(visitorData);
+  } catch (error) {
+    console.error('Error retrieving visitor data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.listen(port, () => {
