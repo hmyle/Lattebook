@@ -89,7 +89,7 @@ mongoose.connect(mongoURI)
   .catch((error) => console.log(error.message));
 
 // Schedule a job to run at 00:00 every day
-cron.schedule('0 0 * * *', async function() {
+cron.schedule('* * * * *', async function() {
   console.log("Running scheduled job...");
   // Update reservation status by day and send emails to users with overdue books
   updateReservationStatus();
@@ -177,7 +177,30 @@ app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
     const authors = await Author.find();
     const publishers = await Publisher.find();
 
-    let overdueTransactions = await Transaction.find({ status: 'Overdue' }).populate('book').populate('user');
+    let overdueTransactions = await Transaction.find({ status: 'Overdue' });
+
+    // Fetch user and book details for overdue transactions
+    const overdueTransactionsWithDetails = await Promise.all(
+      overdueTransactions.map(async (transaction) => {
+        const user = await User.findById(transaction.userId).exec();
+        const book = await Book.findById(transaction.bookId).exec();
+
+        const userName = user ? user.fullName : 'User not found';
+        const bookTitle = book ? book.title : 'Book not found';
+
+        return {
+          _id: transaction._id,
+          userName: userName,
+          bookTitle: bookTitle,
+          status: transaction.status,
+          pickUpDate: transaction.pickUpDate,
+          returnDate: transaction.returnDate,
+          fine: transaction.fine,
+        };
+      })
+    );
+
+    console.log(overdueTransactionsWithDetails);
   
     // Fetch the user's favorite books and populate their author and category details
     let books = await Book.find();
@@ -265,7 +288,7 @@ app.get('/management', requireAuth, checkUser, isAdmin, async (req, res) => {
     const users = await User.find();
 
     // Render the management page with the fetched data
-    res.render('management', { dashboardStats, overdueTransactions, user: user, books: books, allActiveTransactions, allPrevTransactions, transactions: transactionsWithDetails, authors, publishers , users});
+    res.render('management', { dashboardStats, overdueTransactions: overdueTransactionsWithDetails, user: user, books: books, allActiveTransactions, allPrevTransactions, transactions: transactionsWithDetails, authors, publishers , users});
   
   } catch (error) {
     // Log any error that occurs and return a 500 error

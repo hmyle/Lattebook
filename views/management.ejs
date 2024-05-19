@@ -111,7 +111,7 @@
                             <div class="card-body">
                                 <h3>Borrowed Books</h3>
                                 <h3><%= dashboardStats.booksBorrowed %></h3>
-                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                
                             </div>
                         </div>
                         </a>
@@ -122,7 +122,7 @@
                             <div class="card-body">
                                 <h3>Returned Books</h3>
                                 <h3><%= dashboardStats.booksReturned %></h3>
-                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                
                             </div>
                         </div>
                         </a>
@@ -133,7 +133,7 @@
                                 <div class="card-body">
                                     <h3>Overdue Books</h3>
                                     <h3><%= dashboardStats.overdueBooks %></h3>
-                                    <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                    
                                 </div>
                             </div>
                             </a>
@@ -144,7 +144,7 @@
                                 <div class="card-body">
                                     <h3>Missing Books</h3>
                                     <h3><%= dashboardStats.missingBooks %></h3>
-                                    <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                    
                                 </div>
                             </div>
                             </a>
@@ -157,7 +157,7 @@
                             <div class="card-body">
                                 <h3>Total Books</h3>
                                 <h3><%= dashboardStats.totalBooks %></h3>
-                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                
                             </div>
                         </div>
                         </a>
@@ -168,7 +168,7 @@
                             <div class="card-body">
                                 <h3>Visitors</h3>
                                 <h3><%= dashboardStats.visitors %></h3>
-                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                
                             </div>
                             </a>
                         </div>
@@ -179,7 +179,7 @@
                             <div class="card-body">
                                 <h3>Total Members</h3>
                                 <h3><%= dashboardStats.newMembers %></h3>
-                                <button type="button" class="btn btn-info float-right" disabled>+%</button>
+                                
                             </div>
                         </div>
                         </a>
@@ -190,7 +190,7 @@
                             <div class="card-body">
                                 <h3>Pending Fees</h3>
                                 <h3><%= dashboardStats.pendingFees %></h3>
-                                <button type="button" class="btn btn-info float-right" disabled>-%</button>
+                                
                             </div>
                         </div>
                         </a>
@@ -230,8 +230,8 @@
                                         <tbody>
                                             <% overdueTransactions.forEach(transaction => { %>
                                                 <tr>
-                                                    <td><%= transaction.bookId.name %></td>
-                                                    <td><%= transaction.userId.name %></td>
+                                                    <td><%= transaction.bookTitle %></td>
+                                                    <td><%= transaction.userName %></td>
                                                     <td><%= new Date(transaction.returnDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
                                                     <td><%= transaction.fine %> $</td>
                                                 </tr>
@@ -636,17 +636,10 @@
         data: {
             labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             datasets: [{
-                label: '# of Books Borrowed',
-                data: [1200, 1900, 3000, 5000, 2000, 3000, 2400],
+                label: 'Number of Visitors',
+                data: [12, 19, 30, 50, 20, 30, 24],
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            },
-            {
-                label: '# of Books Returned',
-                data: [1000, 1500, 3500, 4500, 2500, 2800, 2200],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             }]
         },
@@ -656,7 +649,7 @@
                     beginAtZero: true,
                     ticks: {
                         callback: function(value, index, values) {
-                            return value / 1000 + 'k';
+                            return value;
                         }
                     }
                 }
