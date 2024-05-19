@@ -92,7 +92,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -108,7 +108,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -124,7 +124,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:rgb(204, 0, 0);
     font-size: 1.7rem;
     cursor: pointer;
@@ -220,7 +220,7 @@ section{
 }
 
 .header .header-2 .navbar a{
-    color:#fff !important;
+    color:#fff;
     display: inline-block;
     padding:1.2rem;
     font-size: 1.7rem;
@@ -248,7 +248,7 @@ section{
 .bottom-navbar a{
     font-size: 2.5rem;
     padding:2rem;
-    color:#fff !important;
+    color:#fff;
 }
 
 .bottom-navbar a:hover{
@@ -260,7 +260,7 @@ section{
     display:inline-block;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -336,7 +336,7 @@ section{
 
 .bookmenu-form-container form .checkbox label{
     font-size: 1.5rem;
-    color:var(--light-color) !important;
+    color:var(--light-color);
     cursor: pointer;
     user-select: none;
 }
@@ -349,7 +349,7 @@ section{
 
 .bookmenu-form-container form p{
     padding-top: .8rem;
-    color:var(--light-color) !important;
+    color:var(--light-color);
     font-size: 1.5rem;
 }
 
@@ -442,7 +442,7 @@ section{
 }
 
 .home .row .content p{
-    color:var(--light-color) !important;
+    color:var(--light-color);
     font-size: 1.4rem;
     line-height: 2;
     padding:1rem 0;
@@ -485,7 +485,7 @@ section{
 
 .icons-container .icons p{
     font-size: 1.4rem;
-    color:var(--light-color) !important;
+    color:var(--light-color);
 }
 
 .featured .featured-slider .box{
@@ -544,7 +544,7 @@ section{
 
 .featured .featured-slider .box .icons a:hover{
     background:var(--brown);
-    color:#fff !important;
+    color:#fff;
 }
 
 .featured .featured-slider .box .content{
@@ -580,7 +580,7 @@ section{
 .swiper-button-next:hover,
 .swiper-button-prev:hover{
     background: var(--black);
-    color:#fff !important;
+    color:#fff;
 }
 
 .newsletter-container{
@@ -600,7 +600,7 @@ section{
 
 .newsletter form h3{
     font-size: 2.2rem;
-    color:#fff !important;
+    color:#fff;
     padding-bottom: .7rem;
     font-weight: normal;
 }
@@ -732,7 +732,7 @@ section{
 
 .deal .content p{
     padding:1rem 0;
-    color:var(--light-color) !important;
+    color:var(--light-color);
     font-size: 1.4rem;
     line-height: 2;
 }
@@ -762,7 +762,7 @@ section{
 }
 
 .reviews .reviews-slider .box p{
-    color:var(--light-color) !important;
+    color:var(--light-color);
     font-size: 1.4rem;
     padding:1rem 0;
     line-height: 2;
@@ -792,7 +792,7 @@ section{
 .footer .box-container .box a{
     display: block;
     font-size: 1.4rem;
-    color:var(--light-color) !important;
+    color:var(--light-color);
     padding:1rem 0;
 }
 
@@ -820,7 +820,7 @@ section{
     padding:1rem;
     padding-top: 2.5rem;
     font-size: 2rem;
-    color:var(--light-color) !important;
+    color:var(--light-color);
     text-align: center;
     /* padding-bottom: 10rem; */
 }
@@ -906,7 +906,7 @@ section{
 margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -918,7 +918,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -930,7 +930,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1001,7 +1001,7 @@ margin-top: 1rem;
 margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1013,7 +1013,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1025,7 +1025,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1147,7 +1147,7 @@ margin-top: 1rem;
     margin-top: 1rem;
     padding:.9rem 3rem;
     border-radius: .5rem;
-    color:#fff !important;
+    color:#fff;
     background:var(--brown);
     font-size: 1.7rem;
     cursor: pointer;
@@ -1160,6 +1160,11 @@ margin-top: 1rem;
 
 .arrivals .recommend #recommendation{
     font-size: 1.7rem;
+}
+
+#recommendBtn {
+    color: var(--brown);
+    background: #f3f3f3;
 }
 
 /* media queries  */
