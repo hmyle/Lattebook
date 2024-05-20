@@ -89,7 +89,7 @@ mongoose.connect(mongoURI)
   .catch((error) => console.log(error.message));
 
 // Schedule a job to run at 00:00 every day
-cron.schedule('* * * * *', async function() {
+cron.schedule('0 0 * * *', async function() {
   console.log("Running scheduled job...");
   // Update reservation status by day and send emails to users with overdue books
   updateReservationStatus();

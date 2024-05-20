@@ -8,7 +8,7 @@ const { sendHighTemperatureEmail, sendLowTemperatureEmail } = require('./middlew
 const TemperatureHumidity = require('./models/temperatureHumidity');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // MongoDB connection URI
 const mongoURI = 'mongodb+srv://hmyle:mjWS3$-2FvgUwNU@iotlibrary.tdjdpmt.mongodb.net/librarysystem';

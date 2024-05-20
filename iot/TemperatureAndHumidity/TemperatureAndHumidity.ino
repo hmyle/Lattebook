@@ -8,7 +8,7 @@
 // Define wifi connection
 const char* ssid = "Samsung";
 const char* password = "12345678";
-const char* serverUrl = "http://172.20.10.10:3000/api/temperature";
+const char* serverUrl = "http://172.20.10.10:3001/api/temperature";
 
 //param = DHT22 signal pin
 Bonezegei_DHT22 dht(D7);

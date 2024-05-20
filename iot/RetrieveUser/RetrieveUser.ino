@@ -13,7 +13,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
 const char* ssid = "P2201";
 const char* password = "29191948";
-const char* serverUrl = "http://192.168.1.8:3000/api/uid";
+const char* serverUrl = "http://192.168.1.8:3001/api/uid";
 
 void setup() {
   Serial.begin(9600);  // Initialize serial communications with the PC
