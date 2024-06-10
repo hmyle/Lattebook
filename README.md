@@ -72,9 +72,9 @@ LatteBook is a comprehensive library management system that streamlines the proc
 - `iot/`: Contains the Arduino and ESP8266 code for IoT device integration
 
 ## 🌟 Authors
+- Nguyen Thanh Tung (Project Manager/Frontend Developer)
 - Luong Tuan Kiet (Frontend Developer)
-- Tran Hoang Son (Frontend Developer)
-- Le Ha My (Backend Developer/System Architecture)
+- Le Ha My (Frontend Developer/Backend Developer/IoT Engineer)
 
 ## License
 
