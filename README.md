@@ -6,8 +6,9 @@
 
 LatteBook is a comprehensive library management system that streamlines the processes of book management, user interactions, and library administration. This project aims to provide an efficient and user-friendly platform for both librarians and library patrons.
 
-## 💻 Features
+![Latte Book Poster](https://github.com/hmyle/Lattebook/assets/116583355/7822f595-efb8-46d8-bf2e-e12a8ec396ea)
 
+## 💻 Features
 - User Authentication and Authorization
   - User registration and login functionality
   - Role-based access control (librarian and patron)
